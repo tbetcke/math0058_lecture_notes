@@ -49,7 +49,8 @@ that an error converges to $0$ in one norm but not in another norm?
 In finite dimensional vector spaces the answer is no. If a sequence converges in one norm it also converges in any other norm. This goes back
 to the following norm equivalence theorem
 
-### Norm equivalence
+### Norm equivalence in finite dimensional vector spaces
+
 Let $V$ be a finite dimensional vector space. Consider two norms
 $\|\cdot\|_a$ and $\|\cdot\|_b$ on $V$. Then there exist positive constants
 $C_1$, $C_2$ such that for all $x\in V$
@@ -61,6 +62,9 @@ $$
 Proof: The proof requires some analysis and is not part of the lecture.
 For those interested in how it works a good reference is the following
 note by [Steve Johnson at MIT](https://math.mit.edu/~stevenj/18.335/norm-equivalence.pdf).
+
+We note that norm equivalence is only a property of finite dimensional vector spaces. For infinite dimensional spaces (e.g. spaces of functions)
+it is easy to construct examples of functions converging with respect to one norm but not with respect to another norm.
 
 
 ## Matrix norms
