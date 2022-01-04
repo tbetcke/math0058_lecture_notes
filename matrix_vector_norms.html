@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -167,6 +169,53 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#norm-axioms">
+   Norm axioms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#frequently-used-vector-norms">
+   Frequently used vector norms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#norm-equivalence">
+   Norm equivalence
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Norm equivalence
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matrix-norms">
+   Matrix norms
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#submultiplicativity">
+   Submultiplicativity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#submultiplicativity-of-the-frobenius-norm">
+     Submultiplicativity of the Frobenius norm
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -177,7 +226,125 @@
                 
   <div class="tex2jax_ignore mathjax_ignore section" id="matrix-and-vector-norms">
 <h1>Matrix and vector norms<a class="headerlink" href="#matrix-and-vector-norms" title="Permalink to this headline">¶</a></h1>
-<p>To be filled…</p>
+<div class="section" id="norm-axioms">
+<h2>Norm axioms<a class="headerlink" href="#norm-axioms" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be a vector space and <span class="math notranslate nohighlight">\(\rho: V\rightarrow \mathbb{R}^{+}\)</span> a
+mapping from <span class="math notranslate nohighlight">\(V\)</span> into the nonnegative numbers.
+<span class="math notranslate nohighlight">\(\rho\)</span> is called a norm if it satisfies the following properties</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(\rho(\alpha x) = |\alpha| \rho(x)~\forall \alpha\in\mathbb{R};~x\in V\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho(x + y) \leq \rho(x) + \rho(y)~\forall x, y\in V\)</span> (triangle inequality)</p></li>
+<li><p><span class="math notranslate nohighlight">\(\rho(x) = 0\)</span> if and only if <span class="math notranslate nohighlight">\(x = 0\)</span>.</p></li>
+</ol>
+<p>From these axioms it immediately follows that
+$<span class="math notranslate nohighlight">\(
+0 = \rho(0) = \rho(x - x) \leq 2\rho(x)
+\)</span><span class="math notranslate nohighlight">\(
+and therefore \)</span>\rho(x) \geq 0<span class="math notranslate nohighlight">\( for all \)</span>x\in V$. Hence, a norm is always
+nonnegative.</p>
+<p>The first and third norm axiom are usually easy to prove. The difficult
+one is the second one, the triangle inequality.</p>
+</div>
+<div class="section" id="frequently-used-vector-norms">
+<h2>Frequently used vector norms<a class="headerlink" href="#frequently-used-vector-norms" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be the real vector space <span class="math notranslate nohighlight">\(\mathbb{R}^n\)</span>. Let <span class="math notranslate nohighlight">\(x\in V\)</span> and denote
+by <span class="math notranslate nohighlight">\(x_j\)</span> the <span class="math notranslate nohighlight">\(j\)</span>-th  component of <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>The most frequently used vector norms are:</p>
+<ul class="simple">
+<li><p>The <span class="math notranslate nohighlight">\(1\)</span>-norm <span class="math notranslate nohighlight">\(\|x\|_1 = \sum_{j=1}^n|x_j|\)</span>.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(2\)</span>-norm <span class="math notranslate nohighlight">\(\|x\|_2 = \left[\sum_{j=1}^n|x_j|^2\right]^{1/2}\)</span>.</p></li>
+<li><p>The <span class="math notranslate nohighlight">\(\infty\)</span>-norm <span class="math notranslate nohighlight">\(\|x\|_{\infty} = \max_j |x_j|\)</span>.</p></li>
+</ul>
+<p>These are all special cases of the <span class="math notranslate nohighlight">\(\ell_p\)</span>-norm defined as
+$<span class="math notranslate nohighlight">\(
+\|x\|_p = \left[\sum_{j=1}^n]|x_j|^p\right]^{1/p}.
+\)</span>$</p>
+</div>
+<div class="section" id="norm-equivalence">
+<h2>Norm equivalence<a class="headerlink" href="#norm-equivalence" title="Permalink to this headline">¶</a></h2>
+<p>Which norm should we use? This usually depends on the application.
+A taxi driver will prefer the <span class="math notranslate nohighlight">\(1\)</span>-norm when calculating distances as they
+need to follow a street map and can’t go in straight lines to locations.</p>
+<p>In Numerics we often want to prove whether a given numerical approximation
+is converging. Hence, we have some error quantity <span class="math notranslate nohighlight">\(e\)</span> and want to show that
+the sequence of errors <span class="math notranslate nohighlight">\(\left\{e_n\right\}\)</span> converges to <span class="math notranslate nohighlight">\(0\)</span>. Can it happen
+that an error converges to <span class="math notranslate nohighlight">\(0\)</span> in one norm but not in another norm?
+In finite dimensional vector spaces the answer is no. If a sequence converges in one norm it also converges in any other norm. This goes back
+to the following norm equivalence theorem</p>
+<div class="section" id="id1">
+<h3>Norm equivalence<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(V\)</span> be a finite dimensional vector space. Consider two norms
+<span class="math notranslate nohighlight">\(\|\cdot\|_a\)</span> and <span class="math notranslate nohighlight">\(\|\cdot\|_b\)</span> on <span class="math notranslate nohighlight">\(V\)</span>. Then there exist positive constants
+<span class="math notranslate nohighlight">\(C_1\)</span>, <span class="math notranslate nohighlight">\(C_2\)</span> such that for all <span class="math notranslate nohighlight">\(x\in V\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+C_1\|x\|_a\leq \|x\|_b\leq C_2\|x\|_a
+\]</div>
+<p>Proof: The proof requires some analysis and is not part of the lecture.
+For those interested in how it works a good reference is the following
+note by <a class="reference external" href="https://math.mit.edu/~stevenj/18.335/norm-equivalence.pdf">Steve Johnson at MIT</a>.</p>
+</div>
+</div>
+<div class="section" id="matrix-norms">
+<h2>Matrix norms<a class="headerlink" href="#matrix-norms" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span>. Consider vector norms <span class="math notranslate nohighlight">\(\|x\|_a\)</span> for <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span> and <span class="math notranslate nohighlight">\(\|y\|_b\)</span> for <span class="math notranslate nohighlight">\(y\in\mathbb{R}^{m}\)</span>. Then an induced matrix norm can be defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_{b, a}:= \max_{x\in\mathbb{R}^n\backslash\{0\}}\frac{\|Ax\|_b}{\|x\|_a}
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(a = b\)</span> then we abbreviate <span class="math notranslate nohighlight">\(\|A\|_a := \|A\|_{a, a}\)</span>.</p>
+<p>The following three matrix norms derive from the corresponding vector norms.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\|A\|_1 :=\max_{1\leq j\leq n} \sum_{i=1}^n|a_{ij}|\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\|A\|_2 :=\sqrt{\lambda_{max}(A^TA)}\)</span>, where
+<span class="math notranslate nohighlight">\(\lambda_max\)</span> denotes the largest eigenvalue.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|A\|_{\infty} := \max_{1\leq i\leq n}\sum_{j=1}^n|a_{ij}\)</span></p></li>
+</ul>
+<p>The <span class="math notranslate nohighlight">\(\|A\|_2\)</span> matrix norm is difficult to evaluate as it requires computation of the largest eigenvalue of <span class="math notranslate nohighlight">\(A^TA\)</span>, which is an expensive operation. In practice, the following <strong>Frobenius</strong> norm is therefore frequently used instead of the matrix <span class="math notranslate nohighlight">\(2\)</span>-norm.</p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_F:=\left(\sum_{ij}|a_{ij}|^2\right)^{1/2}.
+\]</div>
+<p>We will later show that</p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_2\leq \|A\|_F\leq\sqrt{r}\|A\|_2
+\]</div>
+</div>
+<div class="section" id="submultiplicativity">
+<h2>Submultiplicativity<a class="headerlink" href="#submultiplicativity" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span> and <span class="math notranslate nohighlight">\(B\in\mathbb{R}^{n\times k}\)</span> with corresponding vector induced matrix norm <span class="math notranslate nohighlight">\(\|\cdot\|\)</span>. For any <span class="math notranslate nohighlight">\(v\in\mathbb{R}^k\)</span> it holds that</p>
+<div class="math notranslate nohighlight">
+\[
+\|ABv\|\leq \|A\|\cdot\|Bv\|\leq \|A\|\cdot \|B\| \cdot \|v\|.
+\]</div>
+<p>Dividing by <span class="math notranslate nohighlight">\(\|v\|\)</span> and taking the maximum over all <span class="math notranslate nohighlight">\(v\in\mathbb{R}^k\backslash\{0\}\)</span> shows that</p>
+<div class="math notranslate nohighlight">
+\[
+\|A\cdot B\|\leq \|A\|\cdot \|B\|.
+\]</div>
+<p>This property is called submultiplicativty. We have just proved it for any vector induced matrix norm. But what about the Frobenius norm?</p>
+<p>First of all, since <span class="math notranslate nohighlight">\(\|A\|_2\leq \|A\|_F\)</span> we have that</p>
+<div class="math notranslate nohighlight">
+\[
+\|Ax\|_2 \leq \|A\|_2\|x\|_2 \leq \|A\|_F\|x\|_2.
+\]</div>
+<p>We can now prove the following statement.</p>
+<div class="section" id="submultiplicativity-of-the-frobenius-norm">
+<h3>Submultiplicativity of the Frobenius norm<a class="headerlink" href="#submultiplicativity-of-the-frobenius-norm" title="Permalink to this headline">¶</a></h3>
+<p>For matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> with compatible dimensions such that the product <span class="math notranslate nohighlight">\(AB\)</span> exists it holds that</p>
+<div class="math notranslate nohighlight">
+\[
+\|AB\|_F\leq \|A\|_F\cdot \|B\|_F.
+\]</div>
+<p><strong>Proof:</strong> We denote by <span class="math notranslate nohighlight">\(B_{:, j}\)</span> the <span class="math notranslate nohighlight">\(j\)</span>-th colon of the matrix <span class="math notranslate nohighlight">\(B\)</span>. We can now write</p>
+<div class="math notranslate nohighlight">
+\[
+\|AB\|_F^2 = \sum_{j}\|AB_{:, j}\|_2^2\leq \|A\|_F^2\sum_{j}\|B_{:, j}\|_2^2 = \|A\|_F^2\cdot \|B\|_F^2,
+\]</div>
+<p>from which the result follows.</p>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
