@@ -3,6 +3,6 @@ root: intro
 parts:
 - caption: Fundamentals
   chapters:
-    - matrix_vector_norms
+    - file: matrix_vector_norms
 
 
