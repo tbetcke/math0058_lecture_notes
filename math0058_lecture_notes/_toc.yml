@@ -4,5 +4,6 @@ parts:
 - caption: Fundamentals
   chapters:
     - file: matrix_vector_norms
+    - file: floating_point_arithmetic.ipynb
 
 
