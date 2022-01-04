@@ -14,6 +14,7 @@ From these axioms it immediately follows that
 $$
 0 = \rho(0) = \rho(x - x) \leq 2\rho(x)
 $$
+
 and therefore $\rho(x) \geq 0$ for all $x\in V$. Hence, a norm is always
 nonnegative.
 
@@ -32,6 +33,7 @@ The most frequently used vector norms are:
 - The $\infty$-norm $\|x\|_{\infty} = \max_j |x_j|$.
 
 These are all special cases of the $\ell_p$-norm defined as
+
 $$
 \|x\|_p = \left[\sum_{j=1}^n]|x_j|^p\right]^{1/p}.
 $$

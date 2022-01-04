@@ -408,14 +408,17 @@ $<span class="math notranslate nohighlight">\(
 <p>Let <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(b^{e_{min}}\leq x &lt; b^{e_{max}+1}\)</span>. Define <span class="math notranslate nohighlight">\(\epsilon_{mach}:=\frac{1}{2}b^{1-p}\)</span></p>
 <p>There exists <span class="math notranslate nohighlight">\(x'\in \mathcal{F}\)</span> such that <span class="math notranslate nohighlight">\(|x-x'|\leq\epsilon_{mach}|x|\)</span>.</p>
 <p><strong><span class="math notranslate nohighlight">\(\epsilon_{mach}\)</span> is relative distance to the next floating point number in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>.</strong></p>
-<p>Define the projection
-$<span class="math notranslate nohighlight">\(fl:fl(x)\rightarrow x',\)</span><span class="math notranslate nohighlight">\(
-where \)</span>x’<span class="math notranslate nohighlight">\( is the closest floating point number in \)</span>\mathcal{F}$.</p>
+<p>Define the projection</p>
+<div class="math notranslate nohighlight">
+\[
+fl:fl(x)\rightarrow x',
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(x'\)</span> is the closest floating point number in <span class="math notranslate nohighlight">\(\mathcal{F}\)</span>.</p>
 <p>It follows that <span class="math notranslate nohighlight">\(fl(x)=x*(1+\epsilon)\)</span> for some <span class="math notranslate nohighlight">\(|\epsilon|\leq \epsilon_{mach}\)</span>.</p>
 <div class="section" id="fundamental-axiom-of-floating-point-arithmetic">
 <h3>Fundamental Axiom of Floating Point Arithmetic<a class="headerlink" href="#fundamental-axiom-of-floating-point-arithmetic" title="Permalink to this headline">¶</a></h3>
 <p>Define <span class="math notranslate nohighlight">\(x\odot y = fl(x \cdot y)\)</span>, where <span class="math notranslate nohighlight">\(\cdot\)</span> is one of <span class="math notranslate nohighlight">\(+,-,\times,\div\)</span>. Then for all <span class="math notranslate nohighlight">\(x,y\in\mathcal{F}\)</span> there exists <span class="math notranslate nohighlight">\(\epsilon\)</span> with <span class="math notranslate nohighlight">\(|\epsilon| \leq \epsilon_{mach}\)</span> such that
-$<span class="math notranslate nohighlight">\( x\odot y = (x \cdot y)(1+\epsilon).\)</span>$</p>
+$<span class="math notranslate nohighlight">\( x\odot y = (x \odot y)(1+\epsilon).\)</span>$</p>
 <p>Most modern architectures guarantee this property.</p>
 </div>
 </div>
