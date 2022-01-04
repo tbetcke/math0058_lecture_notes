@@ -29,7 +29,7 @@ jobs:
     # Build the book
     - name: Build the book
       run: |
-        jupyter-book build hpc_lecture_notes
+        jupyter-book build math0058_lecture_notes
 
     # Deploy the book's HTML to gh-pages branch
     - name: GitHub Pages action
