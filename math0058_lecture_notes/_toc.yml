@@ -1,3 +1,8 @@
 format: jb-book
 root: intro
+parts:
+- caption: Fundamentals
+  chapters:
+    - matrix_vector_norms
+
 
