@@ -1,0 +1,405 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Week 1 Self check questions and solutions &#8212; MATH0058 - Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Floating Point Arithmetic" href="floating_point_arithmetic.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">MATH0058 - Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to MATH0058
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentals
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="matrix_vector_norms.html">
+   Matrix and vector norms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="floating_point_arithmetic.html">
+   Floating Point Arithmetic
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Self Check Questions
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Week 1 Self check questions and solutions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/week_1_self_check.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+        </div>
+    </div>
+</div>
+    <!-- Table of contents that is only displayed when printing the page -->
+    <div id="jb-print-docs-body" class="onlyprint">
+        <h1>Week 1 Self check questions and solutions</h1>
+        <!-- Table of contents -->
+        <div id="print-main-content" class="row">
+            <div class="col-12 col-md-12 pl-md-5 pr-md-5">
+            <div id="jb-print-toc">
+                
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-1-self-check-questions-and-solutions">
+<h1>Week 1 Self check questions and solutions<a class="headerlink" href="#week-1-self-check-questions-and-solutions" title="Permalink to this headline">¶</a></h1>
+<p><strong>Question 1:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span>. Proof that</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\|A\|_1 = \max_j \sum_i|a_{ij}|\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|A\|_{\infty} = \max_i \sum_j|a_{ij}|\)</span>.</p></li>
+</ul>
+<p>Note: It follows that <span class="math notranslate nohighlight">\(\|A\|_1 = \|A^T\|_{\infty}\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>From the definition of a vector induced matrix norm we have that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\|A\|_1 &amp;= \max_{\|x\|_1 = 1} \sum_i |\left[Ax\right]_i|\\
+        &amp;\leq \max_{\|x\|_1 = 1} \sum_{i} \sum_j |a_{ij}| |x_j|\\
+        &amp;= \max_{\|x\|_1 = 1}  \sum_j |x_j|\sum_i |a_{ij}|\\
+        &amp;\leq \max_j\sum_i |a_{ij}| \max_{\|x\|_1 = 1} \sum_j|x_j|\\
+        &amp;=\max_j\sum_i |a_{ij}|.
+\end{aligned}
+\end{split}\]</div>
+<p>It is left to show that this upper bound is attainable. But this can be easily accomplished. Let <span class="math notranslate nohighlight">\(\hat{j} = \text{argmax}_j \sum_i |a_{ij}|\)</span> be the index <span class="math notranslate nohighlight">\(\hat{j}\)</span> associated with the largest column sum. We then set <span class="math notranslate nohighlight">\(x_j = 0\)</span> for <span class="math notranslate nohighlight">\(j\neq \hat{j}\)</span> and <span class="math notranslate nohighlight">\(x_{\hat{j}} = 1\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(\|A\|_{\infty}\)</span> we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_{\infty} = \max_{\|x\|_{\infty} = 1} \max_i |\left[Ax\right]_i| \leq \max_i \sum_{j}|a_{ij}|.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\hat{i}\)</span> be the row index for which the upper bound is attained. By choosing <span class="math notranslate nohighlight">\(x_j = \text{sign}~a_{\hat{i}j}\)</span> we have that <span class="math notranslate nohighlight">\(\|Ax\|_{\infty} = \max_i \sum_{j}|a_{ij}|\)</span>, which confirms that the upper bound can be attained.</p>
+<p><strong>Question 2:</strong></p>
+<p>For the matrix <span class="math notranslate nohighlight">\(A = \begin{bmatrix} 2 &amp; 3 \\ 0 &amp; 1\end{bmatrix}\)</span> compute <span class="math notranslate nohighlight">\(\|A|_p\)</span> for <span class="math notranslate nohighlight">\(p=1, 2, \infty, F\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>We have <span class="math notranslate nohighlight">\(\|A|_1 = 4\)</span>, <span class="math notranslate nohighlight">\(\|A|_{\infty} = 5\)</span>, <span class="math notranslate nohighlight">\(\|A|_F = \sqrt{14}\)</span>. For <span class="math notranslate nohighlight">\(\|A\|_2\)</span> we compute the eigenvalues of</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A^TA = \begin{bmatrix}4 &amp; 6\\ 6 &amp; 10\end{bmatrix},
+\end{split}\]</div>
+<p>giving us <span class="math notranslate nohighlight">\(\lambda_{1, 2} = 7 \pm 3\sqrt{5}\)</span>. Hence, <span class="math notranslate nohighlight">\(\|A\|_2 = \sqrt{7 + 3\sqrt{5}}\)</span>.</p>
+<p><strong>Question 3:</strong></p>
+<p>Show that <span class="math notranslate nohighlight">\(\|x\|_{\infty} = \lim_{p\rightarrow\infty} \|x\|_p\)</span> for <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(\hat{j}\)</span> be the index of the largest element by magnitude in <span class="math notranslate nohighlight">\(x\)</span>. We have that</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{p\rightarrow\infty} \|x\|_p = \lim_{p\rightarrow\infty} \left[ \sum_{j}|x_j|^p\right]^{1/p} = |x_{\hat{j}}|\lim_{p\rightarrow\infty} \left[1 +  \sum_{j\neq \hat{j}}|x/\hat{x}|^p\right]^{1/p} = |x_{\hat{j}}|.
+\]</div>
+<p><strong>Question 4:</strong></p>
+<p>Explain the meaning of <span class="math notranslate nohighlight">\(\epsilon_{mach}\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p><span class="math notranslate nohighlight">\(\epsilon_{mach}\)</span> is defined as <span class="math notranslate nohighlight">\(\epsilon{mach} = \frac{1}{2}b^{1-p}\)</span>, which is half the distance of <span class="math notranslate nohighlight">\(1\)</span> to the next floating point number. It is the maximum relative error of a real number <span class="math notranslate nohighlight">\(x\)</span> and its closest floating point representation <span class="math notranslate nohighlight">\(x'\)</span>, that is</p>
+<div class="math notranslate nohighlight">
+\[
+|x - x'| \leq |x|\epsilon_{mach}.
+\]</div>
+<p><strong>Question 5:</strong></p>
+<p>Why do double precision numbers  give you around 15 digits of accuracy?</p>
+<p><strong>Solution:</strong></p>
+<p>We have <span class="math notranslate nohighlight">\(\epsilon_{mach} = 2^{-53}\approx 1.11E-16\)</span> in double precision. Hence, the relative error of mapping a real number to its floating point representation is correct to around 15 digits.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </div>
+        </div>
+    </div>
+    <div id="main-content" class="row noprint">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-1-self-check-questions-and-solutions">
+<h1>Week 1 Self check questions and solutions<a class="headerlink" href="#week-1-self-check-questions-and-solutions" title="Permalink to this headline">¶</a></h1>
+<p><strong>Question 1:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span>. Proof that</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\|A\|_1 = \max_j \sum_i|a_{ij}|\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|A\|_{\infty} = \max_i \sum_j|a_{ij}|\)</span>.</p></li>
+</ul>
+<p>Note: It follows that <span class="math notranslate nohighlight">\(\|A\|_1 = \|A^T\|_{\infty}\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>From the definition of a vector induced matrix norm we have that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\|A\|_1 &amp;= \max_{\|x\|_1 = 1} \sum_i |\left[Ax\right]_i|\\
+        &amp;\leq \max_{\|x\|_1 = 1} \sum_{i} \sum_j |a_{ij}| |x_j|\\
+        &amp;= \max_{\|x\|_1 = 1}  \sum_j |x_j|\sum_i |a_{ij}|\\
+        &amp;\leq \max_j\sum_i |a_{ij}| \max_{\|x\|_1 = 1} \sum_j|x_j|\\
+        &amp;=\max_j\sum_i |a_{ij}|.
+\end{aligned}
+\end{split}\]</div>
+<p>It is left to show that this upper bound is attainable. But this can be easily accomplished. Let <span class="math notranslate nohighlight">\(\hat{j} = \text{argmax}_j \sum_i |a_{ij}|\)</span> be the index <span class="math notranslate nohighlight">\(\hat{j}\)</span> associated with the largest column sum. We then set <span class="math notranslate nohighlight">\(x_j = 0\)</span> for <span class="math notranslate nohighlight">\(j\neq \hat{j}\)</span> and <span class="math notranslate nohighlight">\(x_{\hat{j}} = 1\)</span>.</p>
+<p>For <span class="math notranslate nohighlight">\(\|A\|_{\infty}\)</span> we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\|A\|_{\infty} = \max_{\|x\|_{\infty} = 1} \max_i |\left[Ax\right]_i| \leq \max_i \sum_{j}|a_{ij}|.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(\hat{i}\)</span> be the row index for which the upper bound is attained. By choosing <span class="math notranslate nohighlight">\(x_j = \text{sign}~a_{\hat{i}j}\)</span> we have that <span class="math notranslate nohighlight">\(\|Ax\|_{\infty} = \max_i \sum_{j}|a_{ij}|\)</span>, which confirms that the upper bound can be attained.</p>
+<p><strong>Question 2:</strong></p>
+<p>For the matrix <span class="math notranslate nohighlight">\(A = \begin{bmatrix} 2 &amp; 3 \\ 0 &amp; 1\end{bmatrix}\)</span> compute <span class="math notranslate nohighlight">\(\|A|_p\)</span> for <span class="math notranslate nohighlight">\(p=1, 2, \infty, F\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>We have <span class="math notranslate nohighlight">\(\|A|_1 = 4\)</span>, <span class="math notranslate nohighlight">\(\|A|_{\infty} = 5\)</span>, <span class="math notranslate nohighlight">\(\|A|_F = \sqrt{14}\)</span>. For <span class="math notranslate nohighlight">\(\|A\|_2\)</span> we compute the eigenvalues of</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A^TA = \begin{bmatrix}4 &amp; 6\\ 6 &amp; 10\end{bmatrix},
+\end{split}\]</div>
+<p>giving us <span class="math notranslate nohighlight">\(\lambda_{1, 2} = 7 \pm 3\sqrt{5}\)</span>. Hence, <span class="math notranslate nohighlight">\(\|A\|_2 = \sqrt{7 + 3\sqrt{5}}\)</span>.</p>
+<p><strong>Question 3:</strong></p>
+<p>Show that <span class="math notranslate nohighlight">\(\|x\|_{\infty} = \lim_{p\rightarrow\infty} \|x\|_p\)</span> for <span class="math notranslate nohighlight">\(x\in\mathbb{R}^n\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(\hat{j}\)</span> be the index of the largest element by magnitude in <span class="math notranslate nohighlight">\(x\)</span>. We have that</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{p\rightarrow\infty} \|x\|_p = \lim_{p\rightarrow\infty} \left[ \sum_{j}|x_j|^p\right]^{1/p} = |x_{\hat{j}}|\lim_{p\rightarrow\infty} \left[1 +  \sum_{j\neq \hat{j}}|x/\hat{x}|^p\right]^{1/p} = |x_{\hat{j}}|.
+\]</div>
+<p><strong>Question 4:</strong></p>
+<p>Explain the meaning of <span class="math notranslate nohighlight">\(\epsilon_{mach}\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p><span class="math notranslate nohighlight">\(\epsilon_{mach}\)</span> is defined as <span class="math notranslate nohighlight">\(\epsilon{mach} = \frac{1}{2}b^{1-p}\)</span>, which is half the distance of <span class="math notranslate nohighlight">\(1\)</span> to the next floating point number. It is the maximum relative error of a real number <span class="math notranslate nohighlight">\(x\)</span> and its closest floating point representation <span class="math notranslate nohighlight">\(x'\)</span>, that is</p>
+<div class="math notranslate nohighlight">
+\[
+|x - x'| \leq |x|\epsilon_{mach}.
+\]</div>
+<p><strong>Question 5:</strong></p>
+<p>Why do double precision numbers  give you around 15 digits of accuracy?</p>
+<p><strong>Solution:</strong></p>
+<p>We have <span class="math notranslate nohighlight">\(\epsilon_{mach} = 2^{-53}\approx 1.11E-16\)</span> in double precision. Hence, the relative error of mapping a real number to its floating point representation is correct to around 15 digits.</p>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="floating_point_arithmetic.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Floating Point Arithmetic</p>
+        </div>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Timo Betcke<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
