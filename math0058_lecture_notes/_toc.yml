@@ -6,4 +6,5 @@ parts:
     - file: matrix_vector_norms
     - file: floating_point_arithmetic.ipynb
 - caption: Self Check Questions
+  chapters:
     - file: week_1_self_check
