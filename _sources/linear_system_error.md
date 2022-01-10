@@ -35,6 +35,7 @@ S_n  = \sum_{i=0}^{n}X^{i}
 $$
 
 By norm equivalence and submultiplicativity we have that
+
 $$
 |(S_n)_{i, j}| \leq \sum_{i=0}^{n}\left|\left(X^n\right)_{i, j}\right|\leq \sum_{i=0}^n\max_{i, j}\left|\left(X^n\right)_{i, j}\right| \leq C\sum_{i=0}^{\infty}\|X^{n}\|\leq C\sum_{i=0}^\infty \|X\|^{n}= \frac{C}{1 - \|X\|}.
 $$
