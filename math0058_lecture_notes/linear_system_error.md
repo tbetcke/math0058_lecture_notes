@@ -7,7 +7,7 @@ We consider the linear system of equations $Ay = b$ with $A\in\mathbb{R}^{n\time
 For this linear system of equations the definition of the backward error is given as
 
 $$
-\eta(y) = \min \{\epsilon: A(y + \Delta y) = b + \Delta b, \|\Delta A\| \leq \epsilon \|A\|, \|\Delta b\|\leq \epsilon\|b\|\}.
+\eta(\tilde{y}) = \min \{\epsilon: (A+\Delta A)\tilde{y} = b + \Delta b, \|\Delta A\| \leq \epsilon \|A\|, \|\Delta b\|\leq \epsilon\|b\|\}.
 $$
 
 The backward error can be explicitly computed. The result goes back to Rigal and Gaches (1961). We do not show the full derivation here.

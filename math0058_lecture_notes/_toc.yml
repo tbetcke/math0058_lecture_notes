@@ -10,3 +10,4 @@ parts:
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
+    - file: week_2_self_check
