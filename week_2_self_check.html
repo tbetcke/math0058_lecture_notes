@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to MATH0058 &#8212; MATH0058 - Lecture Notes</title>
+    <title>Week 2 Self check questions and solutions &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -51,7 +53,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Matrix and vector norms" href="matrix_vector_norms.html" />
+    <link rel="prev" title="Week 1 Self check questions and solutions" href="week_1_self_check.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -84,8 +86,8 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
    Welcome to MATH0058
   </a>
  </li>
@@ -122,14 +124,14 @@
   Self Check Questions
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="week_1_self_check.html">
    Week 1 Self check questions and solutions
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="week_2_self_check.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Week 2 Self check questions and solutions
   </a>
  </li>
@@ -174,7 +176,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/week_2_self_check.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -206,7 +208,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome to MATH0058</h1>
+                <h1>Week 2 Self check questions and solutions</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -217,21 +219,56 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-math0058">
-<h1>Welcome to MATH0058<a class="headerlink" href="#welcome-to-math0058" title="Permalink to this headline">¶</a></h1>
-<p>In this module you will take your first steps into numerical algorithms
-and their efficient implementation.</p>
-<p>We will focus on basic algorithms from numerical linear algebra, including
-LU Decomposition, QR Decomposition, SVD and eigenvalues. These are the key
-foundations for most advanced numerical techniques, including from data science,
-numerical solution of PDEs, etc.</p>
-<p>At the end of the module we will also take a sidestep into basic interpolation.
-There are some wonderful connections to numerical linear algebra, and interpolation
-is (next to matrix methods) another key ingredient for more advanced numerical methods.</p>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-2-self-check-questions-and-solutions">
+<h1>Week 2 Self check questions and solutions<a class="headerlink" href="#week-2-self-check-questions-and-solutions" title="Permalink to this headline">¶</a></h1>
+<p><strong>Question 1:</strong></p>
+<p>State the relative forward error, backward error, and condition number for the linear system of equations <span class="math notranslate nohighlight">\(Ax=b\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(x\)</span> be the exact solution, and <span class="math notranslate nohighlight">\(\tilde{x}\)</span> the computed solution. Then the relative forward error is defined as</p>
+<div class="math notranslate nohighlight">
+\[
+e := \frac{\|x - \tilde{x}\|}{\|x\|}.
+\]</div>
+<p><strong>Solution:</strong></p>
+<p>The relative backward error is</p>
+<div class="math notranslate nohighlight">
+\[
+\eta(\tilde{x}) = \frac{\|b - A\tilde{x}\|}{\|A\| \cdot \|\tilde{x}\|}.
+\]</div>
+<p>The condition number is</p>
+<div class="math notranslate nohighlight">
+\[
+\kappa(A) = \|A\|\cdot \|A^{1}\|.
+\]</div>
+<p><strong>Question 2:</strong></p>
+<p>Assuming you are working in single precision floating point arithmetic and you have a backward stable algorithm for a problem with condition number <span class="math notranslate nohighlight">\(\kappa = 10^{3}\)</span>. How many correct digits do you expect in your solution?</p>
+<p><strong>Solution:</strong></p>
+<p>The algorithm is backward stable. Hence, the backward error is expected to be a small multiple of machine precision. We have <span class="math notranslate nohighlight">\(\epsilon_{mach} \approx 6\times 10^{-8}\)</span>. The condition number is <span class="math notranslate nohighlight">\(10^3\)</span>. Hence, the forward error is expected to be a multiple of <span class="math notranslate nohighlight">\(10^{-5}\)</span>, giving us around 3 to 4 digits of accuracy in the solution depending on the pre-factors.</p>
+<p><strong>Question 3:</strong></p>
+<p>Compute the <span class="math notranslate nohighlight">\(1-\)</span>norm condition number of</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix}1 &amp; 1\\ 0 &amp; \epsilon\end{bmatrix}
+\end{split}\]</div>
+<p>in dependence of <span class="math notranslate nohighlight">\(\epsilon\)</span>. What happens as <span class="math notranslate nohighlight">\(\epsilon\rightarrow 0\)</span>?</p>
+<p><strong>Solution:</strong></p>
+<p>We have <span class="math notranslate nohighlight">\(A^{-1} = \begin{bmatrix}1 &amp; -\epsilon^{-1}\\ 0 &amp; \epsilon^{-1}\end{bmatrix}\)</span>. Hence,</p>
+<div class="math notranslate nohighlight">
+\[
+\kappa(A) = \|A\|_1\cdot \|A^{-1}\|_1 = (1+\epsilon) \cdot \frac{2}{\epsilon}.
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(\kappa(A)\rightarrow\infty\)</span> as <span class="math notranslate nohighlight">\(\epsilon\rightarrow 0\)</span>. The reason is simple. For <span class="math notranslate nohighlight">\(\epsilon=0\)</span> the matrix is not invertible and we expect the condition number to become unbounded as we reach this limit case.</p>
+<p><strong>Question 4:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(x\in\mathbb{R}^2\)</span> and <span class="math notranslate nohighlight">\(f(x) = x_1 - x_2\)</span>. Compute the <span class="math notranslate nohighlight">\(\infty\)</span>-norm condition number of <span class="math notranslate nohighlight">\(f\)</span>. Hint: Use the expression for the condition number of a differentiable function. For what inputs is the condition number large?</p>
+<p><strong>Solution:</strong></p>
+<p>The Jacobian of <span class="math notranslate nohighlight">\(f\)</span> is <span class="math notranslate nohighlight">\(J = \begin{bmatrix}1 &amp; -1\end{bmatrix}\)</span>. Hence, <span class="math notranslate nohighlight">\(\|J\|_{\infty} = 2\)</span>. For the condition number we obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\kappa &amp;= \frac{\|J\|_{\infty}}{\|f(x)\|_{\infty} / \|x\|_{\infty}}\\
+       &amp;= \frac{2}{|x_1 - x_2| / \max\left\{|x_1|, |x_2|\right\}}.
+\end{aligned}
+\end{split}\]</div>
+<p>The condition number is large if <span class="math notranslate nohighlight">\(x_1\approx x_2\)</span>. This reflects the issue of cancellation errors. Consider two numbers <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> who agree to the first <span class="math notranslate nohighlight">\(5\)</span> digits and each of them is accurate to 7 digits. Then the difference of the two numbers will only be accurate to 2 digits since the first 5 correct digits cancel each other out.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -258,13 +295,13 @@ is (next to matrix methods) another key ingredient for more advanced numerical m
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="matrix_vector_norms.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Matrix and vector norms</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="week_1_self_check.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 1 Self check questions and solutions</p>
+        </div>
     </a>
 </div>
             
