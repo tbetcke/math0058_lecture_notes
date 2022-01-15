@@ -104,7 +104,7 @@ $\|A^{-1}\|\cdot \|A\|$ and the relative input perturbation $\left(\frac{\|\Delt
 one still needs to show that there actually exists a perturbation so that the left-hand side and right-hand side have equality. But we leave this technical detail here out.
 
 **Note: Since we also allow perturbations in $b$ we should formally write $\kappa(A, b)$ as
-condition number. But we see that the condition number only depends on $A$ and not on $b$. Therefore, one simply writes $\kappa(A)$.
+condition number. But we see that the condition number only depends on $A$ and not on $b$. Therefore, one simply writes $\kappa(A)$.**
 
 Going back to our earlier equation we hence have the precise estimate that
 
