@@ -497,8 +497,11 @@ fl:fl(x)\rightarrow x',
 <p>It follows that <span class="math notranslate nohighlight">\(fl(x)=x*(1+\epsilon)\)</span> for some <span class="math notranslate nohighlight">\(|\epsilon|\leq \epsilon_{mach}\)</span>.</p>
 <div class="section" id="fundamental-axiom-of-floating-point-arithmetic">
 <h3>Fundamental Axiom of Floating Point Arithmetic<a class="headerlink" href="#fundamental-axiom-of-floating-point-arithmetic" title="Permalink to this headline">¶</a></h3>
-<p>Define <span class="math notranslate nohighlight">\(x\odot y = fl(x \cdot y)\)</span>, where <span class="math notranslate nohighlight">\(\cdot\)</span> is one of <span class="math notranslate nohighlight">\(+,-,\times,\div\)</span>. Then for all <span class="math notranslate nohighlight">\(x,y\in\mathcal{F}\)</span> there exists <span class="math notranslate nohighlight">\(\epsilon\)</span> with <span class="math notranslate nohighlight">\(|\epsilon| \leq \epsilon_{mach}\)</span> such that
-$<span class="math notranslate nohighlight">\( x\odot y = (x \odot y)(1+\epsilon).\)</span>$</p>
+<p>Define <span class="math notranslate nohighlight">\(x\odot y = fl(x \cdot y)\)</span>, where <span class="math notranslate nohighlight">\(\cdot\)</span> is one of <span class="math notranslate nohighlight">\(+,-,\times,\div\)</span>. Then for all <span class="math notranslate nohighlight">\(x,y\in\mathcal{F}\)</span> there exists <span class="math notranslate nohighlight">\(\epsilon\)</span> with <span class="math notranslate nohighlight">\(|\epsilon| \leq \epsilon_{mach}\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[ 
+x\odot y = (x \cdot y)(1+\epsilon).
+\]</div>
 <p>Most modern architectures guarantee this property.</p>
 </div>
 </div>
