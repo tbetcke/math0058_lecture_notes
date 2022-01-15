@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Solving linear system with the LU Decomposition &#8212; MATH0058 - Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
+    <script>
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">MATH0058 - Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to MATH0058
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentals
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="matrix_vector_norms.html">
+   Matrix and vector norms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="floating_point_arithmetic.html">
+   Floating Point Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="error_analysis.html">
+   Principles of backward error analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_system_error.html">
+   Backward error and condition number of linear systems of equations
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Self Check Questions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_1_self_check.html">
+   Week 1 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_2_self_check.html">
+   Week 2 Self check questions and solutions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/lu_decomposition.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-idea">
+   Basic idea
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-an-upper-triangular-system-of-equations">
+   Solving an upper triangular system of equations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deriving-the-lu-decomposition">
+   Deriving the LU Decomposition
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-review-of-gaussian-elimination">
+     A review of Gaussian elimination
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formalising-gaussian-elimination">
+   Formalising Gaussian elimination
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-complete-algorithm">
+   The complete algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-of-the-lu-decomposition">
+   Cost of the LU Decomposition
+  </a>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Solving linear system with the LU Decomposition</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#basic-idea">
+   Basic idea
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-an-upper-triangular-system-of-equations">
+   Solving an upper triangular system of equations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deriving-the-lu-decomposition">
+   Deriving the LU Decomposition
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#a-review-of-gaussian-elimination">
+     A review of Gaussian elimination
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formalising-gaussian-elimination">
+   Formalising Gaussian elimination
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-complete-algorithm">
+   The complete algorithm
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cost-of-the-lu-decomposition">
+   Cost of the LU Decomposition
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="solving-linear-system-with-the-lu-decomposition">
+<h1>Solving linear system with the LU Decomposition<a class="headerlink" href="#solving-linear-system-with-the-lu-decomposition" title="Permalink to this headline">¶</a></h1>
+<p>Solving linear systems of equations is among the most fundamental operations in a computer. Many problems (even nonlinear ones) evenutally reduce to sequences of linear system solves.</p>
+<p>Most students learn about Gaussian elimination in their first Calculus modules. The LU decomposition is simply a more organised way to perform Gaussian elimination.</p>
+<div class="section" id="basic-idea">
+<h2>Basic idea<a class="headerlink" href="#basic-idea" title="Permalink to this headline">¶</a></h2>
+<p>We consider the linear system of equations</p>
+<div class="math notranslate nohighlight">
+\[
+Ax = b
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span>. LU Decomposition works in the same way for complex matrices. So this is not a restriction. We also have <span class="math notranslate nohighlight">\(x, b\in\mathbb{R}^n\)</span>. Throughout we assume that <span class="math notranslate nohighlight">\(A\)</span> is nonsingular.</p>
+<p>Many techniques in Numerical Linear Algebra are based on finding suitable decompositions of matrices into products of simpler matrices. The same applies to the LU Decomposition.</p>
+<p>Let</p>
+<div class="math notranslate nohighlight">
+\[
+A = LU
+\]</div>
+<p>be a decomposition of <span class="math notranslate nohighlight">\(A\)</span> into the product of two matrices <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span>.</p>
+<p>We obtain the new system</p>
+<div class="math notranslate nohighlight">
+\[
+LUx = b
+\]</div>
+<p>To solve this system we now have to solve two matrix problems,
+namely</p>
+<div class="math notranslate nohighlight">
+\[
+Ly = b
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+Ux = y.
+\]</div>
+<p>This seems cumbersome. Instead of one linear system. We now have two. However, the trick is to choose a decomposition that makes solving linear systems with <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span> particularly easy.</p>
+<p>In the LU decomposition <span class="math notranslate nohighlight">\(L\)</span> will be a lower triangular matrix, that is nonzero elements are only on the diagonal and below the diagonal. <span class="math notranslate nohighlight">\(U\)</span> will correspondingly be an upper triangular matrix.</p>
+</div>
+<div class="section" id="solving-an-upper-triangular-system-of-equations">
+<h2>Solving an upper triangular system of equations<a class="headerlink" href="#solving-an-upper-triangular-system-of-equations" title="Permalink to this headline">¶</a></h2>
+<p>Assume we have upper triangular <span class="math notranslate nohighlight">\(U\)</span>. We want to solve <span class="math notranslate nohighlight">\(Ux = y\)</span>.</p>
+<p>The equations are</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+u_{n,n}x_n &amp;= y_n\\
+u_{n-1,n-1}x_{n-1} + u_{n-1, x}x_n &amp;= y_{n-1}\\
+\dots &amp;= \dots\\
+\sum_{j=i}^n u_{i, j}x_j &amp;= y_i.
+\end{aligned}
+\end{split}\]</div>
+<p>Hence, we start by solving for <span class="math notranslate nohighlight">\(x_n\)</span> to obtain <span class="math notranslate nohighlight">\(x_n = y_n / u_{n, n}\)</span> and then work our way up so that for <span class="math notranslate nohighlight">\(x_i\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+x_i = \frac{y_i - \sum_{j=i + 1}^n u_{i, j}x_j}{u_{i, i}}.
+\]</div>
+<p>What is the cost of this triangular solve? We are counting the number of additions, subtractions, multiplications, and divisions.</p>
+<p>In step <span class="math notranslate nohighlight">\(i\)</span> we have <span class="math notranslate nohighlight">\(n-i\)</span> multiplications, one subtraction (apart from the first step) and one division. Hence, the overall number <span class="math notranslate nohighlight">\(ops\)</span> of operations is</p>
+<div class="math notranslate nohighlight">
+\[
+ops = 2n - 1 + \sum_{i=1}^n n-i,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(2n-1\)</span> is the number of subtractions and divisions and in the sum we have the number of multiplications.</p>
+<p>We can easily compute this to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+ops = 2n-1 + n^2 - \frac{n(n+1)}{2} = \frac{n^2}{2}+\frac{3}{2}n - 1.
+\]</div>
+</div>
+<div class="section" id="deriving-the-lu-decomposition">
+<h2>Deriving the LU Decomposition<a class="headerlink" href="#deriving-the-lu-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>We still don’t know how to compute the LU decomposition itself. This will be done in the following.</p>
+<div class="section" id="a-review-of-gaussian-elimination">
+<h3>A review of Gaussian elimination<a class="headerlink" href="#a-review-of-gaussian-elimination" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following <span class="math notranslate nohighlight">\(3\times 3\)</span> linear system of equations</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13}\\
+a_{21} &amp; a_{22} &amp; a_{23}\\
+a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\ x_2 \\ x_3
+\end{bmatrix}
+= \begin{bmatrix}b_1 \\ b_2 \\ b_3\end{bmatrix}.
+\end{split}\]</div>
+<p>We want to transform this system into an upper triangular system.
+In the first step we multiply the first row with <span class="math notranslate nohighlight">\(\ell_{21} = \frac{a_{21}}{a_{11}}\)</span> and subtract from the second row to obtain the
+modified system</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13}\\
+0 &amp; \tilde{a}_{22} &amp; \tilde{a}_{23}\\
+a_{31} &amp; a_{32} &amp; a_{33}
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\ x_2 \\ x_3
+\end{bmatrix}
+= \begin{bmatrix}b_1 \\ \tilde{b}_2 \\ b_3\end{bmatrix}
+\end{split}\]</div>
+<p>with</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{a}_{22} = a_{22} - l_{21}a_{12}, \quad \tilde{a}_{23} = a_{23} - \ell_{21}a_{13}
+\]</div>
+<p>and <span class="math notranslate nohighlight">\(b_2\)</span> modified correspondingly. We then define <span class="math notranslate nohighlight">\(\ell_{31} = \frac{a_{31}}{a_{11}}\)</span> and proceed in a similar way with the third row to obtaiin</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13}\\
+0 &amp; \tilde{a}_{22} &amp; \tilde{a}_{23}\\
+0 &amp; \tilde{a}_{32} &amp; \tilde{a}_{33}
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\ x_2 \\ x_3
+\end{bmatrix}
+= \begin{bmatrix}b_1 \\ \tilde{b}_2 \\ \tilde{b}_3\end{bmatrix}.
+\end{split}\]</div>
+<p>We now continue in the same way with the bottom right matrix. Define the element <span class="math notranslate nohighlight">\(\ell_{32} = \frac{\tilde{a}_{32}}{\tilde{a}_{22}}\)</span>, multiply the second row with it and subtract from the third row, giving at the end an upper triangular system of the form</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+a_{11} &amp; a_{12} &amp; a_{13}\\
+0 &amp; \tilde{a}_{22} &amp; \tilde{a}_{23}\\
+0 &amp; 0 &amp; \hat{a}_{33}
+\end{bmatrix}
+\begin{bmatrix}
+x_1\\ x_2 \\ x_3
+\end{bmatrix}
+= \begin{bmatrix}b_1 \\ \tilde{b}_2 \\ \hat{b}_3\end{bmatrix}.
+\end{split}\]</div>
+<p>We can now easily solve this system by backward substitution to compute first <span class="math notranslate nohighlight">\(x_3\)</span>, then <span class="math notranslate nohighlight">\(x_2\)</span>, and finally <span class="math notranslate nohighlight">\(x_1\)</span>.</p>
+</div>
+</div>
+<div class="section" id="formalising-gaussian-elimination">
+<h2>Formalising Gaussian elimination<a class="headerlink" href="#formalising-gaussian-elimination" title="Permalink to this headline">¶</a></h2>
+<p>We now introduce a different way of writing Gaussian elimination
+that will directly lead us to the LU decomposition.</p>
+<p>The key to Gaussian elimination is the subtraction of the multiple of one row from another row. Define</p>
+<div class="math notranslate nohighlight">
+\[
+L_{21} := I - \ell_{21}e_2e_1^T,
+\]</div>
+<p>Here, the vector <span class="math notranslate nohighlight">\(e_j\)</span> is the <span class="math notranslate nohighlight">\(j\)</span>-th unit vector, which has a <span class="math notranslate nohighlight">\(1\)</span> at position <span class="math notranslate nohighlight">\(j\)</span> and zeros otherwise.</p>
+<p>If we form the product <span class="math notranslate nohighlight">\(L_{21}A\)</span> it is straight forward to see that the result is a matrix, where <span class="math notranslate nohighlight">\(\ell_{21}\)</span> times the first row is subtracted from the second row. The reason is that <span class="math notranslate nohighlight">\(e_1^TA\)</span> picks out the first row of <span class="math notranslate nohighlight">\(A\)</span>, and then the multiplication <span class="math notranslate nohighlight">\(e_2e_1^TA\)</span> creates a new matrix whose second row is the first row of <span class="math notranslate nohighlight">\(A\)</span>, and zeros otherwise.</p>
+<p>We can now write the continued subtraction of multiples of one row from another to achieve at an upper triangular matrix as</p>
+<div class="math notranslate nohighlight">
+\[
+U = L_{n, n-1}\dots L_{32}\dots L_{n1}\dots L_{31}L_{21}A.
+\]</div>
+<p>Define</p>
+<div class="math notranslate nohighlight">
+\[
+L := L_{21}^{-1}L_{31}^{-1}\dots
+\]</div>
+<p>to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+A = LU.
+\]</div>
+<p>We know by construction that <span class="math notranslate nohighlight">\(U\)</span> is upper triangular. But what
+is the structure of <span class="math notranslate nohighlight">\(L\)</span>? First of all, we have that</p>
+<div class="math notranslate nohighlight">
+\[
+L_{i, j}^{-1} = I + \ell_{i, j}e_ie_j^T.
+\]</div>
+<p>This follows from</p>
+<div class="math notranslate nohighlight">
+\[
+(I + \ell_{i, j}e_ie_j^T)(I - \ell_{i, j}e_ie_j^T) = I.
+\]</div>
+<p>We can now simplify <span class="math notranslate nohighlight">\(L\)</span> to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+L &amp;= (I + \ell_{21}e_2e_1^T)(I + \ell_{31}e_3e_1^T)\dots\\
+  &amp;= I + \ell_{21}e_2e_1^T + \ell_{31} e_3e_1^T\dots
+\end{aligned}
+\end{split}\]</div>
+<p>Hence, <span class="math notranslate nohighlight">\(L\)</span> is a lower triangular matrix whose diagonal is just
+the identity matrix and where at position <span class="math notranslate nohighlight">\((i, j)\)</span> we have the
+entry <span class="math notranslate nohighlight">\(\ell_{i, j}\)</span>, a remarkably simple structure, and exactly
+what we need.</p>
+</div>
+<div class="section" id="the-complete-algorithm">
+<h2>The complete algorithm<a class="headerlink" href="#the-complete-algorithm" title="Permalink to this headline">¶</a></h2>
+<p>Consider we want to solve the linear system</p>
+<div class="math notranslate nohighlight">
+\[
+Ax = b
+\]</div>
+<p>In the first step we compute the LU decomposition</p>
+<div class="math notranslate nohighlight">
+\[
+A = LU
+\]</div>
+<p>by Gaussian elimination and storing the <span class="math notranslate nohighlight">\(\ell_{ij}\)</span> multipliers for each row in the corresponding position of the <span class="math notranslate nohighlight">\(L\)</span> matrix.</p>
+<p>We then solve <span class="math notranslate nohighlight">\(Ly=b\)</span> by forward substitution, that is first we
+solve for <span class="math notranslate nohighlight">\(y_1\)</span>, then for <span class="math notranslate nohighlight">\(y_2\)</span>, etc. The algorithm is very similar to the triangular solve that we discussed earlier. We
+just have to proceed from the first entry to the last entry of
+<span class="math notranslate nohighlight">\(y\)</span> since the matrix is now lower triangular. Moreover, since all diagonal entries are <span class="math notranslate nohighlight">\(1\)</span> we do not need to divide by <span class="math notranslate nohighlight">\(L_{ii}\)</span>.</p>
+<p>We then solve <span class="math notranslate nohighlight">\(Ux=b\)</span> by backward substitution.</p>
+</div>
+<div class="section" id="cost-of-the-lu-decomposition">
+<h2>Cost of the LU Decomposition<a class="headerlink" href="#cost-of-the-lu-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>We have already established that a triangular solve
+costs <span class="math notranslate nohighlight">\(\mathcal{O}(n^2)\)</span> operations. For the computation of the decomposition <span class="math notranslate nohighlight">\(A=LU\)</span> an operation count gives a cost of <span class="math notranslate nohighlight">\(\frac{2}{3}n^3 + O(n^2)\)</span> operations. Hence, by far the dominating cost
+is the LU decomposition itself. Once we have computed it the forward and backward solves are relatively much cheaper. If we want to solve many linear systems where the matrix <span class="math notranslate nohighlight">\(A\)</span> never changes but the right-hand side <span class="math notranslate nohighlight">\(b\)</span> changes, we only need to
+compute the <span class="math notranslate nohighlight">\(LU\)</span> decomposition once and can then forward and backward solve easily in each step.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Timo Betcke<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
