@@ -7,7 +7,14 @@ parts:
     - file: floating_point_arithmetic.ipynb
     - file: error_analysis
     - file: linear_system_error
+- caption
+  LU Decomposition and its numerical stability
+  chapters:
+    - file: lu_decomposition.md
+    - file: lu_backward_error.md
+    - file: lu_backward_error_examples.ipynb
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
     - file: week_2_self_check
+    - file: week_3_self_check
