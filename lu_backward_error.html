@@ -53,6 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Backward error of the LU decomposition" href="lu_backward_error_examples.html" />
+    <link rel="prev" title="Solving linear system with the LU Decomposition" href="lu_decomposition.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -120,6 +122,28 @@
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
+  LU Decomposition and its numerical stability
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lu_decomposition.html">
+   Solving linear system with the LU Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Backward error of the LU decomposition and pivoting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lu_backward_error_examples.html">
+   Backward error of the LU decomposition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
   Self Check Questions
  </span>
 </p>
@@ -132,6 +156,11 @@
  <li class="toctree-l1">
   <a class="reference internal" href="week_2_self_check.html">
    Week 2 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_3_self_check.html">
+   Week 3 Self check questions and solutions
   </a>
  </li>
 </ul>
@@ -366,7 +395,7 @@ A_{\epsilon} =
 \end{bmatrix}
 \end{split}\]</div>
 <p>We now have <span class="math notranslate nohighlight">\(\|L\|\cdot \|U\|\approx 1\)</span>, simply by swapping the two rows of the matrix.</p>
-<p>This motivates the following motivation of the LU decomposition, called <strong>column pivoted</strong> (or simply <strong>pivoted</strong>) LU.</p>
+<p>This motivates the following modification of the LU decomposition, called <strong>column pivoted</strong> (or simply <strong>pivoted</strong>) LU.</p>
 </div>
 <div class="section" id="lu-decomposition-with-pivoting">
 <h2>LU decomposition with pivoting<a class="headerlink" href="#lu-decomposition-with-pivoting" title="Permalink to this headline">¶</a></h2>
@@ -444,6 +473,7 @@ PA = LU,
 \]</div>
 <p><strong>Note that the notation <span class="math notranslate nohighlight">\(\mathcal{O}(\rho\epsilon_{mach})\)</span> is a bit misleading since the <span class="math notranslate nohighlight">\(O\)</span>-notation absorbs constants. Nevertheless, this is done to emphasise the importance of the factor <span class="math notranslate nohighlight">\(\rho\)</span></strong>.</p>
 <p>It follows that the LU decomposition with pivoting is backward stable if <span class="math notranslate nohighlight">\(\rho\)</span> is small.</p>
+<p>For most matrices this is the case but not for all matrices, and we will get to know examples where <span class="math notranslate nohighlight">\(\rho\)</span> can grow exponentially but also see that this almost never happens in practice.</p>
 </div>
 </div>
 
@@ -471,7 +501,21 @@ PA = LU,
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lu_decomposition.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Solving linear system with the LU Decomposition</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="lu_backward_error_examples.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Backward error of the LU decomposition</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

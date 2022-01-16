@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to MATH0058 &#8212; MATH0058 - Lecture Notes</title>
+    <title>Week 3 Self check questions and solutions &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -42,6 +42,8 @@
     <script src="_static/copybutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -51,7 +53,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Matrix and vector norms" href="matrix_vector_norms.html" />
+    <link rel="prev" title="Week 2 Self check questions and solutions" href="week_2_self_check.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -84,8 +86,8 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
    Welcome to MATH0058
   </a>
  </li>
@@ -144,7 +146,7 @@
   Self Check Questions
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="week_1_self_check.html">
    Week 1 Self check questions and solutions
@@ -155,8 +157,8 @@
    Week 2 Self check questions and solutions
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="week_3_self_check.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Week 3 Self check questions and solutions
   </a>
  </li>
@@ -201,7 +203,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/week_3_self_check.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -233,7 +235,7 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome to MATH0058</h1>
+                <h1>Week 3 Self check questions and solutions</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -244,23 +246,93 @@
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-math0058">
-<h1>Welcome to MATH0058<a class="headerlink" href="#welcome-to-math0058" title="Permalink to this headline">¶</a></h1>
-<p>In this module you will take your first steps into numerical algorithms
-and their efficient implementation.</p>
-<p>We will focus on basic algorithms from numerical linear algebra, including
-LU Decomposition, QR Decomposition, SVD and eigenvalues. These are the key
-foundations for most advanced numerical techniques, including from data science,
-numerical solution of PDEs, etc.</p>
-<p>At the end of the module we will also take a sidestep into basic interpolation.
-There are some wonderful connections to numerical linear algebra, and interpolation
-is (next to matrix methods) another key ingredient for more advanced numerical methods.</p>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
-<div class="toctree-wrapper compound">
-</div>
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-3-self-check-questions-and-solutions">
+<h1>Week 3 Self check questions and solutions<a class="headerlink" href="#week-3-self-check-questions-and-solutions" title="Permalink to this headline">¶</a></h1>
+<p><strong>Question 1:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span>. Proof that the LU decomposition exists with nonsingular <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span> if and only if the determinant of all minors is nonzero.
+(Note: The minors are the submatrices <span class="math notranslate nohighlight">\(A[:m, :m]\)</span>).</p>
+<p>Does the LU decomposition exist for the following matrix? Justify your answer.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+0.5 &amp;   -2 &amp;   2 \\
+-1 &amp; 4 &amp; -5\\
+9&amp;  -5&amp; 8 
+\end{bmatrix}
+\end{split}\]</div>
+<p><strong>Solution:</strong></p>
+<p>First assume that the LU Decomposition exists. We then have <span class="math notranslate nohighlight">\(A = LU\)</span> with nonsingular <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span> and hence, for each minor <span class="math notranslate nohighlight">\(A[:m, :m] = L[:m, :m]\times U[:m, :m]\)</span>.
+Since <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span> are nonsingular it follows that also the minors are nonsingular and therefore have nonzero determinant.</p>
+<p>Now assume that all minors have nonzero determinant. We proceed by induction. Let the statement be true for all matrices have dimension <span class="math notranslate nohighlight">\(n-1\)</span>. We now partition <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix}\hat{A} &amp; b\\
+                   c^T &amp; \gamma
+    \end{bmatrix}
+=
+\begin{bmatrix}\hat{L} &amp; 0\\
+               \ell^T &amp; 1
+\end{bmatrix}
+\begin{bmatrix}\hat{U} &amp; r\\
+               0   &amp; \delta
+\end{bmatrix}
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(b,c, \ell, r\in\mathbb{R}^{n-1}\)</span>, <span class="math notranslate nohighlight">\(\gamma, \delta\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\hat{L}, \hat{U}\in\mathbb{R}^{n-1\times n-1}\)</span>. Here <span class="math notranslate nohighlight">\(\hat{A} = \hat{L}\times\hat{U}\)</span> is a nonsingular LU decomposition of
+<span class="math notranslate nohighlight">\(\hat{A}\)</span>, which exists by induction hypothesis. To construct an LU decomposition of dimension <span class="math notranslate nohighlight">\(n\)</span> we need to find <span class="math notranslate nohighlight">\(\ell\)</span>, <span class="math notranslate nohighlight">\(r\)</span> and a nonzero <span class="math notranslate nohighlight">\(\delta\)</span> such that the above decomposition is valid.</p>
+<p>By inspection we obtain <span class="math notranslate nohighlight">\(r=\hat{L}^{-1}\hat{b}\)</span> and <span class="math notranslate nohighlight">\(\ell^T = c^T\hat{U}^{-1}\)</span>, which exists since <span class="math notranslate nohighlight">\(\hat{L}\)</span> and <span class="math notranslate nohighlight">\(\hat{U}\)</span> are nonsingular. For <span class="math notranslate nohighlight">\(\delta\)</span> we have the expression</p>
+<div class="math notranslate nohighlight">
+\[
+\delta = \gamma - l^Tr = \gamma - c^T\hat{A}^{-1}b.
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\hat{A}\)</span> is nonsingular <span class="math notranslate nohighlight">\(\delta\)</span> exists. It is left to show that <span class="math notranslate nohighlight">\(\delta\neq 0\)</span>. However, this follows from</p>
+<div class="math notranslate nohighlight">
+\[
+\det A = \delta \det\hat{L}\det{\hat{U}} = \delta\det\hat{A}
+\]</div>
+<p>and that <span class="math notranslate nohighlight">\(\det A\)</span> and <span class="math notranslate nohighlight">\(\det\hat{A}\)</span> are nonzero by induction hypothesis.</p>
+<p>For the matrix</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{bmatrix}
+0.5 &amp;   -2 &amp;   2 \\
+-1 &amp; 4 &amp; -5\\
+9&amp;  -5&amp; 8 
+\end{bmatrix}
+\end{split}\]</div>
+<p>the first <span class="math notranslate nohighlight">\(2\times 2\)</span> subblock is singular. Hence, its determinant is zero and therefore the LU decomposition does not exist.</p>
+<p><strong>Question 2:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span> be tridiagonal, that is only the main diagonal and the first upper and lower off-diagonals can be nonzero.
+Assume that an LU decomposition exists. Show that it can be computed in <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> operations.</p>
+<p><strong>Solution</strong></p>
+<p>In each outer loop of the Gaussian elimination only one off-diagonal element needs to be reduced. Hence, the cost for each outer loop is constant and independent of <span class="math notranslate nohighlight">\(n\)</span>, leading to a total cost of <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p>
+<p><strong>Question 3:</strong></p>
+<p>Proof the Sherman-Morrison formula
+$<span class="math notranslate nohighlight">\(
+        (A+uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}
+        \)</span><span class="math notranslate nohighlight">\(
+if \)</span>1+v^TA^{-1}u\neq 0$.</p>
+<p><strong>Solution:</strong></p>
+<p>We have</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    (A+uv^T) \left[A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}\right] &amp;= \\
+    I - \frac{uv^TA^{-1}}{1+v^TA^{-1}u} + uv^TA^{-1} - uv^T\frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u} &amp;=\\
+    I - \left[\frac{uv^TA^{-1} + uv^TA^{-1}uv^TA^{-1}}{1+v^TA^{-1}u} - uv^TA^{-1}\right] &amp;= \\
+    I - u\left[\frac{1+v^TA^{-1}u}{1+v^TA^{-1}u} -1\right]v^TA^{-1}&amp;=\\
+    I
+\end{aligned}
+\end{split}\]</div>
+<p>Similarly, we show that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+    \left[A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}\right](A+uv^T) &amp;= \\
+    I - A^{-1}u\left[\frac{1 + v^TA^{-1}u}{1+v^TA^{-1}u} - 1\right]v^T &amp;= \\
+    I
+\end{aligned}
+\end{split}\]</div>
+<p>Hence, the formula holds.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -287,13 +359,13 @@ is (next to matrix methods) another key ingredient for more advanced numerical m
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="matrix_vector_norms.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Matrix and vector norms</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="week_2_self_check.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 2 Self check questions and solutions</p>
+        </div>
     </a>
 </div>
             

@@ -87,7 +87,7 @@ $$
 
 We now have $\|L\|\cdot \|U\|\approx 1$, simply by swapping the two rows of the matrix.
 
-This motivates the following motivation of the LU decomposition, called **column pivoted** (or simply **pivoted**) LU.
+This motivates the following modification of the LU decomposition, called **column pivoted** (or simply **pivoted**) LU.
 
 ## LU decomposition with pivoting
 
@@ -178,3 +178,5 @@ $$
 **Note that the notation $\mathcal{O}(\rho\epsilon_{mach})$ is a bit misleading since the $O$-notation absorbs constants. Nevertheless, this is done to emphasise the importance of the factor $\rho$**.
 
 It follows that the LU decomposition with pivoting is backward stable if $\rho$ is small.
+
+For most matrices this is the case but not for all matrices, and we will get to know examples where $\rho$ can grow exponentially but also see that this almost never happens in practice.
