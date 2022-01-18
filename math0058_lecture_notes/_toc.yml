@@ -7,6 +7,7 @@ parts:
     - file: floating_point_arithmetic.ipynb
     - file: error_analysis
     - file: linear_system_error
+    - file: complexity_notation.md
 - caption: LU Decomposition and its numerical stability
   chapters:
     - file: lu_decomposition.md
