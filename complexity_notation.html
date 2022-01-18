@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 3 Self check questions and solutions &#8212; MATH0058 - Lecture Notes</title>
+    <title>A quick survey of the \(\mathcal{O}\)-notation &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -53,7 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Week 2 Self check questions and solutions" href="week_2_self_check.html" />
+    <link rel="next" title="Solving linear system with the LU Decomposition" href="lu_decomposition.html" />
+    <link rel="prev" title="Backward error and condition number of linear systems of equations" href="linear_system_error.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -97,7 +98,7 @@
   Fundamentals
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="matrix_vector_norms.html">
    Matrix and vector norms
@@ -118,8 +119,8 @@
    Backward error and condition number of linear systems of equations
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="complexity_notation.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    A quick survey of the
    <span class="math notranslate nohighlight">
     \(\mathcal{O}\)
@@ -155,7 +156,7 @@
   Self Check Questions
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="week_1_self_check.html">
    Week 1 Self check questions and solutions
@@ -166,8 +167,8 @@
    Week 2 Self check questions and solutions
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_3_self_check.html">
    Week 3 Self check questions and solutions
   </a>
  </li>
@@ -212,7 +213,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/week_3_self_check.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/complexity_notation.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -237,6 +238,28 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-of-mathcal-o-notation">
+   Definition of
+   <span class="math notranslate nohighlight">
+    \(\mathcal{O}\)
+   </span>
+   -notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -244,104 +267,76 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Week 3 Self check questions and solutions</h1>
+                <h1>A quick survey of the \mathcal{O}-notation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#definition-of-mathcal-o-notation">
+   Definition of
+   <span class="math notranslate nohighlight">
+    \(\mathcal{O}\)
+   </span>
+   -notation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#examples">
+   Examples
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="week-3-self-check-questions-and-solutions">
-<h1>Week 3 Self check questions and solutions<a class="headerlink" href="#week-3-self-check-questions-and-solutions" title="Permalink to this headline">¶</a></h1>
-<p><strong>Question 1:</strong></p>
-<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span>. Proof that the LU decomposition exists with nonsingular <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span> if and only if the determinant of all minors is nonzero.
-(Note: The minors are the submatrices <span class="math notranslate nohighlight">\(A[:m, :m]\)</span>).</p>
-<p>Does the LU decomposition exist for the following matrix? Justify your answer.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{bmatrix}
-0.5 &amp;   -2 &amp;   2 \\
--1 &amp; 4 &amp; -5\\
-9&amp;  -5&amp; 8 
-\end{bmatrix}
-\end{split}\]</div>
-<p><strong>Solution:</strong></p>
-<p>First assume that the LU Decomposition exists. We then have <span class="math notranslate nohighlight">\(A = LU\)</span> with nonsingular <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span> and hence, for each minor <span class="math notranslate nohighlight">\(A[:m, :m] = L[:m, :m]\times U[:m, :m]\)</span>.
-Since <span class="math notranslate nohighlight">\(L\)</span> and <span class="math notranslate nohighlight">\(U\)</span> are nonsingular it follows that also the minors are nonsingular and therefore have nonzero determinant.</p>
-<p>Now assume that all minors have nonzero determinant. We proceed by induction. Let the statement be true for all matrices have dimension <span class="math notranslate nohighlight">\(n-1\)</span>. We now partition <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span> as</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-A = \begin{bmatrix}\hat{A} &amp; b\\
-                   c^T &amp; \gamma
-    \end{bmatrix}
-=
-\begin{bmatrix}\hat{L} &amp; 0\\
-               \ell^T &amp; 1
-\end{bmatrix}
-\begin{bmatrix}\hat{U} &amp; r\\
-               0   &amp; \delta
-\end{bmatrix}
-\end{split}\]</div>
-<p>with <span class="math notranslate nohighlight">\(b,c, \ell, r\in\mathbb{R}^{n-1}\)</span>, <span class="math notranslate nohighlight">\(\gamma, \delta\in\mathbb{R}\)</span>, <span class="math notranslate nohighlight">\(\hat{L}, \hat{U}\in\mathbb{R}^{n-1\times n-1}\)</span>. Here <span class="math notranslate nohighlight">\(\hat{A} = \hat{L}\times\hat{U}\)</span> is a nonsingular LU decomposition of
-<span class="math notranslate nohighlight">\(\hat{A}\)</span>, which exists by induction hypothesis. To construct an LU decomposition of dimension <span class="math notranslate nohighlight">\(n\)</span> we need to find <span class="math notranslate nohighlight">\(\ell\)</span>, <span class="math notranslate nohighlight">\(r\)</span> and a nonzero <span class="math notranslate nohighlight">\(\delta\)</span> such that the above decomposition is valid.</p>
-<p>By inspection we obtain <span class="math notranslate nohighlight">\(r=\hat{L}^{-1}\hat{b}\)</span> and <span class="math notranslate nohighlight">\(\ell^T = c^T\hat{U}^{-1}\)</span>, which exists since <span class="math notranslate nohighlight">\(\hat{L}\)</span> and <span class="math notranslate nohighlight">\(\hat{U}\)</span> are nonsingular. For <span class="math notranslate nohighlight">\(\delta\)</span> we have the expression</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="a-quick-survey-of-the-mathcal-o-notation">
+<h1>A quick survey of the <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-notation<a class="headerlink" href="#a-quick-survey-of-the-mathcal-o-notation" title="Permalink to this headline">¶</a></h1>
+<p>Throughout this module we are interested in leading order complexities of quantities.
+Consider a polynomial</p>
 <div class="math notranslate nohighlight">
 \[
-\delta = \gamma - l^Tr = \gamma - c^T\hat{A}^{-1}b.
+p(n) = 3n^3 + 5n^2 + 1.
 \]</div>
-<p>Since <span class="math notranslate nohighlight">\(\hat{A}\)</span> is nonsingular <span class="math notranslate nohighlight">\(\delta\)</span> exists. It is left to show that <span class="math notranslate nohighlight">\(\delta\neq 0\)</span>. However, this follows from</p>
+<p>If we are only interested in the asymptotic behaviour for large <span class="math notranslate nohighlight">\(n\)</span> then only the cubic term of <span class="math notranslate nohighlight">\(p\)</span> is relevant. Moreover, if we only want to express that the polynomial is growing cubically the <span class="math notranslate nohighlight">\(3\)</span> in front of <span class="math notranslate nohighlight">\(n^3\)</span> is not relevant either. A convenient notation to express this is the <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-notation.</p>
+<p>The formal definition is as follows</p>
+<div class="section" id="definition-of-mathcal-o-notation">
+<h2>Definition of <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-notation<a class="headerlink" href="#definition-of-mathcal-o-notation" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(g(n)\)</span> and <span class="math notranslate nohighlight">\(f(n)\)</span> be two given functions for <span class="math notranslate nohighlight">\(n\in\mathbb{N}\)</span>. If there exists <span class="math notranslate nohighlight">\(n_0 \in \mathbb{N}\)</span> and a constant <span class="math notranslate nohighlight">\(C&gt; 0\)</span> such that</p>
 <div class="math notranslate nohighlight">
 \[
-\det A = \delta \det\hat{L}\det{\hat{U}} = \delta\det\hat{A}
+|g(n)| \leq Cf(n)
 \]</div>
-<p>and that <span class="math notranslate nohighlight">\(\det A\)</span> and <span class="math notranslate nohighlight">\(\det\hat{A}\)</span> are nonzero by induction hypothesis.</p>
-<p>For the matrix</p>
+<p>for all <span class="math notranslate nohighlight">\(n\geq n_0\)</span> we say that <span class="math notranslate nohighlight">\(g(n) = \mathcal{O}(f(n))\)</span>.</p>
+<p>This definition naturally extends to real variables <span class="math notranslate nohighlight">\(x\in\mathbb{R}\)</span> instead of integer variables <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Correspondingly, we can also use the <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-notation to describe how a function behaves as <span class="math notranslate nohighlight">\(x\rightarrow 0\)</span>.</p>
+<p>We say that <span class="math notranslate nohighlight">\(g(x) = \mathcal{O(f(x))}\)</span> as <span class="math notranslate nohighlight">\(x\rightarrow 0\)</span> if <span class="math notranslate nohighlight">\(|g(x)| \leq Cf(x)\)</span> for sufficiently small <span class="math notranslate nohighlight">\(x\)</span>.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>For the above polynomial we have that</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{bmatrix}
-0.5 &amp;   -2 &amp;   2 \\
--1 &amp; 4 &amp; -5\\
-9&amp;  -5&amp; 8 
-\end{bmatrix}
-\end{split}\]</div>
-<p>the first <span class="math notranslate nohighlight">\(2\times 2\)</span> subblock is singular. Hence, its determinant is zero and therefore the LU decomposition does not exist.</p>
-<p><strong>Question 2:</strong></p>
-<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span> be tridiagonal, that is only the main diagonal and the first upper and lower off-diagonals can be nonzero.
-Assume that an LU decomposition exists. Show that it can be computed in <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> operations.</p>
-<p><strong>Solution</strong></p>
-<p>In each outer loop of the Gaussian elimination only one off-diagonal element needs to be reduced. Hence, the cost for each outer loop is constant and independent of <span class="math notranslate nohighlight">\(n\)</span>, leading to a total cost of <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p>
-<p><strong>Question 3:</strong></p>
-<p>Proof the Sherman-Morrison formula
-$<span class="math notranslate nohighlight">\(
-        (A+uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}
-        \)</span><span class="math notranslate nohighlight">\(
-if \)</span>1+v^TA^{-1}u\neq 0$.</p>
-<p><strong>Solution:</strong></p>
-<p>We have</p>
+\[
+p(n) = \mathcal{O}(n^3).
+\]</div>
+<p>At the same time we have that <span class="math notranslate nohighlight">\(p(n) = \mathcal{O}(5n^3)\)</span>. However, we usually do not express constants inside the <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-notation unless we want to emphasise their importance, since the definition of the <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-notation is independent of constant factors.</p>
+<p>For small <span class="math notranslate nohighlight">\(x\)</span> a typical example of the <span class="math notranslate nohighlight">\(\mathcal{O}\)</span>-notation is in Taylor’s theorem. For example we have that</p>
 <div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-    (A+uv^T) \left[A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}\right] &amp;= \\
-    I - \frac{uv^TA^{-1}}{1+v^TA^{-1}u} + uv^TA^{-1} - uv^T\frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u} &amp;=\\
-    I - \left[\frac{uv^TA^{-1} + uv^TA^{-1}uv^TA^{-1}}{1+v^TA^{-1}u} - uv^TA^{-1}\right] &amp;= \\
-    I - u\left[\frac{1+v^TA^{-1}u}{1+v^TA^{-1}u} -1\right]v^TA^{-1}&amp;=\\
-    I
-\end{aligned}
-\end{split}\]</div>
-<p>Similarly, we show that</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-    \left[A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}\right](A+uv^T) &amp;= \\
-    I - A^{-1}u\left[\frac{1 + v^TA^{-1}u}{1+v^TA^{-1}u} - 1\right]v^T &amp;= \\
-    I
-\end{aligned}
-\end{split}\]</div>
-<p>Hence, the formula holds.</p>
+\[
+e^{x} = 1 + x + \mathcal{O}(x^2)
+\]</div>
+<p>as <span class="math notranslate nohighlight">\(x\rightarrow 0\)</span> as the remainder term decreases quadratically.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -369,12 +364,19 @@ if \)</span>1+v^TA^{-1}u\neq 0$.</p>
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="week_2_self_check.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="linear_system_error.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Week 2 Self check questions and solutions</p>
+            <p class="prev-next-title">Backward error and condition number of linear systems of equations</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="lu_decomposition.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Solving linear system with the LU Decomposition</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             
