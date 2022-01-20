@@ -34,10 +34,11 @@ $$
 S_n  = \sum_{i=0}^{n}X^{i}
 $$
 
-By norm equivalence and submultiplicativity we have that
+By norm equivalence and submultiplicativity we have for
+each matrix element $(S_n)_{\ell, t}$ that
 
 $$
-|(S_n)_{i, j}| \leq \sum_{i=0}^{n}\left|\left(X^n\right)_{i, j}\right|\leq \sum_{i=0}^n\max_{i, j}\left|\left(X^n\right)_{i, j}\right| \leq C\sum_{i=0}^{\infty}\|X^{n}\|\leq C\sum_{i=0}^\infty \|X\|^{n}= \frac{C}{1 - \|X\|}.
+|(S_n)_{\ell, t}| \leq \sum_{i=0}^{n}\left|\left(X^i\right)_{\ell, t}\right|\leq \sum_{i=0}^n\max_{\ell, t}\left|\left(X^i\right)_{\ell, t}\right| \leq C\sum_{i=0}^{\infty}\|X^{i}\|\leq C\sum_{i=0}^\infty \|X\|^{i}= \frac{C}{1 - \|X\|}.
 $$
 
 for some $C> 0$.
@@ -63,7 +64,7 @@ $$
 follows from
 
 $$
-\|S\| \leq \sum_{i=0}^{\infty}\|X\|^{n} = \frac{1}{1-\|X\|}.
+\|S\| \leq \sum_{i=0}^{\infty}\|X\|^{i} = \frac{1}{1-\|X\|}.
 $$
 
 We can now estimate the condition number of the linear system of equations $Ay=b$.
@@ -79,7 +80,7 @@ $$
 \begin{aligned}
 \Delta y &= (A + \Delta A)^{-1}(-\Delta A y + \Delta b)\\
          &= \left[A(I + A^{-1}\Delta A)\right]^{-1}(-\Delta A y + \Delta b)\\
-         &= \left(I + A^{-1}\Delta A\right)^{-1}A^{-1}(\Delta Ay+\Delta b).
+         &= \left(I + A^{-1}\Delta A\right)^{-1}A^{-1}(-\Delta Ay+\Delta b).
 \end{aligned}
 $$
 
