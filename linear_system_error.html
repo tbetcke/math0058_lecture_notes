@@ -335,10 +335,11 @@
 \[
 S_n  = \sum_{i=0}^{n}X^{i}
 \]</div>
-<p>By norm equivalence and submultiplicativity we have that</p>
+<p>By norm equivalence and submultiplicativity we have for
+each matrix element <span class="math notranslate nohighlight">\((S_n)_{\ell, t}\)</span> that</p>
 <div class="math notranslate nohighlight">
 \[
-|(S_n)_{i, j}| \leq \sum_{i=0}^{n}\left|\left(X^n\right)_{i, j}\right|\leq \sum_{i=0}^n\max_{i, j}\left|\left(X^n\right)_{i, j}\right| \leq C\sum_{i=0}^{\infty}\|X^{n}\|\leq C\sum_{i=0}^\infty \|X\|^{n}= \frac{C}{1 - \|X\|}.
+|(S_n)_{\ell, t}| \leq \sum_{i=0}^{n}\left|\left(X^i\right)_{\ell, t}\right|\leq \sum_{i=0}^n\max_{\ell, t}\left|\left(X^i\right)_{\ell, t}\right| \leq C\sum_{i=0}^{\infty}\|X^{i}\|\leq C\sum_{i=0}^\infty \|X\|^{i}= \frac{C}{1 - \|X\|}.
 \]</div>
 <p>for some <span class="math notranslate nohighlight">\(C&gt; 0\)</span>.</p>
 <p>Hence, every component of <span class="math notranslate nohighlight">\(S_n\)</span> is absolutely convergent and therefore the sum <span class="math notranslate nohighlight">\(S_n\)</span> converges with <span class="math notranslate nohighlight">\(X^{n}\rightarrow 0\)</span> as <span class="math notranslate nohighlight">\(n\rightarrow\infty\)</span>.</p>
@@ -360,7 +361,7 @@ S_n  = \sum_{i=0}^{n}X^{i}
 <p>follows from</p>
 <div class="math notranslate nohighlight">
 \[
-\|S\| \leq \sum_{i=0}^{\infty}\|X\|^{n} = \frac{1}{1-\|X\|}.
+\|S\| \leq \sum_{i=0}^{\infty}\|X\|^{i} = \frac{1}{1-\|X\|}.
 \]</div>
 <p>We can now estimate the condition number of the linear system of equations <span class="math notranslate nohighlight">\(Ay=b\)</span>.
 Let <span class="math notranslate nohighlight">\(\Delta A\)</span> and <span class="math notranslate nohighlight">\(\Delta b\)</span> be perturbations in <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, and let <span class="math notranslate nohighlight">\(\Delta y \)</span> satisfy</p>
@@ -374,7 +375,7 @@ Let <span class="math notranslate nohighlight">\(\Delta A\)</span> and <span cla
 \begin{aligned}
 \Delta y &amp;= (A + \Delta A)^{-1}(-\Delta A y + \Delta b)\\
          &amp;= \left[A(I + A^{-1}\Delta A)\right]^{-1}(-\Delta A y + \Delta b)\\
-         &amp;= \left(I + A^{-1}\Delta A\right)^{-1}A^{-1}(\Delta Ay+\Delta b).
+         &amp;= \left(I + A^{-1}\Delta A\right)^{-1}A^{-1}(-\Delta Ay+\Delta b).
 \end{aligned}
 \end{split}\]</div>
 <p>Assuming that <span class="math notranslate nohighlight">\(\Delta A\)</span> is sufficiently small so that <span class="math notranslate nohighlight">\(\|A^{-1}\Delta A\| &lt; 1\)</span> we can
