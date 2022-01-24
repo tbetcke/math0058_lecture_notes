@@ -8,6 +8,7 @@ parts:
     - file: error_analysis
     - file: linear_system_error
     - file: complexity_notation.md
+    - file: numpy_and_data_layouts.ipynb
 - caption: LU Decomposition and its numerical stability
   chapters:
     - file: lu_decomposition.md
