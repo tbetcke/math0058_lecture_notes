@@ -15,7 +15,7 @@ $$
 The relative backward error is
 
 $$
-\eta(\tilde{x}) = \frac{\|b - A\tilde{x}\|}{\|A\| \cdot \|\tilde{x}\|}.
+\eta(\tilde{x}) = \frac{\|b - A\tilde{x}\|}{\|A\| \cdot \|\tilde{x}\| + \|b\|}.
 $$
 
 The condition number is
