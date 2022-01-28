@@ -53,6 +53,7 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Week 4 Self Check Questions" href="week_4_self_check.html" />
     <link rel="prev" title="Week 2 Self check questions and solutions" href="week_2_self_check.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -174,6 +175,11 @@
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
    Week 3 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_4_self_check.html">
+   Week 4 Self Check Questions
   </a>
  </li>
 </ul>
@@ -320,11 +326,12 @@ Assume that an LU decomposition exists. Show that it can be computed in <span cl
 <p><strong>Solution</strong></p>
 <p>In each outer loop of the Gaussian elimination only one off-diagonal element needs to be reduced. Hence, the cost for each outer loop is constant and independent of <span class="math notranslate nohighlight">\(n\)</span>, leading to a total cost of <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span>.</p>
 <p><strong>Question 3:</strong></p>
-<p>Proof the Sherman-Morrison formula
-$<span class="math notranslate nohighlight">\(
-        (A+uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}
-        \)</span><span class="math notranslate nohighlight">\(
-if \)</span>1+v^TA^{-1}u\neq 0$.</p>
+<p>Proof the Sherman-Morrison formula</p>
+<div class="math notranslate nohighlight">
+\[
+(A+uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}
+\]</div>
+<p>if <span class="math notranslate nohighlight">\(1+v^TA^{-1}u\neq 0\)</span>.</p>
 <p><strong>Solution:</strong></p>
 <p>We have</p>
 <div class="math notranslate nohighlight">
@@ -380,6 +387,13 @@ if \)</span>1+v^TA^{-1}u\neq 0$.</p>
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Week 2 Self check questions and solutions</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="week_4_self_check.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 4 Self Check Questions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

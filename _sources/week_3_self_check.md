@@ -77,9 +77,11 @@ In each outer loop of the Gaussian elimination only one off-diagonal element nee
 **Question 3:**
 
 Proof the Sherman-Morrison formula
+
 $$
-        (A+uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}
-        $$
+(A+uv^T)^{-1} = A^{-1} - \frac{A^{-1}uv^TA^{-1}}{1+v^TA^{-1}u}
+$$
+
 if $1+v^TA^{-1}u\neq 0$.
 
 **Solution:**
