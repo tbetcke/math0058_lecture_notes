@@ -21,7 +21,7 @@ $$
 The condition number is
 
 $$
-\kappa(A) = \|A\|\cdot \|A^{1}\|.
+\kappa(A) = \|A\|\cdot \|A^{-1}\|.
 $$
 
 **Question 2:**
