@@ -155,6 +155,11 @@
    Backward error of the LU decomposition
   </a>
  </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_lu_decomposition.html">
+   Implementing the LU decomposition in Python
+  </a>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -420,20 +425,20 @@ apply the previous lemma and obtain</p>
 \frac{\|\Delta y\|}{\|y\|} \leq \|A^{-1}\|\cdot \|A\|\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right).
 \]</div>
 <p>The left-hand side is the relative output perturbation. The right-hand side is the product of
-<span class="math notranslate nohighlight">\(\|A^{-1}\|\cdot \|A\|\)</span> and the relative input perturbation <span class="math notranslate nohighlight">\(\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right)\)</span>. Hence, we have <span class="math notranslate nohighlight">\(\kappa(A) = \|A^{-1}\|\|A\|\)</span> being the condition number of the linear system. This argument is not completely precise since
+<span class="math notranslate nohighlight">\(\|A^{-1}\|\cdot \|A\|\)</span> and the relative input perturbation <span class="math notranslate nohighlight">\(\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right)\)</span>. Hence, we have <span class="math notranslate nohighlight">\(\kappa_{rel}(A) = \|A^{-1}\|\|A\|\)</span> being the condition number of the linear system. This argument is not completely precise since
 one still needs to show that there actually exists a perturbation so that the left-hand side and right-hand side have equality. But we leave this technical detail here out.</p>
-<p><strong>Note: Since we also allow perturbations in <span class="math notranslate nohighlight">\(b\)</span> we should formally write <span class="math notranslate nohighlight">\(\kappa(A, b)\)</span> as
-condition number. But we see that the condition number only depends on <span class="math notranslate nohighlight">\(A\)</span> and not on <span class="math notranslate nohighlight">\(b\)</span>. Therefore, one simply writes <span class="math notranslate nohighlight">\(\kappa(A)\)</span>.</strong></p>
+<p><strong>Note: Since we also allow perturbations in <span class="math notranslate nohighlight">\(b\)</span> we should formally write <span class="math notranslate nohighlight">\(\kappa_{rel}(A, b)\)</span> as
+condition number. But we see that the condition number only depends on <span class="math notranslate nohighlight">\(A\)</span> and not on <span class="math notranslate nohighlight">\(b\)</span>. Therefore, one simply writes <span class="math notranslate nohighlight">\(\kappa_{rel}(A)\)</span>.</strong></p>
 <p>Going back to our earlier equation we hence have the precise estimate that</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\|\Delta y\|}{\|y\|}\leq \frac{\kappa(A)}{1-\kappa(A)\frac{\|\Delta A\|}{\|A\|}}\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right),
+\frac{\|\Delta y\|}{\|y\|}\leq \frac{\kappa_{rel}(A)}{1-\kappa_{rel}(A)\frac{\|\Delta A\|}{\|A\|}}\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right),
 \]</div>
 <p>which relates the relative forward error and the relative backward error in the linear system.</p>
-<p>The condition number <span class="math notranslate nohighlight">\(\kappa(A)\)</span> has an important interpretation. It measures how far away from being singular a linear system is. More precisely,</p>
+<p>The condition number <span class="math notranslate nohighlight">\(\kappa_{rel}(A)\)</span> has an important interpretation. It measures how far away from being singular a linear system is. More precisely,</p>
 <div class="math notranslate nohighlight">
 \[
-\min\left\{\frac{\|\Delta A\|_2}{\|A\|_2}: A + \Delta A~singular \right\} = \frac{1}{\kappa(A)}.
+\min\left\{\frac{\|\Delta A\|_2}{\|A\|_2}: A + \Delta A~singular \right\} = \frac{1}{\kappa_{rel}(A)}.
 \]</div>
 <p>We are not going to prove this result here. Later in the term we will derive tools that make
 the relationship between condition number and distance to singularity immediately obvious.</p>
