@@ -14,6 +14,7 @@ parts:
     - file: lu_decomposition.md
     - file: lu_backward_error.md
     - file: lu_backward_error_examples.ipynb
+    - file: python_lu_decomposition.ipynb
 - caption: Orthogonal decompositions
   chapters:
   - file: qr_decomposition
