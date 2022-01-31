@@ -101,24 +101,24 @@ $$
 \frac{\|\Delta y\|}{\|y\|} \leq \|A^{-1}\|\cdot \|A\|\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right).
 $$
 The left-hand side is the relative output perturbation. The right-hand side is the product of
-$\|A^{-1}\|\cdot \|A\|$ and the relative input perturbation $\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right)$. Hence, we have $\kappa(A) = \|A^{-1}\|\|A\|$ being the condition number of the linear system. This argument is not completely precise since
+$\|A^{-1}\|\cdot \|A\|$ and the relative input perturbation $\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right)$. Hence, we have $\kappa_{rel}(A) = \|A^{-1}\|\|A\|$ being the condition number of the linear system. This argument is not completely precise since
 one still needs to show that there actually exists a perturbation so that the left-hand side and right-hand side have equality. But we leave this technical detail here out.
 
-**Note: Since we also allow perturbations in $b$ we should formally write $\kappa(A, b)$ as
-condition number. But we see that the condition number only depends on $A$ and not on $b$. Therefore, one simply writes $\kappa(A)$.**
+**Note: Since we also allow perturbations in $b$ we should formally write $\kappa_{rel}(A, b)$ as
+condition number. But we see that the condition number only depends on $A$ and not on $b$. Therefore, one simply writes $\kappa_{rel}(A)$.**
 
 Going back to our earlier equation we hence have the precise estimate that
 
 $$
-\frac{\|\Delta y\|}{\|y\|}\leq \frac{\kappa(A)}{1-\kappa(A)\frac{\|\Delta A\|}{\|A\|}}\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right),
+\frac{\|\Delta y\|}{\|y\|}\leq \frac{\kappa_{rel}(A)}{1-\kappa_{rel}(A)\frac{\|\Delta A\|}{\|A\|}}\left(\frac{\|\Delta A\|}{\|A\|} + \frac{\|\Delta b\|}{\|b\|}\right),
 $$
 
 which relates the relative forward error and the relative backward error in the linear system.
 
-The condition number $\kappa(A)$ has an important interpretation. It measures how far away from being singular a linear system is. More precisely,
+The condition number $\kappa_{rel}(A)$ has an important interpretation. It measures how far away from being singular a linear system is. More precisely,
 
 $$
-\min\left\{\frac{\|\Delta A\|_2}{\|A\|_2}: A + \Delta A~singular \right\} = \frac{1}{\kappa(A)}.
+\min\left\{\frac{\|\Delta A\|_2}{\|A\|_2}: A + \Delta A~singular \right\} = \frac{1}{\kappa_{rel}(A)}.
 $$
 
 We are not going to prove this result here. Later in the term we will derive tools that make
