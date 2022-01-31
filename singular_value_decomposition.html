@@ -53,6 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Week 1 Self check questions and solutions" href="week_1_self_check.html" />
+    <link rel="prev" title="The QR Decomposition" href="qr_decomposition.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -151,6 +153,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="lu_backward_error_examples.html">
    Backward error of the LU decomposition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Orthogonal decompositions
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="qr_decomposition.html">
+   The QR Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The Singular Value decomposition
   </a>
  </li>
 </ul>
@@ -261,6 +280,28 @@
    Existence Proof
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-the-svd">
+   Properties of the SVD
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svd-and-low-rank-approximation">
+   SVD and low-rank approximation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theorem">
+     Theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-reduced-svd">
+   The reduced SVD
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -291,6 +332,28 @@
    Existence Proof
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-the-svd">
+   Properties of the SVD
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svd-and-low-rank-approximation">
+   SVD and low-rank approximation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theorem">
+     Theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-reduced-svd">
+   The reduced SVD
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -307,25 +370,24 @@
 <p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span>, <span class="math notranslate nohighlight">\(m\geq n\)</span>. Then <span class="math notranslate nohighlight">\(A\)</span> has a singular value decomposition of the form</p>
 <div class="math notranslate nohighlight">
 \[
-A = U\sigma V^T.
+A = U\Sigma V^T.
 \]</div>
 <p>Here <span class="math notranslate nohighlight">\(U\in\mathbb{R}^{m\times m}\)</span> and <span class="math notranslate nohighlight">\(V\in\mathbb{R}^{n\times n}\)</span> are orthogonal matrices. The matrix <span class="math notranslate nohighlight">\(\Sigma\)</span> has the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \Sigma = \begin{bmatrix}\tilde{\Sigma}\\ 0 \end{bmatrix}
 \end{split}\]</div>
-<p>with <span class="math notranslate nohighlight">\(\tilde{\Sigma} = \text{diag}(\sigma_1, \sigma_2, \dots, \sigma_r, 0, \dots, 0)\)</span>, with <span class="math notranslate nohighlight">\(r\)</span> being the rank of the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>with <span class="math notranslate nohighlight">\(\tilde{\Sigma} = \text{diag}(\sigma_1, \sigma_2, \dots, \sigma_r, 0, \dots, 0)\)</span>, and <span class="math notranslate nohighlight">\(r\)</span> the rank of the matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
 <p>The <span class="math notranslate nohighlight">\(\sigma_j\)</span> are called singular values of <span class="math notranslate nohighlight">\(A\)</span>. The columns <span class="math notranslate nohighlight">\(v_j\)</span> of <span class="math notranslate nohighlight">\(V\)</span> are called right singular vectors. The columns <span class="math notranslate nohighlight">\(u_j\)</span> of <span class="math notranslate nohighlight">\(U\)</span> are called left singular vectors.</p>
 </div>
 <div class="section" id="existence-proof">
 <h2>Existence Proof<a class="headerlink" href="#existence-proof" title="Permalink to this headline">¶</a></h2>
-<p>The proof proceeds via induction.</p>
-<p>Define <span class="math notranslate nohighlight">\(\sigma_1 = \|A\|_2\)</span>. In finite dimensions we know that there exists <span class="math notranslate nohighlight">\(v_1\)</span>, <span class="math notranslate nohighlight">\(\|v_1\|_2 = 1\)</span>, s.t. <span class="math notranslate nohighlight">\(Av_1 = \sigma_1 u_1\)</span> for some <span class="math notranslate nohighlight">\(u_1\in\mathbb{R}^m\)</span> with <span class="math notranslate nohighlight">\(\|u_1\|_2 = 1\)</span>. Now let <span class="math notranslate nohighlight">\(U_1\)</span> and <span class="math notranslate nohighlight">\(V_1\)</span> be orthogonal matrices of the form</p>
+<p>The proof proceeds via induction. Define <span class="math notranslate nohighlight">\(\sigma_1 := \|A\|_2\)</span>. In finite dimensions we know that there exists <span class="math notranslate nohighlight">\(v_1\)</span>, <span class="math notranslate nohighlight">\(\|v_1\|_2 = 1\)</span>, s.t. <span class="math notranslate nohighlight">\(Av_1 = \sigma_1 u_1\)</span> for some <span class="math notranslate nohighlight">\(u_1\in\mathbb{R}^m\)</span> with <span class="math notranslate nohighlight">\(\|u_1\|_2 = 1\)</span>. Now let <span class="math notranslate nohighlight">\(U_1\)</span> and <span class="math notranslate nohighlight">\(V_1\)</span> be orthogonal matrices of the form</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
 \begin{aligned}
-V_1 &amp;= \begin{bmatrix}v_1 &amp; \tilde{V}_1\end{bmatrix}\\
-U_1 &amp;= \begin{bmatrix}u_1 &amp; \tilde{U}_1\end{bmatrix}
+V_1 &amp;= \begin{bmatrix}v_1 &amp; \hat{V}_1\end{bmatrix}\\
+U_1 &amp;= \begin{bmatrix}u_1 &amp; \hat{U}_1\end{bmatrix}
 \end{aligned}
 \end{split}\]</div>
 <p>It follows that</p>
@@ -350,7 +412,98 @@ S := U_1^TAV_1 = \begin{bmatrix}\sigma_1 &amp; w^T\\
         &amp;\geq \left(\sigma_1^2 + w^Tw\right)^{1/2}.
 \end{aligned}
 \end{split}\]</div>
-<p>The first inequality follows from the fact that <span class="math notranslate nohighlight">\(\|Ax\| / \|x\| \leq \|A\|\)</span> by definition of a vector induced matrix norm.</p>
+<p>The first inequality follows from the fact that <span class="math notranslate nohighlight">\(\|Ax\| / \|x\| \leq \|A\|\)</span> by definition of a vector induced matrix.norm. The second inequality follows from ignoring the contribution of <span class="math notranslate nohighlight">\(Bw\)</span> to the norm.</p>
+<p>We therefore have that</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_1 = \|S\|_2 \geq \left(\sigma_1^2 + w^Tw\right)^{1/2}.
+\]</div>
+<p>It follows that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U_1^TAV_1 = \begin{bmatrix}\sigma_1 &amp; 0\\
+                           0 &amp; B
+            \end{bmatrix}.
+\end{split}\]</div>
+<p>We now use an induction argument to assume that the SVD of <span class="math notranslate nohighlight">\(B\)</span> exists with</p>
+<div class="math notranslate nohighlight">
+\[
+B = \hat{U}\hat{\Sigma}\hat{V}^T.
+\]</div>
+<p>Then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = U_1\begin{bmatrix}1 &amp; 0 \\
+                      0 &amp; \hat{U}
+        \end{bmatrix}
+        \begin{bmatrix}\sigma_1 &amp; 0\\
+                       0        &amp; \hat{\Sigma}
+        \end{bmatrix}
+        \begin{bmatrix}1 &amp; 0\\
+                       0 &amp; \hat{V}^T
+        \end{bmatrix}V_1^T.
+\end{split}\]</div>
+<p>We now define</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}U:= U_1\begin{bmatrix}1 &amp; 0 \\
+                      0 &amp; \hat{U}
+        \end{bmatrix},\quad V:=        \begin{bmatrix}1 &amp; 0\\
+                       0 &amp; \hat{V}^T
+        \end{bmatrix}V_1^T.
+\end{split}\]</div>
+<p>The induction start is given by a single column vector if <span class="math notranslate nohighlight">\(m &gt; n\)</span> or a scalar if <span class="math notranslate nohighlight">\(m=1\)</span>. The theorem is trivially satisfied in both cases.</p>
+</div>
+<div class="section" id="properties-of-the-svd">
+<h2>Properties of the SVD<a class="headerlink" href="#properties-of-the-svd" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The rank of <span class="math notranslate nohighlight">\(A\)</span> is identical to <span class="math notranslate nohighlight">\(r\)</span>, the number of nonzero singular values.</p></li>
+<li><p>The nullspace <span class="math notranslate nohighlight">\(\text{null}(A)\)</span> is given by <span class="math notranslate nohighlight">\(\text{null}(A):= \text{span}\{v_{r+1}, \dots, v_n\}\)</span>.</p></li>
+<li><p>The range of <span class="math notranslate nohighlight">\(A\)</span> is given by <span class="math notranslate nohighlight">\(\text{ran}(A) := \text{span}\{u_1, \dots, u_r\}\)</span>.</p></li>
+<li><p>We have that <span class="math notranslate nohighlight">\(\|A\|_2 = \|U\Sigma V^T\|_2 = \|\Sigma\|_2 = \sigma_1\)</span>.</p></li>
+<li><p>Using that <span class="math notranslate nohighlight">\(\|Q_1AQ_2\|_F = \|A\|_F\)</span> for orthogonal matrices <span class="math notranslate nohighlight">\(Q_1\)</span>, <span class="math notranslate nohighlight">\(Q_2\)</span> it correspondingly follows that <span class="math notranslate nohighlight">\(\|A\|_F = \|\Sigma\|_F = \left(\sum_{j=1}^r\sigma_j^2\right)^{1/2}\)</span>.
+As corollary we have that <span class="math notranslate nohighlight">\(\|A\|_2 \leq \|A\|_F \leq \sqrt{r}\|A\|_2\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is invertible then <span class="math notranslate nohighlight">\(A^{-1} = V\Sigma^{-1}U^T\)</span> and therefore <span class="math notranslate nohighlight">\(\|A^{-1}\| = \sigma_n^{-1}\)</span>. It follows for the matrix condition number <span class="math notranslate nohighlight">\(\kappa_{rel}(A)\)</span> that <span class="math notranslate nohighlight">\(\kappa_{rel}(A) = \frac{\sigma_1}{\sigma_n}\)</span>. Moreover <span class="math notranslate nohighlight">\(\Delta A := -\sigma_n u_n v_n^T\)</span> is the smallest possible perturbation such that <span class="math notranslate nohighlight">\(A+\Delta A\)</span> is singular. Hence, the condition number is just the inverse of the smallest relative distance to the next singular matrix.</p></li>
+</ul>
+</div>
+<div class="section" id="svd-and-low-rank-approximation">
+<h2>SVD and low-rank approximation<a class="headerlink" href="#svd-and-low-rank-approximation" title="Permalink to this headline">¶</a></h2>
+<p>We can rewrite <span class="math notranslate nohighlight">\(A = U\Sigma V^T\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+A = \sigma_1 u_1 v_1^T + \sigma_2u_2v_2^T + \dots + \sigma_r u_r v_r^T.
+\]</div>
+<p>Each of the involved terms <span class="math notranslate nohighlight">\(\sigma_j u_jv_j^T\)</span> forms a rank-1 matrix. Define <span class="math notranslate nohighlight">\(A_\nu := \sum_{j=1}^\nu \sigma_j u_jv_j^T\)</span> for <span class="math notranslate nohighlight">\(\nu\leq r\)</span>. We have that</p>
+<div class="math notranslate nohighlight">
+\[
+\|A - A_{\nu}\|_2 = \sigma_{\nu+1}.
+\]</div>
+<div class="section" id="theorem">
+<h3>Theorem<a class="headerlink" href="#theorem" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(A_{\nu}\)</span> be defined as above. Then</p>
+<div class="math notranslate nohighlight">
+\[
+\|A - A_{\nu}\|_2 = \min_{B\in\mathbb{R}^{m\times n}, \text{rank}(B)\leq\nu} \|A - B\|_2 = \sigma_{\nu+1}.
+\]</div>
+</div>
+</div>
+<div class="section" id="the-reduced-svd">
+<h2>The reduced SVD<a class="headerlink" href="#the-reduced-svd" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span>. Write the full SVD as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix}U_1 &amp; U_2\end{bmatrix}\begin{bmatrix}\hat{\Sigma} &amp; 0\\
+                                                        0            &amp; 0
+                                         \end{bmatrix}
+                                        \begin{bmatrix}V_1 &amp; V_2\end{bmatrix}^T
+\end{split}\]</div>
+<p>with <span class="math notranslate nohighlight">\(U := \begin{bmatrix}U_1 &amp; U_2\end{bmatrix}\in\mathbb{R}^{m\times m}\)</span> and <span class="math notranslate nohighlight">\(V:=\begin{bmatrix}V_1 &amp; V_2\end{bmatrix}\in\mathbb{R}^{n\times n}\)</span> are the orthogonal matrices from the SVD, and <span class="math notranslate nohighlight">\(\Sigma :=\begin{bmatrix}\hat{\Sigma} &amp; 0\\0  &amp; 0\end{bmatrix}\)</span>. The columns of <span class="math notranslate nohighlight">\(U_2\)</span> form a basis for
+the orthogonal complement of the range of <span class="math notranslate nohighlight">\(A\)</span> and the columns of <span class="math notranslate nohighlight">\(V_2\)</span> form the nullspace of <span class="math notranslate nohighlight">\(A\)</span>. We have <span class="math notranslate nohighlight">\(\hat{\Sigma}\in\mathbb{R}^{r\times r}\)</span> a diagonal matrix with <span class="math notranslate nohighlight">\(\sigma_1, \dots, \sigma_r\)</span> being its diagonal elements.</p>
+<p>The <em>reduced SVD</em> is now defined as</p>
+<div class="math notranslate nohighlight">
+\[
+A = U_1\hat{\Sigma}V_1^T.
+\]</div>
+<p>For computational purposes knowledge of the reduced SVD (or dominant parts of it) is usually sufficient.</p>
 </div>
 </div>
 
@@ -378,7 +531,21 @@ S := U_1^TAV_1 = \begin{bmatrix}\sigma_1 &amp; w^T\\
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="qr_decomposition.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">The QR Decomposition</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="week_1_self_check.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 1 Self check questions and solutions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

@@ -53,6 +53,8 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="The Singular Value decomposition" href="singular_value_decomposition.html" />
+    <link rel="prev" title="Backward error of the LU decomposition" href="lu_backward_error_examples.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -151,6 +153,23 @@
  <li class="toctree-l1">
   <a class="reference internal" href="lu_backward_error_examples.html">
    Backward error of the LU decomposition
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Orthogonal decompositions
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   The QR Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="singular_value_decomposition.html">
+   The Singular Value decomposition
   </a>
  </li>
 </ul>
@@ -273,6 +292,11 @@
    Solving linear systems of equations with the QR decomposition
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reduced-vs-full-qr-decomposition">
+   Reduced vs full QR decomposition
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -313,6 +337,11 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#solving-linear-systems-of-equations-with-the-qr-decomposition">
    Solving linear systems of equations with the QR decomposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reduced-vs-full-qr-decomposition">
+   Reduced vs full QR decomposition
   </a>
  </li>
 </ul>
@@ -421,6 +450,15 @@ Rx &amp;= Q^Tb.\\
 <p>The last equation is a simple upper triangular system that can be solved by backward substitution.</p>
 <p><strong>It can be shown that the solution of a linear system of equations via QR decomposition is always backward stable. But it is rarely done in practice as it is around twice as expensive as the LU decomosition.</strong></p>
 </div>
+<div class="section" id="reduced-vs-full-qr-decomposition">
+<h2>Reduced vs full QR decomposition<a class="headerlink" href="#reduced-vs-full-qr-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>Consider the QR decomposition <span class="math notranslate nohighlight">\(A = QR\)</span> with <span class="math notranslate nohighlight">\(Q\in\mathbb{R}^{m\times n}\)</span> and <span class="math notranslate nohighlight">\(R\in\mathbb{R}^{n\times n}\)</span>. We call this QR decomposition a reduced QR decomposition. To define the full QR decomposition let <span class="math notranslate nohighlight">\(Q^{\bot}\in\mathbb{R}^{m\times m-n}\)</span> be a matrix whose columns are orthornomal and satisfy <span class="math notranslate nohighlight">\(\hat{Q}^TQ = 0\)</span> (i.e. they are a basis of the orthogonal complement of the range of <span class="math notranslate nohighlight">\(A\)</span>). We can reformulate the QR decomposition as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix}Q &amp; Q^{\bot}\end{bmatrix}\begin{bmatrix}R\\ 0\end{bmatrix} =: \tilde{R}\tilde{Q}.
+\end{split}\]</div>
+<p>The QR decomposition <span class="math notranslate nohighlight">\(A = \tilde{Q}\tilde{R}\)</span> is called full QR decomposition. It is rarely used in practical computation as the columns of <span class="math notranslate nohighlight">\(Q^{\bot}\)</span> are usually not required. But it is important theoretically, as <span class="math notranslate nohighlight">\(Q^{\bot}\)</span> forms a square orthogonal (and therefore invertible) matrix and contains information about the range of <span class="math notranslate nohighlight">\(A\)</span> and its orthogonal complement.</p>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
@@ -447,7 +485,21 @@ Rx &amp;= Q^Tb.\\
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="lu_backward_error_examples.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Backward error of the LU decomposition</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="singular_value_decomposition.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">The Singular Value decomposition</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

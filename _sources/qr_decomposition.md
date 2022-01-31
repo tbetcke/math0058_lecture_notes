@@ -103,4 +103,13 @@ The last equation is a simple upper triangular system that can be solved by back
 
 **It can be shown that the solution of a linear system of equations via QR decomposition is always backward stable. But it is rarely done in practice as it is around twice as expensive as the LU decomosition.**
 
+## Reduced vs full QR decomposition
+
+Consider the QR decomposition $A = QR$ with $Q\in\mathbb{R}^{m\times n}$ and $R\in\mathbb{R}^{n\times n}$. We call this QR decomposition a reduced QR decomposition. To define the full QR decomposition let $Q^{\bot}\in\mathbb{R}^{m\times m-n}$ be a matrix whose columns are orthornomal and satisfy $\hat{Q}^TQ = 0$ (i.e. they are a basis of the orthogonal complement of the range of $A$). We can reformulate the QR decomposition as
+
+$$
+A = \begin{bmatrix}Q & Q^{\bot}\end{bmatrix}\begin{bmatrix}R\\ 0\end{bmatrix} =: \tilde{R}\tilde{Q}.
+$$
+
+The QR decomposition $A = \tilde{Q}\tilde{R}$ is called full QR decomposition. It is rarely used in practical computation as the columns of $Q^{\bot}$ are usually not required. But it is important theoretically, as $Q^{\bot}$ forms a square orthogonal (and therefore invertible) matrix and contains information about the range of $A$ and its orthogonal complement.
 
