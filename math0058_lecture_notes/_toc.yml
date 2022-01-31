@@ -14,6 +14,10 @@ parts:
     - file: lu_decomposition.md
     - file: lu_backward_error.md
     - file: lu_backward_error_examples.ipynb
+- caption: Orthogonal decompositions
+  chapters:
+  - file: qr_decomposition
+  - file: singular_value_decomposition
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
