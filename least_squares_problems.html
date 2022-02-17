@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Welcome to MATH0058 &#8212; MATH0058 - Lecture Notes</title>
+    <title>Least Squares Problems &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -45,6 +45,8 @@
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
     <script>
         const thebe_selector = ".thebe"
@@ -54,7 +56,6 @@
     <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Matrix and vector norms" href="matrix_vector_norms.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -87,8 +88,8 @@
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
         <ul class="nav bd-sidenav">
- <li class="toctree-l1 current">
-  <a class="reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
    Welcome to MATH0058
   </a>
  </li>
@@ -250,7 +251,7 @@
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/intro.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/least_squares_problems.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -275,6 +276,34 @@
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-normal-equation">
+   The normal equation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-the-normal-equation">
+   Properties of the normal equation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-least-squares-problems-with-the-qr-decomposition">
+   Solving least-squares problems with the QR decomposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-least-squares-problems-with-the-svd">
+   Solving least-squares problems with the SVD
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -282,35 +311,148 @@
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Welcome to MATH0058</h1>
+                <h1>Least Squares Problems</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-normal-equation">
+   The normal equation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#properties-of-the-normal-equation">
+   Properties of the normal equation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-least-squares-problems-with-the-qr-decomposition">
+   Solving least-squares problems with the QR decomposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#solving-least-squares-problems-with-the-svd">
+   Solving least-squares problems with the SVD
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="welcome-to-math0058">
-<h1>Welcome to MATH0058<a class="headerlink" href="#welcome-to-math0058" title="Permalink to this headline">¶</a></h1>
-<p>In this module you will take your first steps into numerical algorithms
-and their efficient implementation.</p>
-<p>We will focus on basic algorithms from numerical linear algebra, including
-LU Decomposition, QR Decomposition, SVD and eigenvalues. These are the key
-foundations for most advanced numerical techniques, including from data science,
-numerical solution of PDEs, etc.</p>
-<p>At the end of the module we will also take a sidestep into basic interpolation.
-There are some wonderful connections to numerical linear algebra, and interpolation
-is (next to matrix methods) another key ingredient for more advanced numerical methods.</p>
-<div class="toctree-wrapper compound">
+  <div class="tex2jax_ignore mathjax_ignore section" id="least-squares-problems">
+<h1>Least Squares Problems<a class="headerlink" href="#least-squares-problems" title="Permalink to this headline">¶</a></h1>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span> with <span class="math notranslate nohighlight">\(m\geq n\)</span> and <span class="math notranslate nohighlight">\(b\in\mathbb{R}^m\)</span>.
+In the following we assume that <span class="math notranslate nohighlight">\(\text{rank}(A) = n\)</span>.</p>
+<p>We define the following leasts-squares problem</p>
+<div class="math notranslate nohighlight">
+\[
+\hat{x} = \text{arg}\min_{x\in\mathbb{R}^n} \|Ax-b\|_2.
+\]</div>
+<div class="section" id="the-normal-equation">
+<h2>The normal equation<a class="headerlink" href="#the-normal-equation" title="Permalink to this headline">¶</a></h2>
+<p>Assume that <span class="math notranslate nohighlight">\(\hat{x}\)</span> is a minimizer. Let <span class="math notranslate nohighlight">\(\epsilon\in\mathbb{R}^n\)</span> be a small
+perturbation. Then</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\|A(\hat{x} + \epsilon) - b\|_2^2 &amp;= \left[A(\hat{x} + \epsilon) - b\right]^T\left[A(\hat{x} + \epsilon) - b\right]\\
+                                  &amp;= \|A\hat{x} -b \|_2^2+2 \epsilon^T(A^TA\hat{x} - A^Tb) + \epsilon^TA^TA\epsilon
+\end{aligned}
+\end{split}\]</div>
+<p>It follows that a necessary condition for <span class="math notranslate nohighlight">\(\hat{x}\)</span> to be a minimum is that</p>
+<div class="math notranslate nohighlight">
+\[
+A^TA\hat{x} - A^Tb = 0.
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(\epsilon^TA^TA\epsilon = \|A\epsilon\|_2^2 &gt; 0 \forall \epsilon\neq 0\)</span>
+the necessary condition is also sufficient.</p>
+<p>The system</p>
+<div class="math notranslate nohighlight">
+\[
+A^TA\hat{x} = A^Tb
+\]</div>
+<p>is called the normal equation for the least-squares problem.</p>
 </div>
-<div class="toctree-wrapper compound">
+<div class="section" id="properties-of-the-normal-equation">
+<h2>Properties of the normal equation<a class="headerlink" href="#properties-of-the-normal-equation" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(A = U\Sigma V^T\)</span> be the SVD of <span class="math notranslate nohighlight">\(A\)</span>. As generalization of
+the relative condition number of a square matrix we can define the relative
+condition number for a rectangular matrix as <span class="math notranslate nohighlight">\(\kappa_{rel}(A):=\sigma_1/\sigma_n\)</span>.</p>
+<p>We have</p>
+<div class="math notranslate nohighlight">
+\[
+A^TA = V\Sigma^T\Sigma V^T
+\]</div>
+<p>as SVD of <span class="math notranslate nohighlight">\(A\)</span>. Hence, <span class="math notranslate nohighlight">\(\kappa_{rel}(A^TA) = \sigma_1^2 / \sigma_n^2 = \kappa_{rel}(A)^2\)</span>.</p>
+<p>It follows that the linear system in the normal equation has a squared condition number
+compared to the original matrix <span class="math notranslate nohighlight">\(A\)</span>. In the following, we discuss orthogonalization methods that
+avoid this squaring of condition number.</p>
 </div>
-<div class="toctree-wrapper compound">
+<div class="section" id="solving-least-squares-problems-with-the-qr-decomposition">
+<h2>Solving least-squares problems with the QR decomposition<a class="headerlink" href="#solving-least-squares-problems-with-the-qr-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>Let the full QR decomposition of <span class="math notranslate nohighlight">\(A\)</span> be given as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = \begin{bmatrix} Q_1 &amp; Q_2 \end{bmatrix}\begin{bmatrix}R\\ 0\end{bmatrix}
+\end{split}\]</div>
+<p>Substitute into the least-squares problem to obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\|Ax - b\| = \|Q\begin{bmatrix}R\\ 0\end{bmatrix}x - b\|_2 = \|\begin{bmatrix}R \\ 0\end{bmatrix}x - Q^Tb\|_2.
+\end{split}\]</div>
+<p>The last term gives</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\|\begin{bmatrix}R\\ 0\end{bmatrix}x - Q^Tb\|_2 = \|\begin{bmatrix}R\\ 0\end{bmatrix}x - \begin{bmatrix}Q_1^Tb\\ Q_2^Tb\end{bmatrix}\|_2.
+\end{split}\]</div>
+<p>We see that we can only influence the first block-line with <span class="math notranslate nohighlight">\(x\)</span>. In the second line <span class="math notranslate nohighlight">\(x\)</span> is multiplied with zero and therefore no choice of <span class="math notranslate nohighlight">\(x\)</span>
+would reduce the contribution from there. Hence, the minimizer is the solution of the problem</p>
+<div class="math notranslate nohighlight">
+\[
+Rx = Q_1^Tb.
+\]</div>
+<p>It is possible to show (see exercises) that <span class="math notranslate nohighlight">\(R\)</span> has the same condition number as <span class="math notranslate nohighlight">\(A\)</span>. Hence, we avoid the squaring of
+condition number from the normal equation.</p>
 </div>
-<div class="toctree-wrapper compound">
+<div class="section" id="solving-least-squares-problems-with-the-svd">
+<h2>Solving least-squares problems with the SVD<a class="headerlink" href="#solving-least-squares-problems-with-the-svd" title="Permalink to this headline">¶</a></h2>
+<p>The SVD can also be used to solve least-squares problems. This will lead us to an important concept, namely
+the <em>pseudo-inverse</em> of a matrix.</p>
+<p>Let <span class="math notranslate nohighlight">\(A = U\Sigma V^T\)</span> be the SVD of <span class="math notranslate nohighlight">\(A\)</span>. Substitute into the least-squares problem to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\|Ax-b\|_2 = \|U\Sigma V^Tx - b\|_2.
+\]</div>
+<p>Let <span class="math notranslate nohighlight">\(y=V^Tx\)</span> and factorise out <span class="math notranslate nohighlight">\(U\)</span> to obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\|Ax - b\|_2 = \left\|\begin{bmatrix}\tilde{\Sigma}\\ 0\end{bmatrix}y - \begin{bmatrix}U_1^Tb\\ U_2^Tb\end{bmatrix}\right\|_2.
+\end{split}\]</div>
+<p>Hence, <span class="math notranslate nohighlight">\(y = \tilde{\Sigma}^{-1}U_1^Tb\)</span> and therefore</p>
+<div class="math notranslate nohighlight">
+\[
+x = V\tilde{\Sigma}^{-1}U_1^Tb = V\begin{bmatrix}\tilde{\Sigma}^{-1} &amp; 0\end{bmatrix}U^Tb.
+\]</div>
+<p>We define the pseudo-inverse of <span class="math notranslate nohighlight">\(A\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+A^{\dagger} := V\begin{bmatrix}\tilde{\Sigma}^{-1} &amp; 0\end{bmatrix}U^T.
+\]</div>
+<p>The pseudo-inverse of <span class="math notranslate nohighlight">\(A\)</span> is a generalization of the inverse of <span class="math notranslate nohighlight">\(A\)</span>.
+In the same way that <span class="math notranslate nohighlight">\(A^{-1}b\)</span> solves the linear system <span class="math notranslate nohighlight">\(Ax=b\)</span> for a square
+matrix <span class="math notranslate nohighlight">\(A\)</span>, the pseudo-inverse <span class="math notranslate nohighlight">\(A^{\dagger}\)</span> applied to <span class="math notranslate nohighlight">\(b\)</span> solves the least-squares minimisation problem
+<span class="math notranslate nohighlight">\(\|Ax-b\|_2\)</span> for rectangular <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 </div>
 
@@ -339,13 +481,6 @@ is (next to matrix methods) another key ingredient for more advanced numerical m
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='right-next' id="next-link" href="matrix_vector_norms.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Matrix and vector norms</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
 </div>
             
         </div>
