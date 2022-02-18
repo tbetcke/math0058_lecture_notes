@@ -19,6 +19,7 @@ parts:
   chapters:
   - file: qr_decomposition
   - file: singular_value_decomposition
+  - file: least_squares_problems
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
@@ -26,4 +27,5 @@ parts:
     - file: week_3_self_check
     - file: week_4_self_check
     - file: week_5_self_check.ipynb
+    - file: week_6_self_check
 
