@@ -317,10 +317,11 @@
 <p><strong>Solution:</strong></p>
 <p>The SVD of <span class="math notranslate nohighlight">\(A\)</span> is given as <span class="math notranslate nohighlight">\(A=U\Sigma V^T\)</span>, where <span class="math notranslate nohighlight">\(U\in\mathbb{R}^{m\times m}\)</span> and <span class="math notranslate nohighlight">\(V\in\mathbb{R}^{n\times n}\)</span> are orthogonal
 matrices and <span class="math notranslate nohighlight">\(\Sigma \in\mathbb{R}^{m\times n}\)</span> is a diagonal matrix with the nonzero singular values <span class="math notranslate nohighlight">\(\sigma_1\geq\sigma_2\geq\dots\geq\sigma_r\)</span> in decreasing order on the diagonal of the matrix.</p>
-<p>Let <span class="math notranslate nohighlight">\(A = U\Sigma V^T\)</span>. Substituting into the least-squares problem we have
-$<span class="math notranslate nohighlight">\(
+<p>Let <span class="math notranslate nohighlight">\(A = U\Sigma V^T\)</span>. Substituting into the least-squares problem we have</p>
+<div class="math notranslate nohighlight">
+\[
 \|Ax-b\|_2 = \|U\Sigma V^Tx - b\|_2 = \|\Sigma y - \hat{b}\|_2
-\)</span>$</p>
+\]</div>
 <p>for <span class="math notranslate nohighlight">\(y=V^Tx\)</span> and <span class="math notranslate nohighlight">\(\hat{b} = U^Tb\)</span>. By minimizing the above expression we find <span class="math notranslate nohighlight">\(y_j\)</span> as <span class="math notranslate nohighlight">\(y_j = \hat{b}_j/\sigma_j\)</span>. If <span class="math notranslate nohighlight">\(\sigma_j=0\)</span> then we set <span class="math notranslate nohighlight">\(y_j=0\)</span>. This is equivalent to <span class="math notranslate nohighlight">\(y = \Sigma^{\dagger}\hat{b}\)</span>.
 Substituting back in for <span class="math notranslate nohighlight">\(\hat{b}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> we obtain <span class="math notranslate nohighlight">\(x = V\Sigma^{\dagger}U^Tb = A^{\dagger}b\)</span>.</p>
 <p><strong>Question 2:</strong></p>
@@ -332,14 +333,16 @@ Show that the solution of this least-squares problem is identical to the solutio
 (A^TA+L^TL)x = A^Tb.
 \)</span>$</p>
 <p><strong>Solution:</strong></p>
-<p>The modified least-squares problem is identical to
-$<span class="math notranslate nohighlight">\(
+<p>The modified least-squares problem is identical to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \min_{x\in\mathbb{R}^n}\left\|\begin{bmatrix}A\\L\end{bmatrix}x-\begin{bmatrix}b\\ 0\end{bmatrix}\right\|_2.
-\)</span><span class="math notranslate nohighlight">\(
-Applying the normal equation to this problem we arrive at
-\)</span><span class="math notranslate nohighlight">\(
+\end{split}\]</div>
+<p>Applying the normal equation to this problem we arrive at</p>
+<div class="math notranslate nohighlight">
+\[
 (A^TA+L^TL)x = A^Tb.
-\)</span>$</p>
+\]</div>
 <p><strong>Question 3:</strong></p>
 <p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span> with <span class="math notranslate nohighlight">\(m\geq n\)</span>. Show that the smallest singular value <span class="math notranslate nohighlight">\(\sigma_n\)</span> of <span class="math notranslate nohighlight">\(A\)</span> satisfies</p>
 <div class="math notranslate nohighlight">
