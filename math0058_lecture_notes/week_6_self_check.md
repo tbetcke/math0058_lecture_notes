@@ -16,6 +16,7 @@ The SVD of $A$ is given as $A=U\Sigma V^T$, where $U\in\mathbb{R}^{m\times m}$ a
 matrices and $\Sigma \in\mathbb{R}^{m\times n}$ is a diagonal matrix with the nonzero singular values $\sigma_1\geq\sigma_2\geq\dots\geq\sigma_r$ in decreasing order on the diagonal of the matrix.
 
 Let $A = U\Sigma V^T$. Substituting into the least-squares problem we have
+
 $$
 \|Ax-b\|_2 = \|U\Sigma V^Tx - b\|_2 = \|\Sigma y - \hat{b}\|_2
 $$
@@ -36,10 +37,13 @@ $$
 **Solution:**
 
 The modified least-squares problem is identical to
+
 $$
 \min_{x\in\mathbb{R}^n}\left\|\begin{bmatrix}A\\L\end{bmatrix}x-\begin{bmatrix}b\\ 0\end{bmatrix}\right\|_2.
 $$
+
 Applying the normal equation to this problem we arrive at
+
 $$
 (A^TA+L^TL)x = A^Tb.
 $$    
