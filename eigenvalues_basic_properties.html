@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Principles of backward error analysis &#8212; MATH0058 - Lecture Notes</title>
+    <title>Basic properties of eigenvalue problems &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,6 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Backward error and condition number of linear systems of equations" href="linear_system_error.html" />
-    <link rel="prev" title="Floating Point Arithmetic" href="floating_point_arithmetic.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -100,7 +98,7 @@ const thebe_selector_output = ".output, .cell_output"
   Fundamentals
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="matrix_vector_norms.html">
    Matrix and vector norms
@@ -111,8 +109,8 @@ const thebe_selector_output = ".output, .cell_output"
    Floating Point Arithmetic
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="error_analysis.html">
    Principles of backward error analysis
   </a>
  </li>
@@ -262,7 +260,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/error_analysis.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/eigenvalues_basic_properties.md"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
@@ -292,20 +290,29 @@ const thebe_selector_output = ".output, .cell_output"
             </div>
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#forward-error">
-   Forward Error
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Basic properties of eigenvalue problems
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definition-and-motivation">
+     Definition and motivation
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backward-error">
-   Backward error
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#characteristic-polynomials-algebraic-and-geometric-multiplicities">
+   Characteristic polynomials, algebraic and geometric multiplicities
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#condition-number">
-   Condition number
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-eigenvalue-decomposition">
+     The eigenvalue decomposition
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -317,7 +324,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Principles of backward error analysis</h1>
+                <h1>Basic properties of eigenvalue problems</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -327,20 +334,29 @@ const thebe_selector_output = ".output, .cell_output"
                         </div>
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#forward-error">
-   Forward Error
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Basic properties of eigenvalue problems
   </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#definition-and-motivation">
+     Definition and motivation
+    </a>
+   </li>
+  </ul>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#backward-error">
-   Backward error
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#characteristic-polynomials-algebraic-and-geometric-multiplicities">
+   Characteristic polynomials, algebraic and geometric multiplicities
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#condition-number">
-   Condition number
-  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-eigenvalue-decomposition">
+     The eigenvalue decomposition
+    </a>
+   </li>
+  </ul>
  </li>
 </ul>
 
@@ -351,87 +367,84 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="principles-of-backward-error-analysis">
-<h1>Principles of backward error analysis<a class="headerlink" href="#principles-of-backward-error-analysis" title="Permalink to this headline">¶</a></h1>
-<p>Modern error analysis goes back to the seminal work by <a class="reference external" href="https://en.wikipedia.org/wiki/James_H._Wilkinson">James Hardy Wilkinson</a>.
-It distinguishes between forward error, that is the error in the result of an algorithm, and the backward error, which is a perturbation
-measure for the input data.</p>
-<p>In the following we denote by <span class="math notranslate nohighlight">\(f:X\rightarrow Y\)</span> a function that maps data from an input space <span class="math notranslate nohighlight">\(X\)</span> into an output space <span class="math notranslate nohighlight">\(Y\)</span>. Correspondingly,
-we define a function <span class="math notranslate nohighlight">\(\tilde{f}\)</span>, which represents an approximate evaluation of <span class="math notranslate nohighlight">\(f\)</span>. Consider for example the solution of the linear system
-of equations</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="basic-properties-of-eigenvalue-problems">
+<h1>Basic properties of eigenvalue problems<a class="headerlink" href="#basic-properties-of-eigenvalue-problems" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="definition-and-motivation">
+<h2>Definition and motivation<a class="headerlink" href="#definition-and-motivation" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}. An eigenvalue problem takes the form
+to find \)</span>x\in\mathbb{C}^n<span class="math notranslate nohighlight">\(, \)</span>x\neq 0<span class="math notranslate nohighlight">\( and \)</span>\lambda\in\mathbb{C}$ such that</p>
 <div class="math notranslate nohighlight">
 \[
-Ay = b
+Ax = \lambda x.
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span> and <span class="math notranslate nohighlight">\(b\in\mathbb{R}^n\)</span>. Then the input space is the product space <span class="math notranslate nohighlight">\(X=\mathbb{R}^{n\times n} \times \mathbb{R}^n\)</span> and our
-input data is the tuple <span class="math notranslate nohighlight">\((A, b)\in X\)</span>. The output space is <span class="math notranslate nohighlight">\(Y=\mathbb{R}^n\)</span>. The function <span class="math notranslate nohighlight">\(f\)</span> is given as</p>
+<p>Eigenvalue problems arise naturally in the study of initial value problems.
+Consider the problem of solving the ODE</p>
 <div class="math notranslate nohighlight">
 \[
-f(A, b) = A^{-1}b
+y' = Ay
 \]</div>
-<p>and the approximate function <span class="math notranslate nohighlight">\(\tilde{f}\)</span> is for example the Gaussian elimination algorithm in IEEE double precision to compute the solution <span class="math notranslate nohighlight">\(y\)</span>.</p>
-<div class="section" id="forward-error">
-<h2>Forward Error<a class="headerlink" href="#forward-error" title="Permalink to this headline">¶</a></h2>
-<p>Let <span class="math notranslate nohighlight">\(y = f(x)\)</span> and <span class="math notranslate nohighlight">\(\tilde{y} = \tilde{f}(y)\)</span>. The relative forward <span class="math notranslate nohighlight">\(E_{rel}\)</span> is defined as</p>
+<p>for <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span> with <span class="math notranslate nohighlight">\(y(0) = y_0\)</span>.</p>
+<p>By writing <span class="math notranslate nohighlight">\(y(t) = y_0e^{\lambda t}\)</span> and substituting we obtain the
+eigenvalue problem</p>
 <div class="math notranslate nohighlight">
 \[
-E_{rel} := \frac{\|y - \tilde{y}\|}{\|y\|}.
+Ay_0 = \lambda y_0.
 \]</div>
-<p>It measures the difference in output between the exact function <span class="math notranslate nohighlight">\(f\)</span> and the approximate function <span class="math notranslate nohighlight">\(\tilde{f}\)</span> for the same input. In some situations it is not useful to talk about
-the relative forward error (i.e. if <span class="math notranslate nohighlight">\(y=0\)</span>). We then use the absolute forward error <span class="math notranslate nohighlight">\(E_{abs} = \|y-\tilde{y}\|\)</span>.</p>
+<p>When reasoning about eigenvalues it therefore makes sense to think of
+eigenvalues not just as properties of matrices but as properties of
+dynamical systems driven by the matrix <span class="math notranslate nohighlight">\(A\)</span>. This contrasts singular values,
+which describe the mapping properties of a matrix <span class="math notranslate nohighlight">\(A\)</span> and are therefore
+intuitively quite distinct from eigenvalues.</p>
 </div>
-<div class="section" id="backward-error">
-<h2>Backward error<a class="headerlink" href="#backward-error" title="Permalink to this headline">¶</a></h2>
-<p>The backward error answers the following question. Given the output <span class="math notranslate nohighlight">\(\tilde{y}\)</span> from the perturbed function <span class="math notranslate nohighlight">\(\tilde{f}\)</span> for the input <span class="math notranslate nohighlight">\(x\)</span>. By how much would I need to perturb <span class="math notranslate nohighlight">\(x\)</span> to an input <span class="math notranslate nohighlight">\(\tilde{x} = x + \Delta x\)</span> so that we have <span class="math notranslate nohighlight">\(\tilde{y} = f(\tilde{x})\)</span>. Hence, it asks
-if the exact function <span class="math notranslate nohighlight">\(f\)</span> could produce the same output as <span class="math notranslate nohighlight">\(\tilde{f}\)</span> but with a slight perturbation in the input data. The idea is that our approximate function <span class="math notranslate nohighlight">\(\tilde{f}\)</span> is useful if only a small perturbation is needed for the input data so that <span class="math notranslate nohighlight">\(f\)</span> produces the same output as <span class="math notranslate nohighlight">\(\tilde{f}\)</span> (the perturbation certainly being dependent on the input data).</p>
-<p>Formally, the relative backward error is defined as</p>
-<div class="math notranslate nohighlight">
-\[
-\eta_{rel}(\tilde{y}) := \min\{\epsilon: f(x+ \Delta x) = \tilde{y}: \|\Delta x\|\leq \epsilon \|x\|\}.
-\]</div>
-<p>If the relative backward error for <span class="math notranslate nohighlight">\(\tilde{f}\)</span> is bounded by a small constant times the uncertainty in the input data we say that the algorithm is backward stable. It means that the backward accuracy from the algorithm is as good as we can expect. Hence, for a numerical algorithm on a computer we say that an algorithm is backward stable if its backward error is bounded by a small multiple of machine precision.</p>
 </div>
-<div class="section" id="condition-number">
-<h2>Condition number<a class="headerlink" href="#condition-number" title="Permalink to this headline">¶</a></h2>
-<p>The definition of the backward error seems convoluted at first. But it is very useful as the following shows. Assume that <span class="math notranslate nohighlight">\(f\)</span> is differentiable. We have to first order the following statement.</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\|y - \tilde{y}\| &amp;\stackrel{(1)}{=} \|f(x) - \tilde{f}(x)\|\\
-                  &amp;\stackrel{(2)}{=} \|f(x)  - f(\tilde{x})\|\\
-                  &amp;\stackrel{(3)}{\leq} \|f'(x)\|\cdot \|x - \tilde{x}\|
-\end{aligned}
-\end{split}\]</div>
-<p>Equality (2) is possible by choosing <span class="math notranslate nohighlight">\(\tilde{x}\)</span> such that <span class="math notranslate nohighlight">\(\tilde{f}(x) = f(\tilde{x})\)</span>. Hence, <span class="math notranslate nohighlight">\(\Delta x = x- \tilde{x}\)</span> is the backward perturbation associated with the output <span class="math notranslate nohighlight">\(\tilde{y}\)</span>.
-The right-hand side in (3) is the
-product of the derivative of <span class="math notranslate nohighlight">\(f\)</span> and the size of the backward error. It demonstrates that
-the forward error depends on two quantities, namely the sensitivity of <span class="math notranslate nohighlight">\(f\)</span> to small perturbations (i.e. <span class="math notranslate nohighlight">\(\|f'(x)\|\)</span>) and the size of the backward error <span class="math notranslate nohighlight">\(\|x-\tilde{x}\|\)</span>. This is of fundamental importance. We can devise an extremely good evaluation <span class="math notranslate nohighlight">\(\tilde{f}\)</span> with small backward error. If the problem is highly sensitive to perturbations, the output forward error will still be large.</p>
-<p>A more general definition of sensitivity is given by the <em>condition number</em>. The relative
-condition number <span class="math notranslate nohighlight">\(\kappa_{rel}\)</span> is defined as</p>
+<div class="tex2jax_ignore mathjax_ignore section" id="characteristic-polynomials-algebraic-and-geometric-multiplicities">
+<h1>Characteristic polynomials, algebraic and geometric multiplicities<a class="headerlink" href="#characteristic-polynomials-algebraic-and-geometric-multiplicities" title="Permalink to this headline">¶</a></h1>
+<p>We can rewrite an eigenvalue problem in the form</p>
 <div class="math notranslate nohighlight">
 \[
-\kappa_{rel}(x) := \lim_{\delta\rightarrow 0}\sup_{\|\Delta x\|\leq \delta}\left(\frac{\|\Delta f\|}{\|f\|} / \frac{\|\Delta x\|}{\|x\|}\right)
+(\lambda I - A)x = 0.
 \]</div>
-<p>with <span class="math notranslate nohighlight">\(\Delta f = f(x) - f(\tilde{x})\)</span> being the perturbation in the output data.</p>
-<p>Hence, it measures the largest possible ratio of relative output error with respect to relative
-input error. If <span class="math notranslate nohighlight">\(f\)</span> is differentiable then <span class="math notranslate nohighlight">\(\kappa_{rel}(x) = \frac{\|f'(x)\|}{\|f(x\|}\|x\|\)</span>.</p>
-<p>What is a good condition number in practice? Ideally, we want the condition number to be close
-to <span class="math notranslate nohighlight">\(1\)</span> since then errors in the input data are not amplified for the output error. For each
-magnitude of the condition number we lose one digit of accuracy in the output error. This
-can be seen as follows.</p>
-<p>From the definition of the condition number we obtain for differentiable <span class="math notranslate nohighlight">\(f\)</span> that to first order</p>
+<p>This has nontrivial solutions <span class="math notranslate nohighlight">\(x\)</span> if and only if <span class="math notranslate nohighlight">\(\lambda I - A\)</span> is singular, or
+equivalently</p>
 <div class="math notranslate nohighlight">
 \[
-\frac{\|\Delta f\|}{\|f\|}\leq \kappa_{rel}(x)\cdot \frac{\|\Delta x\|}{\|x\|},
+\det(\lambda I - A) = 0.
 \]</div>
-<p>or in other words the relative forward error is bounded by the product of condition number
-and relative backward error.</p>
-<p>Assume we work in double precision and that the algorithm is backward stable. Then the backward error is a small multiple of <span class="math notranslate nohighlight">\(\epsilon_{mach}\)</span>. Hence, if the condition number is <span class="math notranslate nohighlight">\(100\)</span> we expect to lose two digits of accuracy in the forward error. If the condition number is in the order of <span class="math notranslate nohighlight">\(\epsilon_{mach}^{-1}\)</span> then we will likely use almost all digits.</p>
-<p>If a condition number is small we say that the problem is <em>well-conditioned</em>. If the condition
-is large we say that the problem is <em>ill-conditioned</em>. The precise meaning of these terms depends on the requirements of the application.</p>
-<p><strong>Note: The condition number is a worst-case bound. In practice, the actual forward error may
-be better than predicted by the condition number.</strong></p>
-<p><strong>Note: In the following we will generally not use the subscript <span class="math notranslate nohighlight">\(rel\)</span> for relative quantities. Unless otherwise stated we always work with relative quantities.</strong></p>
+<p>We define the characteristic polynomial</p>
+<div class="math notranslate nohighlight">
+\[
+p(\lambda) := \det(\lambda I - A).
+\]</div>
+<p>By expanding the determinant we can see that <span class="math notranslate nohighlight">\(p\)</span> is a polynomial of maximum
+degree <span class="math notranslate nohighlight">\(n\)</span>. Denote the <span class="math notranslate nohighlight">\(j\)</span>the zero of <span class="math notranslate nohighlight">\(p\)</span> as <span class="math notranslate nohighlight">\(\lambda_j\)</span>. We have that</p>
+<div class="math notranslate nohighlight">
+\[
+P(\lambda) = \prod_j (\lambda -\lambda_j)^\alpha_j,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha_j\)</span> denotes the algebraic multiplicity of the <span class="math notranslate nohighlight">\(j\)</span>th root.
+From the fundamental theorem of algebra we know that <span class="math notranslate nohighlight">\(n = \sum_j \alpha_j\)</span>.
+Hence, if we count by multiplicities an <span class="math notranslate nohighlight">\(n\times n\)</span> matrix has <span class="math notranslate nohighlight">\(n\)</span> eigenvalues.</p>
+<p>For eigenvalue problems also of relevance is the geometrix multicity <span class="math notranslate nohighlight">\(\beta_j\)</span>
+of an eigenvalue <span class="math notranslate nohighlight">\(\lambda_j\)</span>. <span class="math notranslate nohighlight">\(\beta_j\)</span> is defined as the dimension of the
+nullspace of</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_j I - A.
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(\lambda_j\)</span> is a single eigenvalue then this dimension is <span class="math notranslate nohighlight">\(1\)</span>.
+If <span class="math notranslate nohighlight">\(\alpha_j &gt;1\)</span> we have that <span class="math notranslate nohighlight">\(\beta_j \leq \alpha_j\)</span>. More about this
+relationship is obtained by discussing the Jordan normal form of a matrix,
+which is not topic of this module.</p>
+<div class="section" id="the-eigenvalue-decomposition">
+<h2>The eigenvalue decomposition<a class="headerlink" href="#the-eigenvalue-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>If <span class="math notranslate nohighlight">\(\alpha_j=\beta_j\)</span> for all <span class="math notranslate nohighlight">\(j\)</span> the following eigenvalue decomposition exists</p>
+<div class="math notranslate nohighlight">
+\[
+A = X\Lambda X^{-1},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(X\in\mathbb{C}^{n\times n}\)</span> is a nonsingular matrix whose columns <span class="math notranslate nohighlight">\(x_j\)</span> are
+the eigenvectors of <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(\Lambda\)</span> is a diagonal matrix whose diagonal entries
+are the associated eigenvalues <span class="math notranslate nohighlight">\(\lambda_j\)</span>.</p>
 </div>
 </div>
 
@@ -459,21 +472,7 @@ be better than predicted by the condition number.</strong></p>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="floating_point_arithmetic.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Floating Point Arithmetic</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="linear_system_error.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Backward error and condition number of linear systems of equations</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
+<div class='prev-next-area'>
 </div>
             
         </div>

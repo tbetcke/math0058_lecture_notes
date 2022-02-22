@@ -27,9 +27,14 @@ Substituting back in for $\hat{b}$ and $y$ we obtain $x = V\Sigma^{\dagger}U^Tb 
 **Question 2:**
     
 We now consider the modified least-squares problem
-$$\min_{x\in\mathbb{R}^n} \|Ax-b\|_2^2+\|L x\|_2^2$$
+
+$$
+\min_{x\in\mathbb{R}^n} \|Ax-b\|_2^2+\|L x\|_2^2
+$$
+
 with $L\in\mathbb{R}^{n\times n}$ nonsingular.
 Show that the solution of this least-squares problem is identical to the solution of
+
 $$
 (A^TA+L^TL)x = A^Tb.
 $$

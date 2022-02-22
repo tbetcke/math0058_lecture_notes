@@ -45,15 +45,14 @@
     <script src="_static/togglebutton.js"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
     <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script async="async" src="https://unpkg.com/thebe@0.5.1/lib/index.js"></script>
-    <script>
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="Week 5 Self check questions and solutions" href="week_5_self_check.html" />
@@ -325,13 +324,17 @@ matrices and <span class="math notranslate nohighlight">\(\Sigma \in\mathbb{R}^{
 <p>for <span class="math notranslate nohighlight">\(y=V^Tx\)</span> and <span class="math notranslate nohighlight">\(\hat{b} = U^Tb\)</span>. By minimizing the above expression we find <span class="math notranslate nohighlight">\(y_j\)</span> as <span class="math notranslate nohighlight">\(y_j = \hat{b}_j/\sigma_j\)</span>. If <span class="math notranslate nohighlight">\(\sigma_j=0\)</span> then we set <span class="math notranslate nohighlight">\(y_j=0\)</span>. This is equivalent to <span class="math notranslate nohighlight">\(y = \Sigma^{\dagger}\hat{b}\)</span>.
 Substituting back in for <span class="math notranslate nohighlight">\(\hat{b}\)</span> and <span class="math notranslate nohighlight">\(y\)</span> we obtain <span class="math notranslate nohighlight">\(x = V\Sigma^{\dagger}U^Tb = A^{\dagger}b\)</span>.</p>
 <p><strong>Question 2:</strong></p>
-<p>We now consider the modified least-squares problem
-$<span class="math notranslate nohighlight">\(\min_{x\in\mathbb{R}^n} \|Ax-b\|_2^2+\|L x\|_2^2\)</span><span class="math notranslate nohighlight">\(
-with \)</span>L\in\mathbb{R}^{n\times n}<span class="math notranslate nohighlight">\( nonsingular.
-Show that the solution of this least-squares problem is identical to the solution of
-\)</span><span class="math notranslate nohighlight">\(
+<p>We now consider the modified least-squares problem</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{x\in\mathbb{R}^n} \|Ax-b\|_2^2+\|L x\|_2^2
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(L\in\mathbb{R}^{n\times n}\)</span> nonsingular.
+Show that the solution of this least-squares problem is identical to the solution of</p>
+<div class="math notranslate nohighlight">
+\[
 (A^TA+L^TL)x = A^Tb.
-\)</span>$</p>
+\]</div>
 <p><strong>Solution:</strong></p>
 <p>The modified least-squares problem is identical to</p>
 <div class="math notranslate nohighlight">
