@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; MATH0058 - Lecture Notes</title>
+    <title>The Schur decomposition &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,12 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Week 1 Self check questions and solutions" href="week_1_self_check.html" />
+    <link rel="prev" title="Basic properties of eigenvalue problems" href="eigenvalues_basic_properties.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -186,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
   Eigenvalue problems
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="complex_vector_spaces.html">
    Complex vector spaces
@@ -197,8 +201,8 @@ const thebe_selector_output = ".output, .cell_output"
    Basic properties of eigenvalue problems
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="schur_decomposition.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    The Schur decomposition
   </a>
  </li>
@@ -277,6 +281,23 @@ const thebe_selector_output = ".output, .cell_output"
             </button>
             
             
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/schur_decomposition.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
             <!-- Full screen (wrap in <a> to have style consistency -->
@@ -293,6 +314,24 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- Table of contents -->
         <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulation-and-properties-of-the-schur-decomposition">
+   Formulation and properties of the Schur decomposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#existence-proof-for-the-schur-decomposition">
+   Existence proof for the Schur decomposition
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -300,30 +339,134 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
+                <h1>The Schur decomposition</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#formulation-and-properties-of-the-schur-decomposition">
+   Formulation and properties of the Schur decomposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#existence-proof-for-the-schur-decomposition">
+   Existence proof for the Schur decomposition
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
             
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="tex2jax_ignore mathjax_ignore section" id="the-schur-decomposition">
+<h1>The Schur decomposition<a class="headerlink" href="#the-schur-decomposition" title="Permalink to this headline">¶</a></h1>
+<p>The eigenvalue decomposition <span class="math notranslate nohighlight">\(A = X\Lambda X^{-1}\)</span> is often not useful for computational purposes.
+First of all, it may not exist at all but rather only a Jordan normal form.
+While in floating point arithmetic the small machine perturbations tend to ensure that the actual matrix
+is diagonalizable, the effects of a nearby Jordan form nevertheless lead to instabilities. Furthermore,
+the matrix <span class="math notranslate nohighlight">\(X\)</span> of eigenvectors may be ill-conditioned and therefore the inverse not well determined
+computationally.</p>
+<p>A more practical decomposition for computations is the Schur decomposition of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="section" id="formulation-and-properties-of-the-schur-decomposition">
+<h2>Formulation and properties of the Schur decomposition<a class="headerlink" href="#formulation-and-properties-of-the-schur-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span>. The Schur decomposition of <span class="math notranslate nohighlight">\(A\)</span> is given as</p>
+<div class="math notranslate nohighlight">
+\[
+A = QRQ^H
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(Q\in\mathbb{C}^{n\times n}\)</span> unitary and <span class="math notranslate nohighlight">\(R\in\mathbb{C}^{n\times n}\)</span> upper triangular.</p>
+<p>Before we prove the Schur decomposition let us discuss some of its properties.</p>
+<ul class="simple">
+<li><p>The diagonal values of <span class="math notranslate nohighlight">\(R\)</span> are the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>. This follows from
+<span class="math notranslate nohighlight">\(\det (\lambda I - A) = \det Q \det Q^H \det (\lambda I-R)\)</span> and expanding the last determinant along the
+diagonal.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(A\)</span> is Hermitian then the Schur decomposition is an eigenvalue decomposition since from <span class="math notranslate nohighlight">\(A=A^H\)</span>
+it follows that <span class="math notranslate nohighlight">\(R=R^H\)</span>, which for upper triangular matrices is only possible if they are diagonal.
+The first column of <span class="math notranslate nohighlight">\(Q\)</span> is the eigenvector associated with the upper diagonal element <span class="math notranslate nohighlight">\(r_{11}\)</span> of <span class="math notranslate nohighlight">\(R\)</span>.</p></li>
+<li><p>Let <span class="math notranslate nohighlight">\(R_k\)</span> be the upper left <span class="math notranslate nohighlight">\(k\times k\)</span> principal submatrix of <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(Q_k\in\mathbb{C}^{n\times k}\)</span> the
+matrix of the first <span class="math notranslate nohighlight">\(k\)</span> columns of <span class="math notranslate nohighlight">\(Q\)</span>. We have that <span class="math notranslate nohighlight">\(AQ_k = Q_kR_k\)</span>. Hence, for every <span class="math notranslate nohighlight">\(v\in \text{span}\{q_1, \dots, q_k\}\)</span>
+we have that <span class="math notranslate nohighlight">\(Av\subset \text{span}\{q_1, \dots, q_k\}\)</span>. We also say that this subspace is invariant under <span class="math notranslate nohighlight">\(A\)</span>.
+It follows that the Schur decomposition defines a sequence of growing invariant subspaces.</p></li>
+</ul>
+</div>
+<div class="section" id="existence-proof-for-the-schur-decomposition">
+<h2>Existence proof for the Schur decomposition<a class="headerlink" href="#existence-proof-for-the-schur-decomposition" title="Permalink to this headline">¶</a></h2>
+<p>Proving the existence of the Schur decomposition is astonishingly easy. Consider an eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span>
+with associated eigenvector <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(\|x\|_2=1\)</span>. We define the matrix <span class="math notranslate nohighlight">\(Q\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+Q = \begin{bmatrix}x &amp; \hat{Q}\end{bmatrix}
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(\hat{Q}\)</span> formed of orthogonal columns that are a basis of <span class="math notranslate nohighlight">\(\text{span}\{x\}^\bot\)</span>. Computing
+<span class="math notranslate nohighlight">\(Q^HAQ\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+Q^HAQ = \begin{bmatrix}\lambda &amp;w\\
+                        0      &amp; \tilde{A}
+        \end{bmatrix}
+\end{split}\]</div>
+<p>The matrix <span class="math notranslate nohighlight">\(\tilde{A}\)</span> is of dimension <span class="math notranslate nohighlight">\(n-1\)</span>. We can hence use an induction argument and assume that the
+Schur decomposition of <span class="math notranslate nohighlight">\(\tilde{A}\)</span> exists with <span class="math notranslate nohighlight">\(\tilde{A} = \tilde{Q}\tilde{R}\tilde{Q}^H\)</span>.</p>
+<p>We obtain</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A = Q\begin{bmatrix}1 &amp; \\  &amp; \tilde{Q}\end{bmatrix}\begin{bmatrix}\lambda &amp; w \\  &amp; \tilde{R}\end{bmatrix}
+    \begin{bmatrix}1 &amp; \\ &amp; \tilde{Q}^H\end{bmatrix}Q^H
+\end{split}\]</div>
+<p>as Schur decomposition of <span class="math notranslate nohighlight">\(A\)</span>. We still need to fix the induction start. But if <span class="math notranslate nohighlight">\(A\)</span> is a scalar <span class="math notranslate nohighlight">\(\alpha\)</span> then
+the Schur decomposition is simply <span class="math notranslate nohighlight">\(\alpha = 1 \cdot \alpha \cdot 1\)</span>.</p>
+</div>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="eigenvalues_basic_properties.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Basic properties of eigenvalue problems</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="week_1_self_check.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 1 Self check questions and solutions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>

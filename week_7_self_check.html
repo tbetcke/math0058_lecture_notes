@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; MATH0058 - Lecture Notes</title>
+    <title>Week 7 Self check questions and solutions &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,8 +51,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <link rel="index" title="Index" href="#" />
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Week 6 Self check questions and solutions" href="week_6_self_check.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -208,7 +211,7 @@ const thebe_selector_output = ".output, .cell_output"
   Self Check Questions
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="week_1_self_check.html">
    Week 1 Self check questions and solutions
@@ -239,8 +242,8 @@ const thebe_selector_output = ".output, .cell_output"
    Week 6 Self check questions and solutions
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="week_7_self_check.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Week 7 Self check questions and solutions
   </a>
  </li>
@@ -277,6 +280,23 @@ const thebe_selector_output = ".output, .cell_output"
             </button>
             
             
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/week_7_self_check.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
             <!-- Source interaction buttons -->
 
             <!-- Full screen (wrap in <a> to have style consistency -->
@@ -300,7 +320,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
+                <h1>Week 7 Self check questions and solutions</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -311,19 +331,103 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-7-self-check-questions-and-solutions">
+<h1>Week 7 Self check questions and solutions<a class="headerlink" href="#week-7-self-check-questions-and-solutions" title="Permalink to this headline">¶</a></h1>
+<p><strong>Question 1:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span> be diagonalizable and <span class="math notranslate nohighlight">\(\lambda\)</span> an eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> with associated right eigenvector <span class="math notranslate nohighlight">\(x\)</span> and left eigenvector <span class="math notranslate nohighlight">\(y\)</span>. Consider the perturbed eigenvalue equation</p>
+<div class="math notranslate nohighlight">
+\[
+(A + \delta A)(x+ \delta x) = (\lambda + \delta \lambda)(x + \delta x).
+\]</div>
+<p>To first order show that <span class="math notranslate nohighlight">\(|\delta\lambda| \leq \frac{\|x\| \|y\|}{|y^H\delta Ax|}  \|\delta A\|\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>We multiply out the perturbed eigenvalue equations and ignore higher order terms to obtain</p>
+<div class="math notranslate nohighlight">
+\[
+A\delta x + \delta A x = \lambda \delta x + \delta\lambda x.
+\]</div>
+<p>We now multiply from the left with <span class="math notranslate nohighlight">\(y^H\)</span> and use that <span class="math notranslate nohighlight">\(y^HA = \lambda y^H\)</span>, resulting in</p>
+<div class="math notranslate nohighlight">
+\[
+y^H\delta A x = \delta\lambda y^Hx,
+\]</div>
+<p>from which we get</p>
+<div class="math notranslate nohighlight">
+\[
+\delta\lambda = \frac{y^H\delta A x}{y^Hx}.
+\]</div>
+<p>Taking norms we obtain the bound</p>
+<div class="math notranslate nohighlight">
+\[
+|\delta\lambda|\leq \frac{\|x\| \|y\|}{|y^Hx|} \|\delta A\|.
+\]</div>
+<p>This motivates the definition of the eigenvalue condition number <span class="math notranslate nohighlight">\(\kappa(\lambda)\)</span> as</p>
+<div class="math notranslate nohighlight">
+\[
+\kappa(\lambda) = \frac{\|x\| \|y\|}{|y^Hx|}.
+\]</div>
+<p><strong>Question 2:</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(A = \begin{bmatrix}a &amp; c\\0 &amp; b\end{bmatrix}\)</span> for real numbers <span class="math notranslate nohighlight">\(a, b, c\)</span> and <span class="math notranslate nohighlight">\(a\neq b\)</span>.
+Show that the condition numbers of the eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> asymptotically
+grow like <span class="math notranslate nohighlight">\(|\frac{c}{b-a}|\)</span> as <span class="math notranslate nohighlight">\(b\rightarrow a\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p>The eigenvalues are <span class="math notranslate nohighlight">\(\lambda_1 = a\)</span> and <span class="math notranslate nohighlight">\(\lambda_2=b\)</span> with corresponding right/left eigenvectors <span class="math notranslate nohighlight">\(x_1 = \begin{bmatrix}1 &amp; 0\end{bmatrix}^T\)</span>, <span class="math notranslate nohighlight">\(y_1 = \begin{bmatrix}-1 &amp; \frac{c}{b-a}\end{bmatrix}^T\)</span>, <span class="math notranslate nohighlight">\(x_2 = \begin{bmatrix}\frac{c}{a-b} &amp; -1\end{bmatrix}^T\)</span>, <span class="math notranslate nohighlight">\(y_2 = \begin{bmatrix}0 &amp; 1\end{bmatrix}^T\)</span>.</p>
+<p>The condition number of an eigenvalue is given as <span class="math notranslate nohighlight">\(\kappa = \frac{\|x\|_2\|y\|_2}{|x^Hy|}\)</span>. We hence obtain for both eigenpairs that</p>
+<div class="math notranslate nohighlight">
+\[
+\kappa = \left(1 + \frac{c^2}{(b-a)^2}\right)^{1/2}.
+\]</div>
+<p>It follows that <span class="math notranslate nohighlight">\(\kappa\sim \left|\frac{c}{b-a}\right|\)</span>.</p>
+<p><strong>Question 3:</strong></p>
+<p>Show that the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of a Hermitian matrix are all real.</p>
+<p>**Solution: **</p>
+<p>Let <span class="math notranslate nohighlight">\(Ax= \lambda x\)</span> for some eigenvalue <span class="math notranslate nohighlight">\(\lambda\in\mathbb{C}\)</span> and <span class="math notranslate nohighlight">\(x\neq 0\)</span> with <span class="math notranslate nohighlight">\(\|x\|_2=1\)</span>.
+Multiplying from the left with <span class="math notranslate nohighlight">\(x^H\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[
+x^HAx = \lambda.
+\]</div>
+<p>Taking the Hermitian transpose on both sides we obtain (taking into account that a Hermitian trans
+pose of a scalar is just its complex conjugate)</p>
+<div class="math notranslate nohighlight">
+\[
+x^HA^Hx = \overline{\lambda}.
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\(A=A^H\)</span> it follows that <span class="math notranslate nohighlight">\(\lambda = \overline{\lambda}\)</span> and therefore that <span class="math notranslate nohighlight">\(\lambda\)</span> is real.</p>
 </div>
 
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
               </div>
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="week_6_self_check.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Week 6 Self check questions and solutions</p>
+        </div>
+    </a>
 </div>
             
         </div>
