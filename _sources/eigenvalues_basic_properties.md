@@ -2,7 +2,7 @@
 
 ## Definition and motivation
 
-Let $A\in\mathbb{C}^{n\times n}. An eigenvalue problem takes the form
+Let $A\in\mathbb{C}^{n\times n}$. An eigenvalue problem takes the form
 to find $x\in\mathbb{C}^n$, $x\neq 0$ and $\lambda\in\mathbb{C}$ such that
 
 $$
