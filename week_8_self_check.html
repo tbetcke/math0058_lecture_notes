@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Implementing the LU decomposition in Python &#8212; MATH0058 - Lecture Notes</title>
+    <title>Week 8 Self check questions and solutions &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -51,10 +51,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="The QR Decomposition" href="qr_decomposition.html" />
-    <link rel="prev" title="Backward error of the LU decomposition" href="lu_backward_error_examples.html" />
+    <link rel="prev" title="Week 7 Self check questions and solutions" href="week_7_self_check.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -139,7 +140,7 @@ const thebe_selector_output = ".output, .cell_output"
   LU Decomposition and its numerical stability
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="lu_decomposition.html">
    Solving linear system with the LU Decomposition
@@ -155,8 +156,8 @@ const thebe_selector_output = ".output, .cell_output"
    Backward error of the LU decomposition
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_lu_decomposition.html">
    Implementing the LU decomposition in Python
   </a>
  </li>
@@ -215,7 +216,7 @@ const thebe_selector_output = ".output, .cell_output"
   Self Check Questions
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="week_1_self_check.html">
    Week 1 Self check questions and solutions
@@ -251,8 +252,8 @@ const thebe_selector_output = ".output, .cell_output"
    Week 7 Self check questions and solutions
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="week_8_self_check.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Week 8 Self check questions and solutions
   </a>
  </li>
@@ -297,7 +298,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/python_lu_decomposition.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/week_8_self_check.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -322,7 +323,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/python_lu_decomposition.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/week_8_self_check.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -346,7 +347,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Implementing the LU decomposition in Python</h1>
+                <h1>Week 8 Self check questions and solutions</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -357,75 +358,75 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="implementing-the-lu-decomposition-in-python">
-<h1>Implementing the LU decomposition in Python<a class="headerlink" href="#implementing-the-lu-decomposition-in-python" title="Permalink to this headline">¶</a></h1>
-<p>In the following we demonstrate a simple LU decomposition in Python. We also demonstrate do timing comparisions against the Python implementation from Scipy to show that <strong>one should never use a self-implementation of the LU decomposition but always use existing Numpy/Scipy routines</strong>.</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="week-8-self-check-questions-and-solutions">
+<h1>Week 8 Self check questions and solutions<a class="headerlink" href="#week-8-self-check-questions-and-solutions" title="Permalink to this headline">¶</a></h1>
+<p>We want to visualize the behavior of the resolvent function <span class="math notranslate nohighlight">\(f(z):=\|(zI-A)^{-1}\|_2\)</span> for given matrices <span class="math notranslate nohighlight">\(A\)</span>. Write a function that, given a matrix <span class="math notranslate nohighlight">\(A\)</span>, plots the resolvent in a given part of the complex plane. Your function should have the following header</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>plot_resolvent(A,x_min,y_min,x_max,y_max,nx,ny).
+</pre></div>
+</div>
+<p>To plot a function over a part of the complex plane defined by <code class="docutils literal notranslate"><span class="pre">[x_min,x_max]x[y_min,y_max]</span></code> you need to create a regular grid of points <span class="math notranslate nohighlight">\((x_i,y_i)\)</span> with <span class="math notranslate nohighlight">\(z_i:=x_i+y_ii\)</span> with <span class="math notranslate nohighlight">\((x_0,y_0)\)</span>=<code class="docutils literal notranslate"><span class="pre">(x_min,y_min)</span></code> and <span class="math notranslate nohighlight">\((x_{nx},y_{ny})\)</span>=<code class="docutils literal notranslate"><span class="pre">(x_max,y_max)</span></code> and evaluate the function on each grid point. You should then do a three dimensional surface plot of the function over this grid and a contour plot. Note that to see something meaningful you should plot the logarithm to basis 10 of <span class="math notranslate nohighlight">\(f\)</span> instead of <span class="math notranslate nohighlight">\(f\)</span> itself since <span class="math notranslate nohighlight">\(f\)</span> grows substantially close to eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>To implement these things you should make yourself familiar with the numpy command <span class="math notranslate nohighlight">\(meshgrid\)</span> to create a computational grid and the Matplotlib plot commands <code class="docutils literal notranslate"><span class="pre">plot_surface</span></code> and <code class="docutils literal notranslate"><span class="pre">contour</span></code>. You find examples at <a class="reference external" href="http://matplotlib.org/examples/mplot3d/surface3d_demo.html">http://matplotlib.org/examples/mplot3d/surface3d_demo.html</a> and <a class="reference external" href="http://matplotlib.org/examples/pylab_examples/contour_demo.html">http://matplotlib.org/examples/pylab_examples/contour_demo.html</a>.</p>
+<p>To plot the contour lines of a grid given by the arrays X and Y and associated data F, you can use the command</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>from matplotlib import pyplot as plt
+cs = plt.contour(X,Y,F)
+plt.clabel(cs)
+</pre></div>
+</div>
+<p>The command <code class="docutils literal notranslate"><span class="pre">plt.clabel</span></code> adds labels to the contour lines.</p>
+<p>Once this resolvent plotter is working, plot the resolvent of an upper triangular matrix of the form <span class="math notranslate nohighlight">\(\begin{bmatrix}1 &amp; 100\\0 &amp;2\end{bmatrix}\)</span>.</p>
+<p>Make sure that your plots capture the behavior around the eigenvalues. These plots are also called pseudospectral plots. You can learn more about pseudospectra (and see some good plots) at <a class="reference external" href="http://www.cs.ox.ac.uk/pseudospectra/intro.html">http://www.cs.ox.ac.uk/pseudospectra/intro.html</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">lu</span> <span class="k">as</span> <span class="n">scipy_lu</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">plot_resolvent</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Plot the pseudospectrum of a matrix.&quot;&quot;&quot;</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">svdvals</span>
+    <span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+    
+    <span class="n">xv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">nx</span><span class="p">)</span>
+    <span class="n">yv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+    
+    <span class="n">xx</span><span class="p">,</span> <span class="n">yy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">xv</span><span class="p">,</span> <span class="n">yv</span><span class="p">)</span>
+    
+    <span class="n">ident</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    
+    <span class="n">pseudospectrum</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nx</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ny</span><span class="p">):</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">xx</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">yy</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span>
+            <span class="n">pseudospectrum</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.</span> <span class="o">/</span> <span class="nb">min</span><span class="p">(</span><span class="n">svdvals</span><span class="p">(</span><span class="n">z</span> <span class="o">*</span> <span class="n">ident</span> <span class="o">-</span> <span class="n">A</span><span class="p">))</span>
+            
+    <span class="n">cs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pseudospectrum</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">clabel</span><span class="p">(</span><span class="n">cs</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">111</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+    <span class="c1">#plt.axes(projection=&#39;3d&#39;)</span>
+    <span class="c1">#ax = fig.gca(projection=&#39;3d&#39;)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span> <span class="n">yy</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">pseudospectrum</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">lu</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Our cool LU implementation.&quot;&quot;&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Input matrix must be square.&quot;</span><span class="p">)</span>
+<span class="n">nx</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">ny</span> <span class="o">=</span> <span class="mi">200</span>
 
-    <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-    <span class="n">U</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
-
-    <span class="n">U</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">A</span>
-
-    <span class="n">np</span><span class="o">.</span><span class="n">fill_diagonal</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
-            <span class="n">L</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">/</span> <span class="n">U</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span>
-            <span class="n">U</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">:]</span> <span class="o">=</span> <span class="n">U</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">:]</span> <span class="o">-</span> <span class="n">L</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">*</span> <span class="n">U</span><span class="p">[</span><span class="n">col</span><span class="p">,</span> <span class="n">col</span><span class="p">:]</span>
-            <span class="n">U</span><span class="p">[</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="k">return</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="mi">200</span>
-<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
-<span class="n">L</span><span class="p">,</span> <span class="n">U</span> <span class="o">=</span> <span class="n">lu</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-
-<span class="n">residual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span> <span class="o">-</span> <span class="n">L</span> <span class="o">@</span> <span class="n">U</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The residual is: </span><span class="si">{</span><span class="n">residual</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="n">runtime_my_lu</span> <span class="o">=</span> <span class="o">%</span><span class="k">timeit</span> -o lu(A)
-<span class="n">runtime_scipy_lu</span> <span class="o">=</span> <span class="o">%</span><span class="k">timeit</span> -o scipy_lu(A)
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Runtime of our LU (s): </span><span class="si">{</span><span class="n">runtime_my_lu</span><span class="o">.</span><span class="n">best</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Runtime of Scipy LU (s): </span><span class="si">{</span><span class="n">runtime_scipy_lu</span><span class="o">.</span><span class="n">best</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The speed ratio between the two implementations is: </span><span class="si">{</span><span class="n">runtime_my_lu</span><span class="o">.</span><span class="n">best</span> <span class="o">/</span> <span class="n">runtime_scipy_lu</span><span class="o">.</span><span class="n">best</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">1.</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]])</span>
+<span class="n">plot_resolvent</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="o">-</span><span class="mf">.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The residual is: 2.285256427880218e-13
-50.6 ms ± 474 µs per loop (mean ± std. dev. of 7 runs, 10 loops each)
-2.26 ms ± 461 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
-Runtime of our LU (s): 0.05018079660003423
-Runtime of Scipy LU (s): 0.0018813237100403057
-The speed ratio between the two implementations is: 26.673132503581297
-</pre></div>
+<img alt="_images/week_8_self_check_3_0.png" src="_images/week_8_self_check_3_0.png" />
+<img alt="_images/week_8_self_check_3_1.png" src="_images/week_8_self_check_3_1.png" />
 </div>
 </div>
-</div>
+<p>From these plots we can recognize that even small matrix perturbations will lead to large perturbations in the eigenvalues (check that you understand why). This makes it very difficult to reliably compute eigenvalues in this case and is an example of a situation, where the notion of eigenvalues itself is not too useful.</p>
 </div>
 
     <script type="text/x-thebe-config">
@@ -453,19 +454,12 @@ The speed ratio between the two implementations is: 26.673132503581297
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="lu_backward_error_examples.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="week_7_self_check.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Backward error of the LU decomposition</p>
+            <p class="prev-next-title">Week 7 Self check questions and solutions</p>
         </div>
-    </a>
-    <a class='right-next' id="next-link" href="qr_decomposition.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">The QR Decomposition</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             

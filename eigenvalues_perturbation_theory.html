@@ -1,0 +1,659 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perturbation results for eigenvalue problems &#8212; MATH0058 - Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Week 1 Self check questions and solutions" href="week_1_self_check.html" />
+    <link rel="prev" title="The Schur decomposition" href="schur_decomposition.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">MATH0058 - Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to MATH0058
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentals
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="matrix_vector_norms.html">
+   Matrix and vector norms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="floating_point_arithmetic.html">
+   Floating Point Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="error_analysis.html">
+   Principles of backward error analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_system_error.html">
+   Backward error and condition number of linear systems of equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="complexity_notation.html">
+   A quick survey of the
+   <span class="math notranslate nohighlight">
+    \(\mathcal{O}\)
+   </span>
+   -notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_and_data_layouts.html">
+   Memory layout and Numpy arrays
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  LU Decomposition and its numerical stability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lu_decomposition.html">
+   Solving linear system with the LU Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lu_backward_error.html">
+   Backward error of the LU decomposition and pivoting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lu_backward_error_examples.html">
+   Backward error of the LU decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_lu_decomposition.html">
+   Implementing the LU decomposition in Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Orthogonal decompositions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="qr_decomposition.html">
+   The QR Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="singular_value_decomposition.html">
+   The Singular Value decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="least_squares_problems.html">
+   Least Squares Problems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Eigenvalue problems
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="complex_vector_spaces.html">
+   Complex vector spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigenvalues_basic_properties.html">
+   Basic properties of eigenvalue problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schur_decomposition.html">
+   The Schur decomposition
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Perturbation results for eigenvalue problems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Self Check Questions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_1_self_check.html">
+   Week 1 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_2_self_check.html">
+   Week 2 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_3_self_check.html">
+   Week 3 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_4_self_check.html">
+   Week 4 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_5_self_check.html">
+   Week 5 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_6_self_check.html">
+   Week 6 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_7_self_check.html">
+   Week 7 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_8_self_check.html">
+   Week 8 Self check questions and solutions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/eigenvalues_perturbation_theory.md"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalue-condition-numbers">
+   Eigenvalue Condition numbers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalue-perturbations-and-the-resolvent">
+   Eigenvalue perturbations and the resolvent
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theorem">
+     Theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-bauer-fike-theorem">
+   The Bauer-Fike Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perturbation-bounds-for-hermitian-eigenvalue-problems">
+   Perturbation bounds for Hermitian eigenvalue problems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rayleigh-quotient-for-hermitian-eigenvalue-problems">
+     Rayleigh-Quotient for Hermitian eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Perturbation results for eigenvalue problems</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalue-condition-numbers">
+   Eigenvalue Condition numbers
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eigenvalue-perturbations-and-the-resolvent">
+   Eigenvalue perturbations and the resolvent
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theorem">
+     Theorem
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#the-bauer-fike-theorem">
+   The Bauer-Fike Theorem
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#perturbation-bounds-for-hermitian-eigenvalue-problems">
+   Perturbation bounds for Hermitian eigenvalue problems
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rayleigh-quotient-for-hermitian-eigenvalue-problems">
+     Rayleigh-Quotient for Hermitian eigenvalue problems
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="perturbation-results-for-eigenvalue-problems">
+<h1>Perturbation results for eigenvalue problems<a class="headerlink" href="#perturbation-results-for-eigenvalue-problems" title="Permalink to this headline">¶</a></h1>
+<p>In this section we are discussing some classical eigenvalue perturbation bounds.
+We start with condition numbers of eigenvalues and then provide eigenvalue perturbation
+results for symmetric and nonsymmetric systems.</p>
+<div class="section" id="eigenvalue-condition-numbers">
+<h2>Eigenvalue Condition numbers<a class="headerlink" href="#eigenvalue-condition-numbers" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span> and <span class="math notranslate nohighlight">\((\lambda, x)\)</span> an eigenpair of <span class="math notranslate nohighlight">\(A\)</span>. Denote the associated left-eigenvector as <span class="math notranslate nohighlight">\(y\)</span>.
+A left eigenvector satisfies <span class="math notranslate nohighlight">\(y^HA = \lambda y^H\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(\lambda + \delta\lambda\)</span> be an eigenvalue of the perturbed matrix <span class="math notranslate nohighlight">\(A+\Delta A\)</span>. Then to first order</p>
+<div class="math notranslate nohighlight">
+\[
+\delta\lambda = \frac{y^H\Delta Ax}{y^Hx}
+\]</div>
+<p>(see exercises for proof).</p>
+<p>It follows that to first order</p>
+<div class="math notranslate nohighlight">
+\[
+|\delta\lambda| \leq \frac{\|x\| \|y\|}{|x^Hy|} \|\Delta A\|
+\]</div>
+<p>and we can define the absolute condition number <span class="math notranslate nohighlight">\(\kappa(\lambda) = \frac{\|x\| \|y\|}{|x^Hy|}\)</span>.</p>
+<p>Hence, if <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are orthogonal then the condition number tends to infinity. Let us now investigate what
+happens if <span class="math notranslate nohighlight">\(\lambda\)</span> is a multiple eigenvalue. For simplicity assume that its algebraic multiplicity is the
+same as its geometric multiplicity. Then we have two right eigenvectors <span class="math notranslate nohighlight">\(x_1\)</span>, and <span class="math notranslate nohighlight">\(x_2\)</span>, but also two left
+eigenvectors <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span>. Moreover, any nonzero linear combination <span class="math notranslate nohighlight">\(\alpha_1 x_1 + \alpha_2 x_2\)</span> is a
+right eigenvector, and similarly any linear combination of <span class="math notranslate nohighlight">\(y_1\)</span> and <span class="math notranslate nohighlight">\(y_2\)</span> is a left eigenvector.</p>
+<p>Assume that <span class="math notranslate nohighlight">\(y_1\)</span> is not orthogonal to <span class="math notranslate nohighlight">\(x_2\)</span> (otherwise, we already have an orthogonal pair of left and right
+eigenvector). We can then solve</p>
+<div class="math notranslate nohighlight">
+\[
+y_1^H(x_1 - \alpha x_2) = 0,
+\]</div>
+<p>from which it follows that <span class="math notranslate nohighlight">\(y_1 \bot (x_1 - \frac{y_1^H x_1}{y_1^H x_2}x_2)\)</span>. As conclusion whenever we have
+a multiple eigenvalue we can find a combination of left and right eigenvector that is orthogonal, demonstrating
+that multiple eigenvalues are unstable to perturbations. This is intuitively clear. If we have a polynomial with
+a multiple root then a small arbitrary perturbation in the coefficients will turn a multiple root into several simple
+roots. If we have a Jordan form (that is the geometric multiplicity is smaller than the algebraic multiplicity) we can
+do similar considerations.</p>
+</div>
+<div class="section" id="eigenvalue-perturbations-and-the-resolvent">
+<h2>Eigenvalue perturbations and the resolvent<a class="headerlink" href="#eigenvalue-perturbations-and-the-resolvent" title="Permalink to this headline">¶</a></h2>
+<p>We define the resolvent fuction as <span class="math notranslate nohighlight">\(z\rightarrow (zI - A)^{-1}\)</span> for <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span>. If <span class="math notranslate nohighlight">\(z\)</span> is an eigenvalue
+then the resolvent function is unbounded since <span class="math notranslate nohighlight">\(zI - A\)</span> is not invertible in that case. It is interesting to
+consider what happens with the resolvent function if <span class="math notranslate nohighlight">\(z\)</span> is not an eigenvalue but close to an eigenvalue.</p>
+<div class="section" id="theorem">
+<h3>Theorem<a class="headerlink" href="#theorem" title="Permalink to this headline">¶</a></h3>
+<p>The followin statements are equivalent.</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(z\)</span> is an eigenvalue of <span class="math notranslate nohighlight">\(A+\Delta A\)</span> for some <span class="math notranslate nohighlight">\(\Delta A\)</span> with <span class="math notranslate nohighlight">\(\|\Delta A\|_2\leq \epsilon\)</span>.</p></li>
+<li><p>There exists a vector <span class="math notranslate nohighlight">\(u\in\mathbb{C}^n\)</span> with <span class="math notranslate nohighlight">\(\|(A-zI)u\|_2 \leq \epsilon\)</span> and <span class="math notranslate nohighlight">\(\|u\|_2=1\)</span>.</p></li>
+<li><p>For the smallest singular value <span class="math notranslate nohighlight">\(\sigma_n\)</span> of <span class="math notranslate nohighlight">\((zI - A)\)</span> we have that <span class="math notranslate nohighlight">\(\sigma_n\leq\epsilon\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\|(zI - A)^{-1}\|_2\geq \epsilon^{-1}\)</span>.</p></li>
+</ol>
+<p>Statement 1 is about the existence of a nearby matrix with a slightly perturbed eigenvalue. Statement
+2 is about the existence of a vector <span class="math notranslate nohighlight">\(u\)</span> that satisfies <span class="math notranslate nohighlight">\(Au\approx \lambda u\)</span> with only a small error. Statement 3
+is about the size of the smallest singluar value of <span class="math notranslate nohighlight">\(zI - A\)</span> and statement 4 gives a lower bound on the size
+of the resolvent function close to an eigenvalue.</p>
+<p>This theorem shows that all these concepts are equivalent to each other. Let us give a proof.</p>
+<p>Assume that statement 1 is true. We hence have</p>
+<div class="math notranslate nohighlight">
+\[
+(A + \Delta A) u = zu 
+\]</div>
+<p>for some <span class="math notranslate nohighlight">\(u\)</span> with <span class="math notranslate nohighlight">\(\|u\|_2=1\)</span> and <span class="math notranslate nohighlight">\(\|\Delta A\|_2\leq \epsilon\)</span>. Reordering gives</p>
+<div class="math notranslate nohighlight">
+\[
+\|(A - zI)u\|_2 = \|\Delta A u\|_2 \leq \|\Delta A\|_2 \leq \epsilon
+\]</div>
+<p>showing statement 2. Now let us show that 3 follows from 2. From the exercises we know that</p>
+<div class="math notranslate nohighlight">
+\[
+\sigma_n = \min_{u\in\mathbb{C}^n, \|u\|_2=1} \|(zI - A)u\|_2
+\]</div>
+<p>Using Statement 2 it follows immediately that <span class="math notranslate nohighlight">\(\sigma_n \leq \epsilon\)</span>.</p>
+<p>4 now follows from 3 since</p>
+<div class="math notranslate nohighlight">
+\[
+\|(zI - A)^{-1}\|_2 = \sigma_n^{-1} \geq \sigma_n^{-1}.
+\]</div>
+<p>Finally, we need to prove that 1 follows from 4 to establish equivalence of all statements.</p>
+<p>We have from statement 4 that there exist <span class="math notranslate nohighlight">\(u\)</span>, <span class="math notranslate nohighlight">\(v\)</span> with <span class="math notranslate nohighlight">\(\|u\|_2=\|v\|_2=1\)</span> and <span class="math notranslate nohighlight">\(\hat{\epsilon}\leq \epsilon\)</span>
+such that</p>
+<div class="math notranslate nohighlight">
+\[
+(zI-A)^{-1}v = \hat{\epsilon}^{-1}u.
+\]</div>
+<p>It follows that <span class="math notranslate nohighlight">\(\epsilon v = (zI-A)u\)</span> and therefore</p>
+<div class="math notranslate nohighlight">
+\[
+(A + \hat{\epsilon}vu^H)u = zu.
+\]</div>
+<p>Statement 1 therefore follows with <span class="math notranslate nohighlight">\(\Delta A = \hat{\epsilon}vu^H\)</span>.</p>
+</div>
+</div>
+<div class="section" id="the-bauer-fike-theorem">
+<h2>The Bauer-Fike Theorem<a class="headerlink" href="#the-bauer-fike-theorem" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span> be diagonalizable with <span class="math notranslate nohighlight">\(AX = X\Lambda\)</span>, <span class="math notranslate nohighlight">\(\Lambda\in\mathbb{C}^{n\times n}\)</span> diagonal,
+and <span class="math notranslate nohighlight">\(\Delta A\)</span> a perturbation of <span class="math notranslate nohighlight">\(A\)</span>. For every eigenvalue <span class="math notranslate nohighlight">\(z\)</span> of <span class="math notranslate nohighlight">\(A+\Delta A\)</span>
+there exists an eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(A\)</span> such that</p>
+<div class="math notranslate nohighlight">
+\[
+|z-\lambda| \leq \|X\|_2 \|X^{-1}\|_2 \|\Delta A\|_2.
+\]</div>
+<p>Before we prove this statement let us briefly reflect on it. The statement shows that the condition number of the
+eigenvector matrix <span class="math notranslate nohighlight">\(X\)</span> determines by how much we can expect arbitrary eigenvalues to be perturbed under perturbations of <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<p>This result is related to the eigenvalue condition number. From <span class="math notranslate nohighlight">\(AX = X\Lambda\)</span> it follows that <span class="math notranslate nohighlight">\(X^{-1}A = X^{-1}\Lambda\)</span>. Hence, the rows of <span class="math notranslate nohighlight">\(X^{-1}\)</span> are the left eigenvectors
+of the matrix <span class="math notranslate nohighlight">\(A\)</span>. The Bauer-Fike theorem therefore gives a sharp bound for the maximum perturbation of any eigenvalue
+based on the norm of the matrix of right eigenvectors and the matrix of left eigenvectors.</p>
+<p>The eigenvalue condition number in contrast uses the angle between left and right eigenvector to give a first order bound for each
+individual eigenvalue.</p>
+<p>The proof of the Bauer-Fike theorem is straight forward using our previous perturbation bounds. From <span class="math notranslate nohighlight">\(z\)</span> being an
+eigenvalue of <span class="math notranslate nohighlight">\(A+\Delta A\)</span> it follows that</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+\|\Delta A\|_2^{-1}&amp;\leq \|(zI - A)^{-1}\|_2\\ 
+                &amp;\leq \|(zI - X\Lambda X^{-1})^{-1}\|_2\\
+                &amp;\leq \|X\|_2\|X^{-1}\|_2 \|(zI - \Lambda)^{-1}\|_2\\
+                &amp;= \|X\|_2\|X^{-1}\|_2 |z-\lambda|^{-1} 
+\end{aligned} 
+\end{split}\]</div>
+<p>for an eigenvalue <span class="math notranslate nohighlight">\(\lambda\)</span> of <span class="math notranslate nohighlight">\(A\)</span>. Reordering gives the desired statement.</p>
+</div>
+<div class="section" id="perturbation-bounds-for-hermitian-eigenvalue-problems">
+<h2>Perturbation bounds for Hermitian eigenvalue problems<a class="headerlink" href="#perturbation-bounds-for-hermitian-eigenvalue-problems" title="Permalink to this headline">¶</a></h2>
+<p>If a matrix <span class="math notranslate nohighlight">\(A\)</span> is Hermitian (that is <span class="math notranslate nohighlight">\(A^H=A\)</span>) then from the Schur decomposition it follows that</p>
+<div class="math notranslate nohighlight">
+\[
+A = Q\Lambda Q^H
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(Q^HQ = I\)</span>. Moreover, the left eigenvectors are identical to the right eigenvectors.
+Hence, if <span class="math notranslate nohighlight">\(\lambda\)</span> is a not a multiple eigenvalue of <span class="math notranslate nohighlight">\(A\)</span> then we have that <span class="math notranslate nohighlight">\(\kappa(\lambda)=1\)</span>.
+Similarly, the Bauer-Fike theorem simplifies to <span class="math notranslate nohighlight">\(|z-\lambda| \leq \|\Delta A\|_2\)</span>, showing that
+eigenvalues of symmetric matrices are at most perturbed by the size of the input perturbation.</p>
+<div class="section" id="rayleigh-quotient-for-hermitian-eigenvalue-problems">
+<h3>Rayleigh-Quotient for Hermitian eigenvalue problems<a class="headerlink" href="#rayleigh-quotient-for-hermitian-eigenvalue-problems" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span> be Hermitian (that is <span class="math notranslate nohighlight">\(A=A^H\)</span>). Define the Rayleigh quotient</p>
+<div class="math notranslate nohighlight">
+\[
+r(x) = \frac{x^HAx}{x^Hx}.
+\]</div>
+<p>The Rayleigh quotient has a powerful property. First of all it is straight forward to see that if <span class="math notranslate nohighlight">\(x\)</span> is an
+eigenvector then <span class="math notranslate nohighlight">\(r(x) = \lambda\)</span>. What happens if instead of <span class="math notranslate nohighlight">\(x\)</span> we apply a small perturbation <span class="math notranslate nohighlight">\(\tilde{x} = x + \epsilon\)</span>?
+We then obtain</p>
+<div class="math notranslate nohighlight">
+\[
+r(\tilde{x}) = \lambda + \mathcal{O}(\epsilon^2).
+\]</div>
+<p>It follows that if we know the eigenvector only up to an accuracy of <span class="math notranslate nohighlight">\(\epsilon\)</span> we can still extract the
+eigenvalue up to an accuracy of <span class="math notranslate nohighlight">\(\mathcal{O}(\epsilon^2)\)</span>. This is exploited in
+numerical algorithms to compute eigenvalues with high accuracy for Hermitian problems.</p>
+<p>The proof of this statement is rather simple. All it says is that <span class="math notranslate nohighlight">\(\nabla r(x) = 0\)</span> if <span class="math notranslate nohighlight">\(x\)</span> is an eigenvector. The
+rest follows from Taylor’s theorem. So let’s compute the derivative of <span class="math notranslate nohighlight">\(r(x)\)</span>.</p>
+<p>We have that</p>
+<div class="math notranslate nohighlight">
+\[
+(x + \epsilon)^HA(x + \epsilon) = x^HAx + 2x^HA\epsilon + \epsilon^HA\epsilon.
+\]</div>
+<p>Hence, <span class="math notranslate nohighlight">\((x^HAx)' = 2x^HA\)</span> for a Hermitian matrix <span class="math notranslate nohighlight">\(A\)</span> (convince yourself that we needed to use the
+property that <span class="math notranslate nohighlight">\(A\)</span> is Hermitian for this derivation).</p>
+<p>Applying the quotient rule we now get that</p>
+<div class="math notranslate nohighlight">
+\[
+\nabla r(x) =  \frac{2}{\|x\|_2^2}\left[Ax - r(x)x\right].
+\]</div>
+<p>Hence, if <span class="math notranslate nohighlight">\(x\)</span> is an eigenvector, using that then <span class="math notranslate nohighlight">\(r(x) = \lambda\)</span> we obtain <span class="math notranslate nohighlight">\(\nabla r(x) = 0\)</span>.</p>
+</div>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="schur_decomposition.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">The Schur decomposition</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="week_1_self_check.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 1 Self check questions and solutions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Timo Betcke<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
