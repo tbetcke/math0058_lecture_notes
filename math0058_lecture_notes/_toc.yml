@@ -25,6 +25,7 @@ parts:
   - file: complex_vector_spaces
   - file: eigenvalues_basic_properties
   - file: schur_decomposition
+  - file: eigenvalues_perturbation_theory
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
@@ -34,4 +35,5 @@ parts:
     - file: week_5_self_check.ipynb
     - file: week_6_self_check
     - file: week_7_self_check
+    - file: week_8_self_check.ipynb 
 
