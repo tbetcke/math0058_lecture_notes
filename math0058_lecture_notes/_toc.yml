@@ -41,4 +41,5 @@ parts:
     - file: week_6_self_check
     - file: week_7_self_check
     - file: week_8_self_check.ipynb 
+    - file: week_9_self_check.ipynb
 
