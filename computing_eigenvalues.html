@@ -55,6 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Week 1 Self check questions and solutions" href="week_1_self_check.html" />
+    <link rel="prev" title="Perturbation results for eigenvalue problems" href="eigenvalues_perturbation_theory.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -188,7 +190,7 @@ const thebe_selector_output = ".output, .cell_output"
   Eigenvalue problems
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="complex_vector_spaces.html">
    Complex vector spaces
@@ -207,6 +209,11 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="eigenvalues_perturbation_theory.html">
    Perturbation results for eigenvalue problems
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Computing eigenvalues
   </a>
  </li>
 </ul>
@@ -297,7 +304,7 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/computing_eigenvalues_part_1.ipynb"><button type="button"
+        <a class="dropdown-buttons" href="_sources/computing_eigenvalues.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
                 data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
@@ -322,7 +329,7 @@ const thebe_selector_output = ".output, .cell_output"
         aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
     <div class="dropdown-buttons">
         
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/computing_eigenvalues_part_1.ipynb"><button type="button"
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/computing_eigenvalues.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
                 data-placement="left"><img class="binder-button-logo"
                     src="_static/images/logo_binder.svg"
@@ -382,6 +389,11 @@ const thebe_selector_output = ".output, .cell_output"
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#accelerating-the-qr-iteration-in-practice">
      Accelerating the QR iteration in practice
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-investigation-of-qr-iteration-steps">
+     Numerical investigation of QR iteration steps
     </a>
    </li>
   </ul>
@@ -446,6 +458,11 @@ const thebe_selector_output = ".output, .cell_output"
      Accelerating the QR iteration in practice
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-investigation-of-qr-iteration-steps">
+     Numerical investigation of QR iteration steps
+    </a>
+   </li>
   </ul>
  </li>
 </ul>
@@ -462,7 +479,6 @@ const thebe_selector_output = ".output, .cell_output"
 <p>From Abel’s theorem it follows that we cannot generally compute eigenvalues in closed from for matrices with dimension larger than 4. Hence, we need iterative methods to compute eigenvalues. The most fundamental method to compute eigenvalues is the power method.</p>
 <div class="section" id="the-power-method">
 <h2>The power method<a class="headerlink" href="#the-power-method" title="Permalink to this headline">¶</a></h2>
-<p>The most basic algorithm to compute eigenvalues is the power method. Most practical algorithms utilise the idea of the power method in one form or another.</p>
 <p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span> be a given diagonalizable matrix and let <span class="math notranslate nohighlight">\(q^{(0)}\)</span> be a starting vector with <span class="math notranslate nohighlight">\(\|q^{(0)}\|_2=1\)</span></p>
 <p><strong>Algorithm: Power Method</strong></p>
 <p>for <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
@@ -470,7 +486,7 @@ const thebe_selector_output = ".output, .cell_output"
 <p><span class="math notranslate nohighlight">\(\quad q^{(k)} = z^{(k)}/\|z^{(k)}\|_2\)</span></p>
 <p><span class="math notranslate nohighlight">\(\quad \lambda^{(k)} = \left[q^{(k)}\right]^HAq^{(k)}\)</span></p>
 <p>end</p>
-<p>The analysis of the algorithm is very simple. The normalisation step is only done for numerical purposes to keep the numbers bounded and avoid overflow. The important step is successive multiplication with a vector. We obtain</p>
+<p>The analysis of the algorithm is very simple. The normalisation step is only done for numerical purposes to keep the numbers bounded and avoid overflow. The important step is successive multiplication with a vector. Let <span class="math notranslate nohighlight">\(A\)</span> be diagonalizable and denote the eigenpairs by <span class="math notranslate nohighlight">\((\lambda_j, x_j)\)</span>. We expand the starting vector <span class="math notranslate nohighlight">\(q^{(0)}\)</span> in the basis of eigenvectors as <span class="math notranslate nohighlight">\(q^{(0)} = \sum_{j}\alpha_jx_j\)</span> for some coefficients <span class="math notranslate nohighlight">\(\alpha_j\)</span>. We obtain</p>
 <div class="math notranslate nohighlight">
 \[
 A^{k}q^{(0)} = \sum_{j=1}^n\alpha_j\lambda_j^kx_j = \alpha_1\lambda_1^{k}\left(x_1+\sum_{j=2}^n\frac{\alpha_j}{\alpha_1}\left(\frac{\lambda_j}{\lambda_1}\right)^kx_j\right).
@@ -518,7 +534,7 @@ A^{k}q^{(0)} = \sum_{j=1}^n\alpha_j\lambda_j^kx_j = \alpha_1\lambda_1^{k}\left(x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;\\lambda_j-\\lambda_1&#39;)
 </pre></div>
 </div>
-<img alt="_images/computing_eigenvalues_part_1_4_1.png" src="_images/computing_eigenvalues_part_1_4_1.png" />
+<img alt="_images/computing_eigenvalues_4_1.png" src="_images/computing_eigenvalues_4_1.png" />
 </div>
 </div>
 <p>The convergence is very fast. We have the first eigenvalue to machine precision in just over 10 iterations. Why the fast convergence? Let’s plot the eigenvalues of the matrix.</p>
@@ -535,7 +551,7 @@ A^{k}q^{(0)} = \sum_{j=1}^n\alpha_j\lambda_j^kx_j = \alpha_1\lambda_1^{k}\left(x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fbac67500d0&gt;]
 </pre></div>
 </div>
-<img alt="_images/computing_eigenvalues_part_1_6_1.png" src="_images/computing_eigenvalues_part_1_6_1.png" />
+<img alt="_images/computing_eigenvalues_6_1.png" src="_images/computing_eigenvalues_6_1.png" />
 </div>
 </div>
 <p>We see that the largest eigenvalue is at around 50 and far away from the other eigenvalues who cluster around the origin. This is typical for random matrices with equally distributed random numbers in <span class="math notranslate nohighlight">\([0, 1]\)</span>. Replace every entry of the matrix by its mean <span class="math notranslate nohighlight">\(0.5\)</span>, and you get one eigenvalue which is exactly <span class="math notranslate nohighlight">\(50\)</span> (the corresponding eigenvector is <span class="math notranslate nohighlight">\(x=[1, \dots, 1]^T\)</span>). Random matrices may have some very non-random behaviour!</p>
@@ -593,7 +609,7 @@ A^{k}q^{(0)} = \sum_{j=1}^n\alpha_j\lambda_j^kx_j = \alpha_1\lambda_1^{k}\left(x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;\\lambda_j-\\lambda_1&#39;)
 </pre></div>
 </div>
-<img alt="_images/computing_eigenvalues_part_1_9_1.png" src="_images/computing_eigenvalues_part_1_9_1.png" />
+<img alt="_images/computing_eigenvalues_9_1.png" src="_images/computing_eigenvalues_9_1.png" />
 </div>
 </div>
 </div>
@@ -647,14 +663,14 @@ A^{k}q^{(0)} = \sum_{j=1}^n\alpha_j\lambda_j^kx_j = \alpha_1\lambda_1^{k}\left(x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;error&#39;)
 </pre></div>
 </div>
-<img alt="_images/computing_eigenvalues_part_1_12_1.png" src="_images/computing_eigenvalues_part_1_12_1.png" />
+<img alt="_images/computing_eigenvalues_12_1.png" src="_images/computing_eigenvalues_12_1.png" />
 </div>
 </div>
 <p>The above plot shows the size of the strictly lower triangular part of <span class="math notranslate nohighlight">\(A^{(k)}\)</span>. As it converges to zero, the elements on the diagonal converge to eigenvalues of <span class="math notranslate nohighlight">\(A\)</span>.</p>
 </div>
 <div class="section" id="rayleigh-quotient-iteration">
 <h2>Rayleigh quotient iteration<a class="headerlink" href="#rayleigh-quotient-iteration" title="Permalink to this headline">¶</a></h2>
-<p>For symmetric eigenvalue problems one can combine the inverse iteration with evaluating the Rayleigh quotient. The idea is that instead of the fixed value <span class="math notranslate nohighlight">\(\sigma\)</span> in each step we use as shift the value of the Rayleigh quotient. The resulting algorithm is called Rayleigh quotient iteration. It’s convergence is even cubic.</p>
+<p>For symmetric eigenvalue problems one can combine the inverse iteration with evaluating the Rayleigh quotient. The idea is that instead of the fixed value <span class="math notranslate nohighlight">\(\sigma\)</span> in each step we use as shift the value of the Rayleigh quotient. The resulting algorithm is called Rayleigh quotient iteration. Its convergence is even cubic.</p>
 <p><strong>Algorithm (Rayleigh Quotient Iteration)</strong></p>
 <p><span class="math notranslate nohighlight">\(\lambda^{(0)} = [q^{(0)}]^TAq^{(0)}\)</span></p>
 <p>for <span class="math notranslate nohighlight">\(k=1,2,\dots\)</span></p>
@@ -710,7 +726,7 @@ A^{k}q^{(0)} = \sum_{j=1}^n\alpha_j\lambda_j^kx_j = \alpha_1\lambda_1^{k}\left(x
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;\\lambda_j-\\lambda&#39;)
 </pre></div>
 </div>
-<img alt="_images/computing_eigenvalues_part_1_15_1.png" src="_images/computing_eigenvalues_part_1_15_1.png" />
+<img alt="_images/computing_eigenvalues_15_1.png" src="_images/computing_eigenvalues_15_1.png" />
 </div>
 </div>
 </div>
@@ -802,11 +818,183 @@ A^{(m+1)} = \left[Q^{(m)}\right]^HAQ^{(m)}.
 <h3>Accelerating the QR iteration in practice<a class="headerlink" href="#accelerating-the-qr-iteration-in-practice" title="Permalink to this headline">¶</a></h3>
 <p>The basic form of the QR iteration has some problems.</p>
 <ul class="simple">
-<li><p>It is not suitable for finding complex eigenvalues of real matrices. We cannot converge in real arithmetic to an upper triangular matrix with complex entries.</p></li>
 <li><p>Computing the QR decomposition in each step is rather expensive.</p></li>
 <li><p>Convergence can be extremely slow.</p></li>
+<li><p>It is not suitable for finding complex eigenvalues of real matrices. We cannot converge in real arithmetic to an upper triangular matrix with complex entries.</p></li>
 </ul>
 <p>All three problems can be overcome.</p>
+<ul class="simple">
+<li><p>To make a QR iteration step cheaper we preprocess the matrix <span class="math notranslate nohighlight">\(A\)</span> by an orthogonal transformation to so-called upper Hessenberg form. This is matrix whose upper triangular and first lower diagonal are nonzero. This transformation can easily be achieved in <span class="math notranslate nohighlight">\(O(n^3)\)</span> operations in a finite number of steps (i.e. it is not an iterative process). A QR iteration step preserves the uppper Hessenberg form and can be very cheaply implemented.</p></li>
+<li><p>To speed-up convergence we can use a shifting strategy that can be shown to be equivalent to inverse iteration.</p></li>
+<li><p>To find complex eigenvalues one uses a double-shift strategy that ends up not with an upper triangular matrix <span class="math notranslate nohighlight">\(R\)</span> but with a block upper triangular matrix, where the complex eigenvalues are computed from 2x2 real blocks on the diagonal.</p></li>
+</ul>
+<p>In the following computational section we demonstrate the upper Hessenberg form and shift strategies. We will not go into details about double shifts for complex eigenvalues.</p>
+</div>
+<div class="section" id="numerical-investigation-of-qr-iteration-steps">
+<h3>Numerical investigation of QR iteration steps<a class="headerlink" href="#numerical-investigation-of-qr-iteration-steps" title="Permalink to this headline">¶</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.linalg</span> <span class="kn">import</span> <span class="n">qr</span><span class="p">,</span> <span class="n">hessenberg</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+</pre></div>
+</div>
+</div>
+</div>
+<p>We start with some random matrix <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">A</span>  <span class="o">=</span> <span class="n">rand</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span> <span class="o">*</span> <span class="n">rand</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us first tranform the matrix to upper Hessenberg form. This can be implemented as similarity transformation that does not change the eigenvalues.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">H</span> <span class="o">=</span> <span class="n">hessenberg</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4acce91550&gt;
+</pre></div>
+</div>
+<img alt="_images/computing_eigenvalues_23_1.png" src="_images/computing_eigenvalues_23_1.png" />
+</div>
+</div>
+<p>We see that the matrix and its first lower diagonal are nonzero. Upper Hessenberg structures are preserved by a QR iteration step. Let’s check this.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+<span class="n">H2</span> <span class="o">=</span> <span class="n">R</span> <span class="o">@</span> <span class="n">Q</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">spy</span><span class="p">(</span><span class="n">H2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.image.AxesImage at 0x7f4acc587b80&gt;
+</pre></div>
+</div>
+<img alt="_images/computing_eigenvalues_25_1.png" src="_images/computing_eigenvalues_25_1.png" />
+</div>
+</div>
+<p>This structure preservation can be used to implement a QR iteration step in a highly efficient manner. We will not go into technical details about this here.</p>
+<p>Let us now run a couple of iterations of the QR iteration and let’s see how quickly the second to last element in the last row of <span class="math notranslate nohighlight">\(H\)</span> converges to zero. If it is zero the bottom last diagonal element is a wanted eigenvalue (convince yourself that this is true).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">300</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="n">hessenberg</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">nsteps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">H</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">R</span> <span class="o">@</span> <span class="n">Q</span>
+    <span class="n">residuals</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4a311e9df0&gt;]
+</pre></div>
+</div>
+<img alt="_images/computing_eigenvalues_28_1.png" src="_images/computing_eigenvalues_28_1.png" />
+</div>
+</div>
+<p>The convergence is extremely slow. We can speed this up by a shift strategy. The idea is to modify the QR iteration step so that it reads</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{aligned}
+A^{(m)} -\alpha I &amp;= Q_mR_m\\
+A^{(m+1)} &amp;= R_mQ_m + \alpha I.
+\end{aligned}
+\end{split}\]</div>
+<p>Hence, we subtract the shift and do the QR decomposition, and then when we compute <span class="math notranslate nohighlight">\(R_mQ_m\)</span> we add the shift back in.</p>
+<p>Once can show that a QR step is equivalent to inverse iteration applied to the last vector in the simultaneous iteration. Hence, by applying the shift we perform a shifted inverse iteration. What shall we use as shift?</p>
+<p>It turns out that we achieve quadratic convergence if we simply use the bottom right element of the Hessenberg matrix in each step as shift. This is similar to the Rayleigh quotient method for symmetric problems, where we adapted the shift in each step.</p>
+<p>The following implements the shift strategy.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">7</span>
+
+<span class="n">H</span> <span class="o">=</span> <span class="n">hessenberg</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">nsteps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+
+<span class="n">ident</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">H</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">H</span> <span class="o">-</span> <span class="n">shift</span> <span class="o">*</span> <span class="n">ident</span><span class="p">)</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">R</span><span class="p">,</span> <span class="n">Q</span><span class="p">)</span> <span class="o">+</span> <span class="n">shift</span> <span class="o">*</span> <span class="n">ident</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">H</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Residual: </span><span class="si">{</span><span class="n">residual</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">residuals</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">residual</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Residual: 0.508873616732413
+Residual: 0.2076653000186893
+Residual: 0.18529890729552823
+Residual: 0.01935687814656868
+Residual: 0.00034094139006009337
+Residual: 1.1837354557680947e-07
+Residual: 1.3539693075470919e-14
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4a30e4f6d0&gt;]
+</pre></div>
+</div>
+<img alt="_images/computing_eigenvalues_30_2.png" src="_images/computing_eigenvalues_30_2.png" />
+</div>
+</div>
+<p>We have converged in 7 iterations. Let us now reduce the matrix and continue with the next smaller matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">nsteps</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="n">H_reduced</span> <span class="o">=</span> <span class="n">H</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="c1"># Copy H over to preserve the original matrix</span>
+
+<span class="n">residuals</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">nsteps</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float64&#39;</span><span class="p">)</span>
+
+<span class="n">ident</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">nsteps</span><span class="p">):</span>
+    <span class="n">shift</span> <span class="o">=</span> <span class="n">H_reduced</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">Q</span><span class="p">,</span> <span class="n">R</span> <span class="o">=</span> <span class="n">qr</span><span class="p">(</span><span class="n">H_reduced</span> <span class="o">-</span> <span class="n">shift</span> <span class="o">*</span> <span class="n">ident</span><span class="p">)</span>
+    <span class="n">H_reduced</span> <span class="o">=</span> <span class="n">R</span> <span class="o">@</span> <span class="n">Q</span> <span class="o">+</span> <span class="n">shift</span> <span class="o">*</span> <span class="n">ident</span>
+    <span class="n">residual</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">H_reduced</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">])</span> <span class="o">/</span> <span class="nb">abs</span><span class="p">(</span><span class="n">H_reduced</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Residual: </span><span class="si">{</span><span class="n">residual</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">residuals</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">residual</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">residuals</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Residual: 1.0943921434074488e-05
+Residual: 7.568006610141011e-11
+Residual: 3.1024322351139375e-21
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4a30e3b100&gt;]
+</pre></div>
+</div>
+<img alt="_images/computing_eigenvalues_32_2.png" src="_images/computing_eigenvalues_32_2.png" />
+</div>
+</div>
+<p>We have now converged in 3 iterations. In practice, with more sophisticated shift variants and good deflation strategies the QR iteration takes typically only 2 to 3 iterations per eigenvalue, where each iteration has quadratic cost. Hence, the overall algorithm converges usually in cubic time. Therefore, even though the QR iteration is an iterative algorithm we therefore speak of a method with cubic complexitiy since this holds in almost all cases.</p>
 </div>
 </div>
 </div>
@@ -835,7 +1023,21 @@ A^{(m+1)} = \left[Q^{(m)}\right]^HAQ^{(m)}.
               
             
                 <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="eigenvalues_perturbation_theory.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Perturbation results for eigenvalue problems</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="week_1_self_check.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 1 Self check questions and solutions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
             
         </div>
