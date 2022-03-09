@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Least Squares Problems &#8212; MATH0058 - Lecture Notes</title>
+    <title>Numerical quadrature &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Complex vector spaces" href="complex_vector_spaces.html" />
-    <link rel="prev" title="The Singular Value decomposition" href="singular_value_decomposition.html" />
+    <link rel="next" title="Week 1 Self check questions and solutions" href="week_1_self_check.html" />
+    <link rel="prev" title="Introduction to interpolation" href="interpolation_and_quadrature.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
     
@@ -168,7 +168,7 @@ const thebe_selector_output = ".output, .cell_output"
   Orthogonal decompositions
  </span>
 </p>
-<ul class="current nav bd-sidenav">
+<ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="qr_decomposition.html">
    The QR Decomposition
@@ -179,8 +179,8 @@ const thebe_selector_output = ".output, .cell_output"
    The Singular Value decomposition
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
+ <li class="toctree-l1">
+  <a class="reference internal" href="least_squares_problems.html">
    Least Squares Problems
   </a>
  </li>
@@ -222,14 +222,14 @@ const thebe_selector_output = ".output, .cell_output"
   Interpolation and quadrature
  </span>
 </p>
-<ul class="nav bd-sidenav">
+<ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="interpolation_and_quadrature.html">
    Introduction to interpolation
   </a>
  </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="quadrature.html">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
    Numerical quadrature
   </a>
  </li>
@@ -321,9 +321,9 @@ const thebe_selector_output = ".output, .cell_output"
         <!-- ipynb file if we had a myst markdown file -->
         
         <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/least_squares_problems.md"><button type="button"
+        <a class="dropdown-buttons" href="_sources/quadrature.ipynb"><button type="button"
                 class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
+                data-placement="left">.ipynb</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
                 onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
@@ -341,6 +341,23 @@ const thebe_selector_output = ".output, .cell_output"
 
             <!-- Launch buttons -->
 
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/quadrature.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
         </div>
 
         <!-- Table of contents -->
@@ -352,23 +369,18 @@ const thebe_selector_output = ".output, .cell_output"
             <nav id="bd-toc-nav" aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-normal-equation">
-   The normal equation
+  <a class="reference internal nav-link" href="#newton-cotes-formulae">
+   Newton-Cotes formulae
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#properties-of-the-normal-equation">
-   Properties of the normal equation
+  <a class="reference internal nav-link" href="#error-estimates">
+   Error estimates
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solving-least-squares-problems-with-the-qr-decomposition">
-   Solving least-squares problems with the QR decomposition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solving-least-squares-problems-with-the-svd">
-   Solving least-squares problems with the SVD
+  <a class="reference internal nav-link" href="#runge-phenomenon-for-newton-cotes-rules">
+   Runge phenomenon for Newton-Cotes rules
   </a>
  </li>
 </ul>
@@ -381,7 +393,7 @@ const thebe_selector_output = ".output, .cell_output"
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Least Squares Problems</h1>
+                <h1>Numerical quadrature</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -392,23 +404,18 @@ const thebe_selector_output = ".output, .cell_output"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#the-normal-equation">
-   The normal equation
+  <a class="reference internal nav-link" href="#newton-cotes-formulae">
+   Newton-Cotes formulae
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#properties-of-the-normal-equation">
-   Properties of the normal equation
+  <a class="reference internal nav-link" href="#error-estimates">
+   Error estimates
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solving-least-squares-problems-with-the-qr-decomposition">
-   Solving least-squares problems with the QR decomposition
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#solving-least-squares-problems-with-the-svd">
-   Solving least-squares problems with the SVD
+  <a class="reference internal nav-link" href="#runge-phenomenon-for-newton-cotes-rules">
+   Runge phenomenon for Newton-Cotes rules
   </a>
  </li>
 </ul>
@@ -420,109 +427,66 @@ const thebe_selector_output = ".output, .cell_output"
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="least-squares-problems">
-<h1>Least Squares Problems<a class="headerlink" href="#least-squares-problems" title="Permalink to this headline">¶</a></h1>
-<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{m\times n}\)</span> with <span class="math notranslate nohighlight">\(m\geq n\)</span> and <span class="math notranslate nohighlight">\(b\in\mathbb{R}^m\)</span>.
-In the following we assume that <span class="math notranslate nohighlight">\(\text{rank}(A) = n\)</span>.</p>
-<p>We define the following leasts-squares problem</p>
+  <div class="tex2jax_ignore mathjax_ignore section" id="numerical-quadrature">
+<h1>Numerical quadrature<a class="headerlink" href="#numerical-quadrature" title="Permalink to this headline">¶</a></h1>
+<p>One application of interpolation is the numerical integration (or quadrature) of functions. Given a complicated function <span class="math notranslate nohighlight">\(f\)</span> in an interval <span class="math notranslate nohighlight">\([a,b]\)</span>. Instead of evaluating</p>
 <div class="math notranslate nohighlight">
 \[
-\hat{x} = \text{arg}\min_{x\in\mathbb{R}^n} \|Ax-b\|_2.
+I:=\int_a^bf(x)dx
 \]</div>
-<div class="section" id="the-normal-equation">
-<h2>The normal equation<a class="headerlink" href="#the-normal-equation" title="Permalink to this headline">¶</a></h2>
-<p>Assume that <span class="math notranslate nohighlight">\(\hat{x}\)</span> is a minimizer. Let <span class="math notranslate nohighlight">\(\epsilon\in\mathbb{R}^n\)</span> be a small
-perturbation. Then</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{aligned}
-\|A(\hat{x} + \epsilon) - b\|_2^2 &amp;= \left[A(\hat{x} + \epsilon) - b\right]^T\left[A(\hat{x} + \epsilon) - b\right]\\
-                                  &amp;= \|A\hat{x} -b \|_2^2+2 \epsilon^T(A^TA\hat{x} - A^Tb) + \epsilon^TA^TA\epsilon
-\end{aligned}
-\end{split}\]</div>
-<p>It follows that a necessary condition for <span class="math notranslate nohighlight">\(\hat{x}\)</span> to be a minimum is that</p>
+<p>we evaluate</p>
 <div class="math notranslate nohighlight">
 \[
-A^TA\hat{x} - A^Tb = 0.
+I_n:=\int_a^bp_n(x)dx,
 \]</div>
-<p>Since <span class="math notranslate nohighlight">\(\epsilon^TA^TA\epsilon = \|A\epsilon\|_2^2 &gt; 0 \forall \epsilon\neq 0\)</span>
-the necessary condition is also sufficient.</p>
-<p>The system</p>
+<p>where <span class="math notranslate nohighlight">\(p_n\)</span> interpolates <span class="math notranslate nohighlight">\(f\)</span> at a given set of points.</p>
+<div class="section" id="newton-cotes-formulae">
+<h2>Newton-Cotes formulae<a class="headerlink" href="#newton-cotes-formulae" title="Permalink to this headline">¶</a></h2>
+<p>We now describe the derivation of Newton-Cotes integration formulae. Define</p>
 <div class="math notranslate nohighlight">
 \[
-A^TA\hat{x} = A^Tb
+x_j=a+ih, i=0,\dots,n
 \]</div>
-<p>is called the normal equation for the least-squares problem.</p>
+<p>with <span class="math notranslate nohighlight">\(h=\frac{b-a}{n}\)</span>.</p>
+<p>We interpolate <span class="math notranslate nohighlight">\(f\)</span> using a Lagrange interpolation polynomial of the form</p>
+<div class="math notranslate nohighlight">
+\[
+p_n(x)=\sum_{k=0}^nL_k(x)f(x_k).
+\]</div>
+<p>We obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\int_a^bf(x)dx\approx \int_a^b\sum_{k=0}^nL_k(x)f(x_k)=\sum_{k=0}^nf(x_k)\int_a^bL_k(x)dx:=\sum_{k=0}^nf(x_k)\omega_k,
+\]</div>
+<p>where the <span class="math notranslate nohighlight">\(\omega_k:=\int_a^bL_k(x)dx\)</span> are called integration weights. They are independent of the function to integrate and can be precomputed and tabulated.</p>
+<p>We note two simple observations for Newton-Cotes rules:</p>
+<ol class="simple">
+<li><p>The sum of the weights <span class="math notranslate nohighlight">\(\omega_k\)</span> is always <span class="math notranslate nohighlight">\(b - a\)</span>. This follows from integrating the
+constant function <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+<li><p>The weights are symmetric in the sense that <span class="math notranslate nohighlight">\(\omega_j = \omega_{n-j}\)</span>. This follows
+from the symmetry of the <span class="math notranslate nohighlight">\(L_k\)</span> with respect to the middle of the interval <span class="math notranslate nohighlight">\([a,b]\)</span>.</p></li>
+</ol>
+<p>Two particular examples of Newton-Cotes rules are:</p>
+<p>Trapezoid Rule (n=1): <span class="math notranslate nohighlight">\(\int_a^bf(x)dx\approx \frac{b-a}{2}\left[f(a)+f(b)\right]\)</span>.</p>
+<p>Simpson’s Rule (n=2): <span class="math notranslate nohighlight">\(\int_a^bf(x)dx\approx \frac{b-a}{6}\left[f(a)+4f((a+b)/2)+f(b)\right]\)</span></p>
 </div>
-<div class="section" id="properties-of-the-normal-equation">
-<h2>Properties of the normal equation<a class="headerlink" href="#properties-of-the-normal-equation" title="Permalink to this headline">¶</a></h2>
-<p>Let <span class="math notranslate nohighlight">\(A = U\Sigma V^T\)</span> be the SVD of <span class="math notranslate nohighlight">\(A\)</span>. As generalization of
-the relative condition number of a square matrix we can define the relative
-condition number for a rectangular matrix as <span class="math notranslate nohighlight">\(\kappa_{rel}(A):=\sigma_1/\sigma_n\)</span>.</p>
-<p>We have</p>
+<div class="section" id="error-estimates">
+<h2>Error estimates<a class="headerlink" href="#error-estimates" title="Permalink to this headline">¶</a></h2>
+<p>The error <span class="math notranslate nohighlight">\(E_n\)</span> of a quadrature formula is defined as <span class="math notranslate nohighlight">\(E_n(f):=\int_a^bf(x)dx-\sum_{k=0}^n\omega_kf(x_k)\)</span>. We now have</p>
 <div class="math notranslate nohighlight">
 \[
-A^TA = V\Sigma^T\Sigma V^T
+|E_n(f)|=\left|\int_a^b\left[f(x)-L_k(x)f(x_k)\right]dx\right|\leq \int_a^b|f(x)-p_n(x)|dx.
 \]</div>
-<p>as SVD of <span class="math notranslate nohighlight">\(A\)</span>. Hence, <span class="math notranslate nohighlight">\(\kappa_{rel}(A^TA) = \sigma_1^2 / \sigma_n^2 = \kappa_{rel}(A)^2\)</span>.</p>
-<p>It follows that the linear system in the normal equation has a squared condition number
-compared to the original matrix <span class="math notranslate nohighlight">\(A\)</span>. In the following, we discuss orthogonalization methods that
-avoid this squaring of condition number.</p>
+<p>The last integral can be estimated as</p>
+<div class="math notranslate nohighlight">
+\[
+|E_n(x)|\leq \frac{M_{n+1}}{(n+1)!}\int_a^b|(x-x_0)\dots(x-x_n)|dx,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_{n+1}=\max_{\xi\in[a,b]}|f^{(n+1)}(\xi)|\)</span>.</p>
 </div>
-<div class="section" id="solving-least-squares-problems-with-the-qr-decomposition">
-<h2>Solving least-squares problems with the QR decomposition<a class="headerlink" href="#solving-least-squares-problems-with-the-qr-decomposition" title="Permalink to this headline">¶</a></h2>
-<p>Let the full QR decomposition of <span class="math notranslate nohighlight">\(A\)</span> be given as</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-A = \begin{bmatrix} Q_1 &amp; Q_2 \end{bmatrix}\begin{bmatrix}R\\ 0\end{bmatrix}
-\end{split}\]</div>
-<p>Substitute into the least-squares problem to obtain</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\|Ax - b\| = \|Q\begin{bmatrix}R\\ 0\end{bmatrix}x - b\|_2 = \|\begin{bmatrix}R \\ 0\end{bmatrix}x - Q^Tb\|_2.
-\end{split}\]</div>
-<p>The last term gives</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\|\begin{bmatrix}R\\ 0\end{bmatrix}x - Q^Tb\|_2 = \|\begin{bmatrix}R\\ 0\end{bmatrix}x - \begin{bmatrix}Q_1^Tb\\ Q_2^Tb\end{bmatrix}\|_2.
-\end{split}\]</div>
-<p>We see that we can only influence the first block-line with <span class="math notranslate nohighlight">\(x\)</span>. In the second line <span class="math notranslate nohighlight">\(x\)</span> is multiplied with zero and therefore no choice of <span class="math notranslate nohighlight">\(x\)</span>
-would reduce the contribution from there. Hence, the minimizer is the solution of the problem</p>
-<div class="math notranslate nohighlight">
-\[
-Rx = Q_1^Tb.
-\]</div>
-<p>It is possible to show (see exercises) that <span class="math notranslate nohighlight">\(R\)</span> has the same condition number as <span class="math notranslate nohighlight">\(A\)</span>. Hence, we avoid the squaring of
-condition number from the normal equation.</p>
-</div>
-<div class="section" id="solving-least-squares-problems-with-the-svd">
-<h2>Solving least-squares problems with the SVD<a class="headerlink" href="#solving-least-squares-problems-with-the-svd" title="Permalink to this headline">¶</a></h2>
-<p>The SVD can also be used to solve least-squares problems. This will lead us to an important concept, namely
-the <em>pseudo-inverse</em> of a matrix.</p>
-<p>Let <span class="math notranslate nohighlight">\(A = U\Sigma V^T\)</span> be the SVD of <span class="math notranslate nohighlight">\(A\)</span>. Substitute into the least-squares problem to obtain</p>
-<div class="math notranslate nohighlight">
-\[
-\|Ax-b\|_2 = \|U\Sigma V^Tx - b\|_2.
-\]</div>
-<p>Let <span class="math notranslate nohighlight">\(y=V^Tx\)</span> and factorise out <span class="math notranslate nohighlight">\(U\)</span> to obtain</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\|Ax - b\|_2 = \left\|\begin{bmatrix}\tilde{\Sigma}\\ 0\end{bmatrix}y - \begin{bmatrix}U_1^Tb\\ U_2^Tb\end{bmatrix}\right\|_2.
-\end{split}\]</div>
-<p>Hence, <span class="math notranslate nohighlight">\(y = \tilde{\Sigma}^{-1}U_1^Tb\)</span> and therefore</p>
-<div class="math notranslate nohighlight">
-\[
-x = V\tilde{\Sigma}^{-1}U_1^Tb = V\begin{bmatrix}\tilde{\Sigma}^{-1} &amp; 0\end{bmatrix}U^Tb.
-\]</div>
-<p>We define the pseudo-inverse of <span class="math notranslate nohighlight">\(A\)</span> as</p>
-<div class="math notranslate nohighlight">
-\[
-A^{\dagger} := V\begin{bmatrix}\tilde{\Sigma}^{-1} &amp; 0\end{bmatrix}U^T.
-\]</div>
-<p>The pseudo-inverse of <span class="math notranslate nohighlight">\(A\)</span> is a generalization of the inverse of <span class="math notranslate nohighlight">\(A\)</span>.
-In the same way that <span class="math notranslate nohighlight">\(A^{-1}b\)</span> solves the linear system <span class="math notranslate nohighlight">\(Ax=b\)</span> for a square
-matrix <span class="math notranslate nohighlight">\(A\)</span>, the pseudo-inverse <span class="math notranslate nohighlight">\(A^{\dagger}\)</span> applied to <span class="math notranslate nohighlight">\(b\)</span> solves the least-squares minimisation problem
-<span class="math notranslate nohighlight">\(\|Ax-b\|_2\)</span> for rectangular <span class="math notranslate nohighlight">\(A\)</span>.</p>
+<div class="section" id="runge-phenomenon-for-newton-cotes-rules">
+<h2>Runge phenomenon for Newton-Cotes rules<a class="headerlink" href="#runge-phenomenon-for-newton-cotes-rules" title="Permalink to this headline">¶</a></h2>
+<p>If we increase the order of the Newton-Cotes rule then apart from special cases we will encounter the Runge phenomenon. Hence, in order to achieve high accuracy we need to do something else. In practice one often uses so-called composite rules. The idea is that we split <span class="math notranslate nohighlight">\([a,b]\)</span> into <span class="math notranslate nohighlight">\(m\)</span> subintervals <span class="math notranslate nohighlight">\([\tau_i,\tau_{i+1}]\)</span> with <span class="math notranslate nohighlight">\(\tau_i=a+\frac{i}{m}(b-a)\)</span>, <span class="math notranslate nohighlight">\(i=0,\dots,m-1\)</span>, and apply a low-order Newton-Cotes rule in each subinterval.</p>
 </div>
 </div>
 
@@ -551,17 +515,17 @@ matrix <span class="math notranslate nohighlight">\(A\)</span>, the pseudo-inver
             
                 <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
-    <a class='left-prev' id="prev-link" href="singular_value_decomposition.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="interpolation_and_quadrature.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">The Singular Value decomposition</p>
+            <p class="prev-next-title">Introduction to interpolation</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="complex_vector_spaces.html" title="next page">
+    <a class='right-next' id="next-link" href="week_1_self_check.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Complex vector spaces</p>
+        <p class="prev-next-title">Week 1 Self check questions and solutions</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

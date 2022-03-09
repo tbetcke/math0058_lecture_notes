@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Interpolation and quadrature &#8212; MATH0058 - Lecture Notes</title>
+    <title>Introduction to interpolation &#8212; MATH0058 - Lecture Notes</title>
     
   <link href="_static/css/theme.css" rel="stylesheet">
   <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
@@ -55,7 +55,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Week 1 Self check questions and solutions" href="week_1_self_check.html" />
+    <link rel="next" title="Numerical quadrature" href="quadrature.html" />
     <link rel="prev" title="Computing eigenvalues" href="computing_eigenvalues.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -225,7 +225,12 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Interpolation and quadrature
+   Introduction to interpolation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="quadrature.html">
+   Numerical quadrature
   </a>
  </li>
 </ul>
@@ -365,7 +370,7 @@ const thebe_selector_output = ".output, .cell_output"
                 <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Interpolation and quadrature
+   Introduction to interpolation
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -412,26 +417,6 @@ V\begin{bmatrix}a_0\ a_1\ \vdots\ a_n\end{bmatrix}
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#approximation-of-functions-by-polynomials">
      Approximation of functions by polynomials
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numerical-integration">
-     Numerical Integration
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#newton-cotes-formulae">
-     Newton-Cotes formulae
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#error-estimates">
-     Error estimates
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#runge-phenomenon-for-newton-cotes-rules">
-     Runge phenomenon for Newton-Cotes rules
     </a>
    </li>
   </ul>
@@ -446,7 +431,7 @@ V\begin{bmatrix}a_0\ a_1\ \vdots\ a_n\end{bmatrix}
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Interpolation and quadrature</h1>
+                <h1>Introduction to interpolation</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -458,7 +443,7 @@ V\begin{bmatrix}a_0\ a_1\ \vdots\ a_n\end{bmatrix}
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Interpolation and quadrature
+   Introduction to interpolation
   </a>
   <ul class="visible nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -507,26 +492,6 @@ V\begin{bmatrix}a_0\ a_1\ \vdots\ a_n\end{bmatrix}
      Approximation of functions by polynomials
     </a>
    </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#numerical-integration">
-     Numerical Integration
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#newton-cotes-formulae">
-     Newton-Cotes formulae
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#error-estimates">
-     Error estimates
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#runge-phenomenon-for-newton-cotes-rules">
-     Runge phenomenon for Newton-Cotes rules
-    </a>
-   </li>
   </ul>
  </li>
 </ul>
@@ -538,8 +503,8 @@ V\begin{bmatrix}a_0\ a_1\ \vdots\ a_n\end{bmatrix}
             
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="interpolation-and-quadrature">
-<h1>Interpolation and quadrature<a class="headerlink" href="#interpolation-and-quadrature" title="Permalink to this headline">¶</a></h1>
+  <div class="tex2jax_ignore mathjax_ignore section" id="introduction-to-interpolation">
+<h1>Introduction to interpolation<a class="headerlink" href="#introduction-to-interpolation" title="Permalink to this headline">¶</a></h1>
 <p>We consider the following task. Given <span class="math notranslate nohighlight">\(n+1\)</span> distinct points <span class="math notranslate nohighlight">\(x_0,x_1,\dots,x_n\)</span>, and <span class="math notranslate nohighlight">\(n+1\)</span> values <span class="math notranslate nohighlight">\(y_0,y_1,\dots,y_n\)</span>. Find a polynomial <span class="math notranslate nohighlight">\(p_n\)</span> of maximum degree <span class="math notranslate nohighlight">\(n\)</span>, such that <span class="math notranslate nohighlight">\(p(x_j)=y_j\)</span>.</p>
 <p>In this section we will answer the following questions:</p>
 <ol class="simple">
@@ -691,7 +656,7 @@ e_n:=\max_{a\leq x\leq b}|f(x)-p_n(x)|
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb468b154c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f55049077f0&gt;
 </pre></div>
 </div>
 <img alt="_images/interpolation_and_quadrature_14_1.png" src="_images/interpolation_and_quadrature_14_1.png" />
@@ -720,7 +685,7 @@ e_n:=\max_{a\leq x\leq b}|f(x)-p_n(x)|
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb4689af220&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f55047976d0&gt;
 </pre></div>
 </div>
 <img alt="_images/interpolation_and_quadrature_16_1.png" src="_images/interpolation_and_quadrature_16_1.png" />
@@ -765,7 +730,7 @@ e_n:=\max_{a\leq x\leq b}|f(x)-p_n(x)|
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_49533/3931031051.py:19: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_55856/3931031051.py:19: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
 To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
   sol,res,rank,s = np.linalg.lstsq(A,fun(x))
 </pre></div>
@@ -776,68 +741,6 @@ To use the future default and silence this warning we advise to pass `rcond=None
 <img alt="_images/interpolation_and_quadrature_19_2.png" src="_images/interpolation_and_quadrature_19_2.png" />
 </div>
 </div>
-</div>
-<div class="section" id="numerical-integration">
-<h2>Numerical Integration<a class="headerlink" href="#numerical-integration" title="Permalink to this headline">¶</a></h2>
-<p>One application of interpolation is the numerical integration (or quadrature) of functions. Given a complicated function <span class="math notranslate nohighlight">\(f\)</span> in an interval <span class="math notranslate nohighlight">\([a,b]\)</span>. Instead of evaluating</p>
-<div class="math notranslate nohighlight">
-\[
-I:=\int_a^bf(x)dx
-\]</div>
-<p>we evaluate</p>
-<div class="math notranslate nohighlight">
-\[
-I_n:=\int_a^bp_n(x)dx,
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(p_n\)</span> interpolates <span class="math notranslate nohighlight">\(f\)</span> at a given set of points.</p>
-</div>
-<div class="section" id="newton-cotes-formulae">
-<h2>Newton-Cotes formulae<a class="headerlink" href="#newton-cotes-formulae" title="Permalink to this headline">¶</a></h2>
-<p>We now describe the derivation of Newton-Cotes integration formulae. Define</p>
-<div class="math notranslate nohighlight">
-\[
-x_j=a+ih, i=0,\dots,n
-\]</div>
-<p>with <span class="math notranslate nohighlight">\(h=\frac{b-a}{n}\)</span>.</p>
-<p>We interpolate <span class="math notranslate nohighlight">\(f\)</span> using a Lagrange interpolation polynomial of the form</p>
-<div class="math notranslate nohighlight">
-\[
-p_n(x)=\sum_{k=0}^nL_k(x)f(x_k).
-\]</div>
-<p>We obtain</p>
-<div class="math notranslate nohighlight">
-\[
-\int_a^bf(x)dx\approx \int_a^b\sum_{k=0}^nL_k(x)f(x_k)=\sum_{k=0}^nf(x_k)\int_a^bL_k(x)dx:=\sum_{k=0}^nf(x_k)\omega_k,
-\]</div>
-<p>where the <span class="math notranslate nohighlight">\(\omega_k:=\int_a^bL_k(x)dx\)</span> are called integration weights. They are independent of the function to integrate and can be precomputed and tabulated.</p>
-<p>We note two simple observations for Newton-Cotes rules:</p>
-<ol class="simple">
-<li><p>The sum of the weights <span class="math notranslate nohighlight">\(\omega_k\)</span> is always <span class="math notranslate nohighlight">\(b - a\)</span>. This follows from integrating the
-constant function <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
-<li><p>The weights are symmetric in the sense that <span class="math notranslate nohighlight">\(\omega_j = \omega_{n-j}\)</span>. This follows
-from the symmetry of the <span class="math notranslate nohighlight">\(L_k\)</span> with respect to the middle of the interval <span class="math notranslate nohighlight">\([a,b]\)</span>.</p></li>
-</ol>
-<p>Two particular examples of Newton-Cotes rules are:</p>
-<p>Trapezoid Rule (n=1): <span class="math notranslate nohighlight">\(\int_a^bf(x)dx\approx \frac{b-a}{2}\left[f(a)+f(b)\right]\)</span>.</p>
-<p>Simpson’s Rule (n=2): <span class="math notranslate nohighlight">\(\int_a^bf(x)dx\approx \frac{b-a}{6}\left[f(a)+4f((a+b)/2)+f(b)\right]\)</span></p>
-</div>
-<div class="section" id="error-estimates">
-<h2>Error estimates<a class="headerlink" href="#error-estimates" title="Permalink to this headline">¶</a></h2>
-<p>The error <span class="math notranslate nohighlight">\(E_n\)</span> of a quadrature formula is defined as <span class="math notranslate nohighlight">\(E_n(f):=\int_a^bf(x)dx-\sum_{k=0}^n\omega_kf(x_k)\)</span>. We now have</p>
-<div class="math notranslate nohighlight">
-\[
-|E_n(f)|=\left|\int_a^b\left[f(x)-L_k(x)f(x_k)\right]dx\right|\leq \int_a^b|f(x)-p_n(x)|dx.
-\]</div>
-<p>The last integral can be estimated as</p>
-<div class="math notranslate nohighlight">
-\[
-|E_n(x)|\leq \frac{M_{n+1}}{(n+1)!}\int_a^b|(x-x_0)\dots(x-x_n)|dx,
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(M_{n+1}=\max_{\xi\in[a,b]}|f^{(n+1)}(\xi)|\)</span>.</p>
-</div>
-<div class="section" id="runge-phenomenon-for-newton-cotes-rules">
-<h2>Runge phenomenon for Newton-Cotes rules<a class="headerlink" href="#runge-phenomenon-for-newton-cotes-rules" title="Permalink to this headline">¶</a></h2>
-<p>If we increase the order of the Newton-Cotes rule then apart from special cases we will encounter the Runge phenomenon. Hence, in order to achieve high accuracy we need to do something else. In practice one often uses so-called composite rules. The idea is that we split <span class="math notranslate nohighlight">\([a,b]\)</span> into <span class="math notranslate nohighlight">\(m\)</span> subintervals <span class="math notranslate nohighlight">\([\tau_i,\tau_{i+1}]\)</span> with <span class="math notranslate nohighlight">\(\tau_i=a+\frac{i}{m}(b-a)\)</span>, <span class="math notranslate nohighlight">\(i=0,\dots,m-1\)</span>, and apply a low-order Newton-Cotes rule in each subinterval.</p>
 </div>
 </div>
 
@@ -873,10 +776,10 @@ from the symmetry of the <span class="math notranslate nohighlight">\(L_k\)</spa
             <p class="prev-next-title">Computing eigenvalues</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="week_1_self_check.html" title="next page">
+    <a class='right-next' id="next-link" href="quadrature.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week 1 Self check questions and solutions</p>
+        <p class="prev-next-title">Numerical quadrature</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
