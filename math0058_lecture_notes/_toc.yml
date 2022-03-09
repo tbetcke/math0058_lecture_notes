@@ -30,6 +30,7 @@ parts:
 - caption: Interpolation and quadrature
   chapters:
   - file: interpolation_and_quadrature.ipynb
+  - file: quadrature.ipynb
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
