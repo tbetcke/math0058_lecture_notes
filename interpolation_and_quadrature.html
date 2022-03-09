@@ -1,0 +1,904 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interpolation and quadrature &#8212; MATH0058 - Lecture Notes</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Week 1 Self check questions and solutions" href="week_1_self_check.html" />
+    <link rel="prev" title="Computing eigenvalues" href="computing_eigenvalues.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+      
+      
+      <h1 class="site-logo" id="site-title">MATH0058 - Lecture Notes</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   Welcome to MATH0058
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Fundamentals
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="matrix_vector_norms.html">
+   Matrix and vector norms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="floating_point_arithmetic.html">
+   Floating Point Arithmetic
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="error_analysis.html">
+   Principles of backward error analysis
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="linear_system_error.html">
+   Backward error and condition number of linear systems of equations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="complexity_notation.html">
+   A quick survey of the
+   <span class="math notranslate nohighlight">
+    \(\mathcal{O}\)
+   </span>
+   -notation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="numpy_and_data_layouts.html">
+   Memory layout and Numpy arrays
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  LU Decomposition and its numerical stability
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="lu_decomposition.html">
+   Solving linear system with the LU Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lu_backward_error.html">
+   Backward error of the LU decomposition and pivoting
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="lu_backward_error_examples.html">
+   Backward error of the LU decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="python_lu_decomposition.html">
+   Implementing the LU decomposition in Python
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Orthogonal decompositions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="qr_decomposition.html">
+   The QR Decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="singular_value_decomposition.html">
+   The Singular Value decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="least_squares_problems.html">
+   Least Squares Problems
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Eigenvalue problems
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="complex_vector_spaces.html">
+   Complex vector spaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigenvalues_basic_properties.html">
+   Basic properties of eigenvalue problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="schur_decomposition.html">
+   The Schur decomposition
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="eigenvalues_perturbation_theory.html">
+   Perturbation results for eigenvalue problems
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="computing_eigenvalues.html">
+   Computing eigenvalues
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Interpolation and quadrature
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Interpolation and quadrature
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Self Check Questions
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_1_self_check.html">
+   Week 1 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_2_self_check.html">
+   Week 2 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_3_self_check.html">
+   Week 3 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_4_self_check.html">
+   Week 4 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_5_self_check.html">
+   Week 5 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_6_self_check.html">
+   Week 6 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_7_self_check.html">
+   Week 7 Self check questions and solutions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="week_8_self_check.html">
+   Week 8 Self check questions and solutions
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/interpolation_and_quadrature.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/interpolation_and_quadrature.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
+            </div>
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Interpolation and quadrature
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#existence-and-uniqueness-of-polynomial-interpolation">
+     Existence and uniqueness of polynomial interpolation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#it-is-called-a-vandermonde-matrix-with-this-matrix-the-interpolation-problem-can-be-equivalently-posed-as-v-begin-bmatrix-a-0-a-1-vdots-a-n-end-bmatrix">
+   It is called a Vandermonde matrix. With this matrix the interpolation problem can be equivalently posed as
+$$
+V\begin{bmatrix}a_0\ a_1\ \vdots\ a_n\end{bmatrix}
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theorem">
+     Theorem
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lagrange-interpolation">
+     Lagrange Interpolation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#barycentric-interpolation">
+     Barycentric Interpolation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-runge-phenomenon">
+     The Runge phenomenon
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#weierstrass-approximation-theorem">
+       Weierstrass approximation theorem
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approximation-of-functions-by-polynomials">
+     Approximation of functions by polynomials
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-integration">
+     Numerical Integration
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-cotes-formulae">
+     Newton-Cotes formulae
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-estimates">
+     Error estimates
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runge-phenomenon-for-newton-cotes-rules">
+     Runge phenomenon for Newton-Cotes rules
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+            </nav>
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Interpolation and quadrature</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Interpolation and quadrature
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#existence-and-uniqueness-of-polynomial-interpolation">
+     Existence and uniqueness of polynomial interpolation
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#it-is-called-a-vandermonde-matrix-with-this-matrix-the-interpolation-problem-can-be-equivalently-posed-as-v-begin-bmatrix-a-0-a-1-vdots-a-n-end-bmatrix">
+   It is called a Vandermonde matrix. With this matrix the interpolation problem can be equivalently posed as
+$$
+V\begin{bmatrix}a_0\ a_1\ \vdots\ a_n\end{bmatrix}
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#theorem">
+     Theorem
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lagrange-interpolation">
+     Lagrange Interpolation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#barycentric-interpolation">
+     Barycentric Interpolation
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#the-runge-phenomenon">
+     The Runge phenomenon
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#weierstrass-approximation-theorem">
+       Weierstrass approximation theorem
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#approximation-of-functions-by-polynomials">
+     Approximation of functions by polynomials
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#numerical-integration">
+     Numerical Integration
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#newton-cotes-formulae">
+     Newton-Cotes formulae
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#error-estimates">
+     Error estimates
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#runge-phenomenon-for-newton-cotes-rules">
+     Runge phenomenon for Newton-Cotes rules
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+              <div>
+                
+  <div class="tex2jax_ignore mathjax_ignore section" id="interpolation-and-quadrature">
+<h1>Interpolation and quadrature<a class="headerlink" href="#interpolation-and-quadrature" title="Permalink to this headline">¶</a></h1>
+<p>We consider the following task. Given <span class="math notranslate nohighlight">\(n+1\)</span> distinct points <span class="math notranslate nohighlight">\(x_0,x_1,\dots,x_n\)</span>, and <span class="math notranslate nohighlight">\(n+1\)</span> values <span class="math notranslate nohighlight">\(y_0,y_1,\dots,y_n\)</span>. Find a polynomial <span class="math notranslate nohighlight">\(p_n\)</span> of maximum degree <span class="math notranslate nohighlight">\(n\)</span>, such that <span class="math notranslate nohighlight">\(p(x_j)=y_j\)</span>.</p>
+<p>In this section we will answer the following questions:</p>
+<ol class="simple">
+<li><p>Does a polynomial <span class="math notranslate nohighlight">\(p_n\)</span> with <span class="math notranslate nohighlight">\(p_n(x_j)=y_j\)</span> always exist, and if yes, is it unique?</p></li>
+<li><p>How can we construct such a polynomial in practice?</p></li>
+<li><p>If the values <span class="math notranslate nohighlight">\(y_j\)</span> are samples of a function. Do we convergence to the function if <span class="math notranslate nohighlight">\(n\rightarrow\infty\)</span>?</p></li>
+</ol>
+<div class="section" id="existence-and-uniqueness-of-polynomial-interpolation">
+<h2>Existence and uniqueness of polynomial interpolation<a class="headerlink" href="#existence-and-uniqueness-of-polynomial-interpolation" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(p_n(x)=a_0+a_1x+a_2x^2+\dots+a_nx^n\)</span>. We define the following matrix.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+V = \begin{bmatrix}
+1 &amp; x_0 &amp; x_0^2 &amp; \dots &amp; x_0^n\\
+1 &amp; x_1 &amp; x_1^2 &amp; \dots &amp; x_1^n\\
+\vdots &amp; \vdots &amp; \vdots &amp; \dots &amp; \vdots \\
+1 &amp; x_n &amp; x_n^2 &amp; \dots &amp; x_n^n
+\end{bmatrix}
+\end{split}\]</div>
+</div>
+</div>
+<div class="tex2jax_ignore mathjax_ignore section" id="it-is-called-a-vandermonde-matrix-with-this-matrix-the-interpolation-problem-can-be-equivalently-posed-as-v-begin-bmatrix-a-0-a-1-vdots-a-n-end-bmatrix">
+<h1>It is called a Vandermonde matrix. With this matrix the interpolation problem can be equivalently posed as
+$$
+V\begin{bmatrix}a_0\ a_1\ \vdots\ a_n\end{bmatrix}<a class="headerlink" href="#it-is-called-a-vandermonde-matrix-with-this-matrix-the-interpolation-problem-can-be-equivalently-posed-as-v-begin-bmatrix-a-0-a-1-vdots-a-n-end-bmatrix" title="Permalink to this headline">¶</a></h1>
+<p>\begin{bmatrix}y_0 \ y_1 \ \vdots \ y_n\end{bmatrix}.
+$<span class="math notranslate nohighlight">\(
+Hence, existence and uniqueness follows immediately if \)</span>V$ is nonsingular.</p>
+<div class="section" id="theorem">
+<h2>Theorem<a class="headerlink" href="#theorem" title="Permalink to this headline">¶</a></h2>
+<p>We have <span class="math notranslate nohighlight">\(\det(V)=\prod_{0\leq i&lt;j\leq n}(x_j-x_i)\)</span>. Hence, if <span class="math notranslate nohighlight">\(x_i\neq x_j\)</span> for all <span class="math notranslate nohighlight">\(i\neq j\)</span> the Vandermonde matrix is nonsingular and there exists a unique interpolation polynomial <span class="math notranslate nohighlight">\(p_n\)</span> with <span class="math notranslate nohighlight">\(p_n(x_j)=y_j\)</span>.</p>
+<p>The proof is based on elementary expansions of the determinant. However, here we will proceed differently to proof existence and uniqueness, using the Lagrange interpolation polynomial. This will at the same time also provide a constructive method to obtain  𝑝𝑛 . The reason why Vandermonde matrices are rarely used in practice is given below. Their condition numbers grow exponentially for a simple problem with equally spaced points on the real line.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#Numerical properties of Vandermonde matrices.</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">nvec</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nvec</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Condition number for n=</span><span class="si">%i</span><span class="s2">: </span><span class="si">%e</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">cond</span><span class="p">(</span><span class="n">A</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Condition number for n=10: 4.626450e+03
+Condition number for n=20: 2.722408e+08
+Condition number for n=30: 1.838825e+13
+Condition number for n=40: 1.907921e+17
+Condition number for n=50: 1.372760e+19
+Condition number for n=60: 1.329293e+19
+Condition number for n=70: 3.437477e+19
+Condition number for n=80: 7.048424e+19
+Condition number for n=90: 1.213379e+20
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="lagrange-interpolation">
+<h2>Lagrange Interpolation<a class="headerlink" href="#lagrange-interpolation" title="Permalink to this headline">¶</a></h2>
+<p>We consider the simpler problem that <span class="math notranslate nohighlight">\(y_k=1\)</span> for a given <span class="math notranslate nohighlight">\(k\)</span>, and <span class="math notranslate nohighlight">\(y_j=0\)</span> for <span class="math notranslate nohighlight">\(k\neq \ell\)</span>. We can explicitly construct a solution as</p>
+<div class="math notranslate nohighlight">
+\[
+L_k(x)= \prod_{j=0,j\neq k}^n \frac{(x-x_j)}{(x_k-x_j)}
+\]</div>
+<p>It follows immediately that <span class="math notranslate nohighlight">\(\text{deg}(L_k)=n\)</span>, <span class="math notranslate nohighlight">\(L_k(x_k)=1\)</span>, <span class="math notranslate nohighlight">\(L_k(x_j)=0\)</span> for <span class="math notranslate nohighlight">\(j\neq k\)</span>. The functions <span class="math notranslate nohighlight">\(L_k\)</span> are called Lagrange interpolation polynomials.</p>
+<p>The solution to the original interpolation problem is now simply constructed as</p>
+<div class="math notranslate nohighlight">
+\[
+p_n(x)= \sum_{k=0}^ny_kL_k(x).
+\]</div>
+<p>The above form of the interpolation polynomial is called Lagrange interpolation polynomial. We still need to prove uniqueness.</p>
+<p><strong>Theorem</strong>
+There exists exactly one interpolation polynomial.</p>
+<p><strong>Proof</strong>
+Let <span class="math notranslate nohighlight">\(q_n(x)\)</span> be an other polynomial of maximum degree <span class="math notranslate nohighlight">\(n\)</span> that satisfies <span class="math notranslate nohighlight">\(q_n(x_j)=y_j\)</span>. Let <span class="math notranslate nohighlight">\(w_n:=p_n-q_n\)</span>. We then have <span class="math notranslate nohighlight">\(w(x_j)=0\)</span>, <span class="math notranslate nohighlight">\(j=0,\dots,n\)</span>. Hence, the polynomial <span class="math notranslate nohighlight">\(w_n\)</span> is a polynomial of maximum degree <span class="math notranslate nohighlight">\(n\)</span> with <span class="math notranslate nohighlight">\(n+1\)</span> distinct zeros. But since a nontrivial polynomial can only have at most <span class="math notranslate nohighlight">\(n\)</span> zeros it follows that <span class="math notranslate nohighlight">\(w\equiv 0\)</span>, showing that <span class="math notranslate nohighlight">\(p_n\)</span> is the unique interpolation polynomial.</p>
+</div>
+<div class="section" id="barycentric-interpolation">
+<h2>Barycentric Interpolation<a class="headerlink" href="#barycentric-interpolation" title="Permalink to this headline">¶</a></h2>
+<p>In practice often a different form of Lagrange interpolation is used, called Barycentric Interpolation.</p>
+<p>Let <span class="math notranslate nohighlight">\(\ell(x)=\prod_{j=0}^n(x-x_j)\)</span>, and define <span class="math notranslate nohighlight">\(w_k=\left[\prod_{j=0,j\neq k}^n(x_k-x_j)\right]^{-1}\)</span>. It follows that</p>
+<div class="math notranslate nohighlight">
+\[
+L_k(x)=\ell(x)\frac{w_k}{x-x_k},
+\]</div>
+<p>and therefore</p>
+<div class="math notranslate nohighlight">
+\[
+p_n(x)=\ell(x)\sum_{k=0}^n \frac{w_k}{x-x_k}y_k.
+\]</div>
+<p>This is called the first Barycentric form. It allows the evaluation of <span class="math notranslate nohighlight">\(p_n(x)\)</span> in <span class="math notranslate nohighlight">\(\mathcal{O}(n)\)</span> operations if the <span class="math notranslate nohighlight">\(w_k\)</span> are pre-computed. However, we can be even simpler. Interpolating the constant function <span class="math notranslate nohighlight">\(1\)</span> gives</p>
+<div class="math notranslate nohighlight">
+\[
+1=\ell(x)\sum_{k=0}^n \frac{w_k}{x-x_i}.
+\]</div>
+<p>Hence, we have</p>
+<div class="math notranslate nohighlight">
+\[
+p_n(x)=\frac{\sum_{k=0}^n \frac{w_k}{x-x_k}y_k}{\sum_{k=0}^n \frac{w_k}{x-x_k}}.
+\]</div>
+<p>This is called the second Barycentric form. It avoids the evaluation of <span class="math notranslate nohighlight">\(\ell(x)\)</span> altogether.</p>
+</div>
+<div class="section" id="the-runge-phenomenon">
+<h2>The Runge phenomenon<a class="headerlink" href="#the-runge-phenomenon" title="Permalink to this headline">¶</a></h2>
+<p>Consider the following approximation problem. Given a continuous function <span class="math notranslate nohighlight">\(f\)</span> in <span class="math notranslate nohighlight">\([a,b]\)</span>. Find polynomials <span class="math notranslate nohighlight">\(p_n\)</span> of maximum degree <span class="math notranslate nohighlight">\(n\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[
+\lim_{n\rightarrow\infty}\left(\max_{a\leq x\leq b}|f(x)-p_n(x)|\right)=0.
+\]</div>
+<div class="section" id="weierstrass-approximation-theorem">
+<h3>Weierstrass approximation theorem<a class="headerlink" href="#weierstrass-approximation-theorem" title="Permalink to this headline">¶</a></h3>
+<p>Let <span class="math notranslate nohighlight">\(f\)</span> be a continuous function in <span class="math notranslate nohighlight">\([a,b]\)</span>. For every <span class="math notranslate nohighlight">\(\epsilon&gt;0\)</span> there exists a polynomial <span class="math notranslate nohighlight">\(p(x)\)</span>, such that</p>
+<div class="math notranslate nohighlight">
+\[
+\max_{a\leq x\leq b}|f(x)-p(x)|&lt;\epsilon.
+\]</div>
+<p>Can we use interpolation in equidistant points to find these polynomials?</p>
+<p>Let <span class="math notranslate nohighlight">\(x_j=a+\frac{j}{n}(b-a)\)</span>, <span class="math notranslate nohighlight">\(j=0,\dots,n\)</span>. Given a continuous function <span class="math notranslate nohighlight">\(f\)</span>. What is the behavior of</p>
+<div class="math notranslate nohighlight">
+\[
+e_n:=\max_{a\leq x\leq b}|f(x)-p_n(x)|
+\]</div>
+<p>as <span class="math notranslate nohighlight">\(n\rightarrow\infty\)</span>, where <span class="math notranslate nohighlight">\(p_n\)</span> is the Lagrange interpolation polynomial at the points <span class="math notranslate nohighlight">\(x_j\)</span> with data <span class="math notranslate nohighlight">\(y_j=f(x_j)\)</span>?</p>
+<p>It turns out that <span class="math notranslate nohighlight">\(e_n\rightarrow 0\)</span> needs not be the case even though we could naively assume that using more points and higher degree polynomials should lead to convergence. However, we may receive large oscillations at the edges of the interval. This is called Runge’s phenomenon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="c1">#Runge&#39;s phenomenon in Python</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">barycentric_interpolate</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span> <span class="c1"># Number of interpolation points</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">1000</span> <span class="c1"># Number of points at which to evaluate the interpolation pol.</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">25</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">xeval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+<span class="n">yeval</span><span class="o">=</span><span class="n">barycentric_interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">xeval</span><span class="p">)</span>
+<span class="n">yexact</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">25</span><span class="o">*</span><span class="n">xeval</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xeval</span><span class="p">,</span><span class="n">yexact</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xeval</span><span class="p">,</span><span class="n">yeval</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;p_n(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb468b154c0&gt;
+</pre></div>
+</div>
+<img alt="_images/interpolation_and_quadrature_14_1.png" src="_images/interpolation_and_quadrature_14_1.png" />
+</div>
+</div>
+<p>Note that this phenomenon does not need to hold for all functions. In particular, periodic functions can be very well approximated by interpolation in equispaced points as the following example for the <span class="math notranslate nohighlight">\(\sin\)</span> function shows.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="c1">#Interpolation of a periodic function.</span>
+<span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="kn">import</span> <span class="n">barycentric_interpolate</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="c1"># Number of interpolation points</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">1000</span> <span class="c1"># Number of points at which to evaluate the interpolation pol.</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+<span class="n">xeval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="p">)</span>
+<span class="n">yeval</span><span class="o">=</span><span class="n">barycentric_interpolate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">xeval</span><span class="p">)</span>
+<span class="n">yexact</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">xeval</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xeval</span><span class="p">,</span><span class="n">yexact</span><span class="p">,</span><span class="s1">&#39;r--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;f(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xeval</span><span class="p">,</span><span class="n">yeval</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;p_n(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7fb4689af220&gt;
+</pre></div>
+</div>
+<img alt="_images/interpolation_and_quadrature_16_1.png" src="_images/interpolation_and_quadrature_16_1.png" />
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="approximation-of-functions-by-polynomials">
+<h2>Approximation of functions by polynomials<a class="headerlink" href="#approximation-of-functions-by-polynomials" title="Permalink to this headline">¶</a></h2>
+<p>Let <span class="math notranslate nohighlight">\(f\)</span> be a given function on the interval <span class="math notranslate nohighlight">\([-1,1]\)</span>. Let <span class="math notranslate nohighlight">\(\Pi_n\)</span> be the space of all polynomials of degree at most <span class="math notranslate nohighlight">\(n\)</span>. The task is to represent <span class="math notranslate nohighlight">\(f\)</span> by a polynomial in <span class="math notranslate nohighlight">\(\Pi_n\)</span>. One way is interpolation, which we have just discussed. Another possibility is Approximation. When we approximate <span class="math notranslate nohighlight">\(f\)</span> by a polynomial in <span class="math notranslate nohighlight">\(\Pi_n\)</span> we are looking for a polynomial <span class="math notranslate nohighlight">\(p\in\Pi_n\)</span> such that the error <span class="math notranslate nohighlight">\(e_n:=\|p_n(x)-f(x)\|\)</span> is minimized. Here, <span class="math notranslate nohighlight">\(\|\cdot\|\)</span> is a suitable norm to measure the error. Above we have already seen the error in the maximum norm <span class="math notranslate nohighlight">\(e_n:=\max_{x\in[-1,1]} p_n|\)</span>. But other error norms are possible. The following code implements approximation in the energy norm</p>
+<div class="math notranslate nohighlight">
+\[
+\|p_n(x)-f(x)\|^2 = \int_{-1}^1|p_n(x)-f(x)|^2dx.
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">nn</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">nsample</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">fun</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="mf">1.</span><span class="o">/</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="mi">25</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">residuals</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">nn</span><span class="p">:</span>
+    
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">nsample</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">/</span><span class="n">nsample</span>
+    
+    <span class="n">A</span> <span class="o">=</span>  <span class="n">np</span><span class="o">.</span><span class="n">vander</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">sol</span><span class="p">,</span><span class="n">res</span><span class="p">,</span><span class="n">rank</span><span class="p">,</span><span class="n">s</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">lstsq</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">fun</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="n">residuals</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">h</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">res</span><span class="p">))</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">nn</span><span class="p">,</span> <span class="n">residuals</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Degree&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Error&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_49533/3931031051.py:19: FutureWarning: `rcond` parameter will change to the default of machine precision times ``max(M, N)`` where M and N are the input matrix dimensions.
+To use the future default and silence this warning we advise to pass `rcond=None`, to keep using the old, explicitly pass `rcond=-1`.
+  sol,res,rank,s = np.linalg.lstsq(A,fun(x))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0, 0.5, &#39;Error&#39;)
+</pre></div>
+</div>
+<img alt="_images/interpolation_and_quadrature_19_2.png" src="_images/interpolation_and_quadrature_19_2.png" />
+</div>
+</div>
+</div>
+<div class="section" id="numerical-integration">
+<h2>Numerical Integration<a class="headerlink" href="#numerical-integration" title="Permalink to this headline">¶</a></h2>
+<p>One application of interpolation is the numerical integration (or quadrature) of functions. Given a complicated function <span class="math notranslate nohighlight">\(f\)</span> in an interval <span class="math notranslate nohighlight">\([a,b]\)</span>. Instead of evaluating</p>
+<div class="math notranslate nohighlight">
+\[
+I:=\int_a^bf(x)dx
+\]</div>
+<p>we evaluate</p>
+<div class="math notranslate nohighlight">
+\[
+I_n:=\int_a^bp_n(x)dx,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(p_n\)</span> interpolates <span class="math notranslate nohighlight">\(f\)</span> at a given set of points.</p>
+</div>
+<div class="section" id="newton-cotes-formulae">
+<h2>Newton-Cotes formulae<a class="headerlink" href="#newton-cotes-formulae" title="Permalink to this headline">¶</a></h2>
+<p>We now describe the derivation of Newton-Cotes integration formulae. Define</p>
+<div class="math notranslate nohighlight">
+\[
+x_j=a+ih, i=0,\dots,n
+\]</div>
+<p>with <span class="math notranslate nohighlight">\(h=\frac{b-a}{n}\)</span>.</p>
+<p>We interpolate <span class="math notranslate nohighlight">\(f\)</span> using a Lagrange interpolation polynomial of the form</p>
+<div class="math notranslate nohighlight">
+\[
+p_n(x)=\sum_{k=0}^nL_k(x)f(x_k).
+\]</div>
+<p>We obtain</p>
+<div class="math notranslate nohighlight">
+\[
+\int_a^bf(x)dx\approx \int_a^b\sum_{k=0}^nL_k(x)f(x_k)=\sum_{k=0}^nf(x_k)\int_a^bL_k(x)dx:=\sum_{k=0}^nf(x_k)\omega_k,
+\]</div>
+<p>where the <span class="math notranslate nohighlight">\(\omega_k:=\int_a^bL_k(x)dx\)</span> are called integration weights. They are independent of the function to integrate and can be precomputed and tabulated.</p>
+<p>We note two simple observations for Newton-Cotes rules:</p>
+<ol class="simple">
+<li><p>The sum of the weights <span class="math notranslate nohighlight">\(\omega_k\)</span> is always <span class="math notranslate nohighlight">\(b - a\)</span>. This follows from integrating the
+constant function <span class="math notranslate nohighlight">\(1\)</span>.</p></li>
+<li><p>The weights are symmetric in the sense that <span class="math notranslate nohighlight">\(\omega_j = \omega_{n-j}\)</span>. This follows
+from the symmetry of the <span class="math notranslate nohighlight">\(L_k\)</span> with respect to the middle of the interval <span class="math notranslate nohighlight">\([a,b]\)</span>.</p></li>
+</ol>
+<p>Two particular examples of Newton-Cotes rules are:</p>
+<p>Trapezoid Rule (n=1): <span class="math notranslate nohighlight">\(\int_a^bf(x)dx\approx \frac{b-a}{2}\left[f(a)+f(b)\right]\)</span>.</p>
+<p>Simpson’s Rule (n=2): <span class="math notranslate nohighlight">\(\int_a^bf(x)dx\approx \frac{b-a}{6}\left[f(a)+4f((a+b)/2)+f(b)\right]\)</span></p>
+</div>
+<div class="section" id="error-estimates">
+<h2>Error estimates<a class="headerlink" href="#error-estimates" title="Permalink to this headline">¶</a></h2>
+<p>The error <span class="math notranslate nohighlight">\(E_n\)</span> of a quadrature formula is defined as <span class="math notranslate nohighlight">\(E_n(f):=\int_a^bf(x)dx-\sum_{k=0}^n\omega_kf(x_k)\)</span>. We now have</p>
+<div class="math notranslate nohighlight">
+\[
+|E_n(f)|=\left|\int_a^b\left[f(x)-L_k(x)f(x_k)\right]dx\right|\leq \int_a^b|f(x)-p_n(x)|dx.
+\]</div>
+<p>The last integral can be estimated as</p>
+<div class="math notranslate nohighlight">
+\[
+|E_n(x)|\leq \frac{M_{n+1}}{(n+1)!}\int_a^b|(x-x_0)\dots(x-x_n)|dx,
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(M_{n+1}=\max_{\xi\in[a,b]}|f^{(n+1)}(\xi)|\)</span>.</p>
+</div>
+<div class="section" id="runge-phenomenon-for-newton-cotes-rules">
+<h2>Runge phenomenon for Newton-Cotes rules<a class="headerlink" href="#runge-phenomenon-for-newton-cotes-rules" title="Permalink to this headline">¶</a></h2>
+<p>If we increase the order of the Newton-Cotes rule then apart from special cases we will encounter the Runge phenomenon. Hence, in order to achieve high accuracy we need to do something else. In practice one often uses so-called composite rules. The idea is that we split <span class="math notranslate nohighlight">\([a,b]\)</span> into <span class="math notranslate nohighlight">\(m\)</span> subintervals <span class="math notranslate nohighlight">\([\tau_i,\tau_{i+1}]\)</span> with <span class="math notranslate nohighlight">\(\tau_i=a+\frac{i}{m}(b-a)\)</span>, <span class="math notranslate nohighlight">\(i=0,\dots,m-1\)</span>, and apply a low-order Newton-Cotes rule in each subinterval.</p>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="computing_eigenvalues.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Computing eigenvalues</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="week_1_self_check.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 1 Self check questions and solutions</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            
+        </div>
+    </div>
+    <footer class="footer">
+  <p>
+    
+      By Timo Betcke<br/>
+    
+        &copy; Copyright 2022.<br/>
+  </p>
+</footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
