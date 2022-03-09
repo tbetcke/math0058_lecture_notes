@@ -27,6 +27,8 @@ parts:
   - file: schur_decomposition
   - file: eigenvalues_perturbation_theory
   - file: computing_eigenvalues.ipynb
+- caption: Interpolation and quadrature
+  - file: interpolation_and_quadrature.ipynb
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
