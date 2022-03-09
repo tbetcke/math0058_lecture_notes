@@ -26,6 +26,7 @@ parts:
   - file: eigenvalues_basic_properties
   - file: schur_decomposition
   - file: eigenvalues_perturbation_theory
+  - file: computing_eigenvalues.ipynb
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
