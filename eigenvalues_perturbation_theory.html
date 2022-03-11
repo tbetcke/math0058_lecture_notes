@@ -589,10 +589,10 @@ Similarly, the Bauer-Fike theorem simplifies to <span class="math notranslate no
 eigenvalues of symmetric matrices are at most perturbed by the size of the input perturbation.</p>
 <div class="section" id="rayleigh-quotient-for-hermitian-eigenvalue-problems">
 <h3>Rayleigh-Quotient for Hermitian eigenvalue problems<a class="headerlink" href="#rayleigh-quotient-for-hermitian-eigenvalue-problems" title="Permalink to this headline">¶</a></h3>
-<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span> be Hermitian (that is <span class="math notranslate nohighlight">\(A=A^H\)</span>). Define the Rayleigh quotient</p>
+<p>Let <span class="math notranslate nohighlight">\(A\in\mathbb{R}^{n\times n}\)</span> be a symmetric matrix (that is <span class="math notranslate nohighlight">\(A=A^T\)</span>). Define the Rayleigh quotient</p>
 <div class="math notranslate nohighlight">
 \[
-r(x) = \frac{x^HAx}{x^Hx}.
+r(x) = \frac{x^TAx}{x^Tx}.
 \]</div>
 <p>The Rayleigh quotient has a powerful property. First of all it is straight forward to see that if <span class="math notranslate nohighlight">\(x\)</span> is an
 eigenvector then <span class="math notranslate nohighlight">\(r(x) = \lambda\)</span>. What happens if instead of <span class="math notranslate nohighlight">\(x\)</span> we apply a small perturbation <span class="math notranslate nohighlight">\(\tilde{x} = x + \epsilon\)</span>?
@@ -611,8 +611,8 @@ rest follows from Taylor’s theorem. So let’s compute the derivative of <span
 \[
 (x + \epsilon)^HA(x + \epsilon) = x^HAx + 2x^HA\epsilon + \epsilon^HA\epsilon.
 \]</div>
-<p>Hence, <span class="math notranslate nohighlight">\((x^HAx)' = 2x^HA\)</span> for a Hermitian matrix <span class="math notranslate nohighlight">\(A\)</span> (convince yourself that we needed to use the
-property that <span class="math notranslate nohighlight">\(A\)</span> is Hermitian for this derivation).</p>
+<p>Hence, <span class="math notranslate nohighlight">\((x^TAx)' = 2x^TA\)</span> for a symmetric matrix <span class="math notranslate nohighlight">\(A\)</span> (convince yourself that we needed to use the
+property that <span class="math notranslate nohighlight">\(A\)</span> is symmetric for this derivation).</p>
 <p>Applying the quotient rule we now get that</p>
 <div class="math notranslate nohighlight">
 \[

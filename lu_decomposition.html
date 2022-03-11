@@ -515,17 +515,18 @@ u_{n-1,n-1}x_{n-1} + u_{n-1, x}x_n &amp;= y_{n-1}\\
 \[
 x_i = \frac{y_i - \sum_{j=i + 1}^n u_{i, j}x_j}{u_{i, i}}.
 \]</div>
-<p>What is the cost of this triangular solve? We are counting the number of additions, subtractions, multiplications, and divisions.</p>
-<p>In step <span class="math notranslate nohighlight">\(i\)</span> we have <span class="math notranslate nohighlight">\(n-i\)</span> multiplications, one subtraction (apart from the first step) and one division. Hence, the overall number <span class="math notranslate nohighlight">\(ops\)</span> of operations is</p>
+<p>What is the cost of this triangular solve? We are counting the number of
+additions, subtractions, multiplications, and divisions.</p>
+<p>In step <span class="math notranslate nohighlight">\(i\)</span> we have <span class="math notranslate nohighlight">\(n-i\)</span> multiplications <span class="math notranslate nohighlight">\(n-i-1\)</span> additions, one subtraction (apart from the
+first step) and one division. Hence, the overall number <span class="math notranslate nohighlight">\(ops\)</span> of operations is</p>
 <div class="math notranslate nohighlight">
 \[
-ops = 2n - 1 + \sum_{i=1}^n n-i,
+ops = 2n - 1 + 2\sum_{i=1}^n n-i.
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(2n-1\)</span> is the number of subtractions and divisions and in the sum we have the number of multiplications.</p>
 <p>We can easily compute this to obtain</p>
 <div class="math notranslate nohighlight">
 \[
-ops = 2n-1 + n^2 - \frac{n(n+1)}{2} = \frac{n^2}{2}+\frac{3}{2}n - 1.
+ops = 2n-1 + 2n^2 - n(n+1) = n^2+n - 1.
 \]</div>
 </div>
 <div class="section" id="deriving-the-lu-decomposition">
