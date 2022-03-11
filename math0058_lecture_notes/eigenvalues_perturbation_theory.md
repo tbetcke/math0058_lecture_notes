@@ -161,10 +161,10 @@ eigenvalues of symmetric matrices are at most perturbed by the size of the input
 
 ### Rayleigh-Quotient for Hermitian eigenvalue problems
 
-Let $A\in\mathbb{C}^{n\times n}$ be Hermitian (that is $A=A^H$). Define the Rayleigh quotient
+Let $A\in\mathbb{R}^{n\times n}$ be a symmetric matrix (that is $A=A^T$). Define the Rayleigh quotient
 
 $$
-r(x) = \frac{x^HAx}{x^Hx}.
+r(x) = \frac{x^TAx}{x^Tx}.
 $$
  
 The Rayleigh quotient has a powerful property. First of all it is straight forward to see that if $x$ is an 
@@ -188,8 +188,8 @@ $$
 (x + \epsilon)^HA(x + \epsilon) = x^HAx + 2x^HA\epsilon + \epsilon^HA\epsilon.
 $$
 
-Hence, $(x^HAx)' = 2x^HA$ for a Hermitian matrix $A$ (convince yourself that we needed to use the
-property that $A$ is Hermitian for this derivation).
+Hence, $(x^TAx)' = 2x^TA$ for a symmetric matrix $A$ (convince yourself that we needed to use the
+property that $A$ is symmetric for this derivation).
 
 Applying the quotient rule we now get that
 

@@ -68,20 +68,21 @@ $$
 x_i = \frac{y_i - \sum_{j=i + 1}^n u_{i, j}x_j}{u_{i, i}}.
 $$
 
-What is the cost of this triangular solve? We are counting the number of additions, subtractions, multiplications, and divisions.
+What is the cost of this triangular solve? We are counting the number of
+additions, subtractions, multiplications, and divisions.
 
-In step $i$ we have $n-i$ multiplications, one subtraction (apart from the first step) and one division. Hence, the overall number $ops$ of operations is
+In step $i$ we have $n-i$ multiplications $n-i-1$ additions, one subtraction (apart from the
+first step) and one division. Hence, the overall number $ops$ of operations is
 
 $$
-ops = 2n - 1 + \sum_{i=1}^n n-i,
+ops = 2n - 1 + 2\sum_{i=1}^n n-i.
 $$
 
-where $2n-1$ is the number of subtractions and divisions and in the sum we have the number of multiplications.
 
 We can easily compute this to obtain
 
 $$
-ops = 2n-1 + n^2 - \frac{n(n+1)}{2} = \frac{n^2}{2}+\frac{3}{2}n - 1.
+ops = 2n-1 + 2n^2 - n(n+1) = n^2+n - 1.
 $$
 
 ## Deriving the LU Decomposition
