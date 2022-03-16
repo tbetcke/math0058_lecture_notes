@@ -31,6 +31,7 @@ parts:
   chapters:
   - file: interpolation_and_quadrature.ipynb
   - file: quadrature.ipynb
+  - file: stable_quadrature_schemes
 - caption: Self Check Questions
   chapters:
     - file: week_1_self_check
