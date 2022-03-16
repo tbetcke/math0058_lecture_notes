@@ -125,7 +125,7 @@ $$
 Before we prove this statement let us briefly reflect on it. The statement shows that the condition number of the
 eigenvector matrix $X$ determines by how much we can expect arbitrary eigenvalues to be perturbed under perturbations of $A$.
 
-This result is related to the eigenvalue condition number. From $AX = X\Lambda$ it follows that $X^{-1}A = X^{-1}\Lambda$. Hence, the rows of $X^{-1}$ are the left eigenvectors
+This result is related to the eigenvalue condition number. From $AX = X\Lambda$ it follows that $X^{-1}A = \Lambda X^{-1}$. Hence, the rows of $X^{-1}$ are the left eigenvectors
 of the matrix $A$. The Bauer-Fike theorem therefore gives a sharp bound for the maximum perturbation of any eigenvalue
 based on the norm of the matrix of right eigenvectors and the matrix of left eigenvectors.
 
