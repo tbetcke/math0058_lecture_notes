@@ -36,7 +36,7 @@ Note that for each interior point $x_j$ with $0<j<N$ the corresponding value $f(
 have the very simple expression
 
 $$
-I\approx \frac{1}{2}f(a) + \sum_{j=1}^{N-1}f(x_j) + \frac{1}{2}f(b).
+I\approx h\left[\frac{1}{2}f(a) + \sum_{j=1}^{N-1}f(x_j) + \frac{1}{2}f(b)\right].
 $$
 
 It is possible to show that the rate of convergence of this rule is quadratic in $h$ for sufficiently smooth functions, 
