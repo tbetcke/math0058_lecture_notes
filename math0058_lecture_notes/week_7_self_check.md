@@ -64,7 +64,7 @@ It follows that $\kappa\sim \left|\frac{c}{b-a}\right|$.
 
 Show that the eigenvalues $\lambda$ of a Hermitian matrix are all real.
 
-**Solution: **
+**Solution:**
 
 Let $Ax= \lambda x$ for some eigenvalue $\lambda\in\mathbb{C}$ and $x\neq 0$ with $\|x\|_2=1$. 
 Multiplying from the left with $x^H$ gives
@@ -82,5 +82,56 @@ $$
 
 Since $A=A^H$ it follows that $\lambda = \overline{\lambda}$ and therefore that $\lambda$ is real.
 
+We can also proceed directly through the Schur decomposition. The Schur decomposition is
+$$
+A = QR Q^T.
+$$
 
+Since $A=A^H$ it follows that $R=R^H$. Since $R$ is upper triangular it must be therefore diagonal.
+Moreover, all the diagonal elements must be real since $R=R^H$. Since the eigenvalues are the diagonal
+elements it follows that the eigenvalues are real. The Schur decomposition is therefore identical to the
+eigenvalue decomposition $A= X\Lambda X^{-1}$ with $X=Q$ the matrix of eigenvectors.
+
+**Question 4:**
+
+Show that for a Hermitian matrix $A\in\mathbb{C}^{n\times n}$ we have
+
+$$
+x^HAx \in\mathbb{R}
+$$
+
+for all $x\in\mathbb{C}^{n}$. A Hermitian matrix is called positive definite if in addition
+  $x^HAx> 0$ for all $x\in\mathbb{C}^{n}\backslash\{0\}$. Show that this is equivalent to the
+  condition that all eigenvalues of $A$ are positive. Finally, conclude that for a Hermitian positive
+  definite matrix it holds that $\det(A) > 0$.
+
+**Solution:**
+
+$A$ is Hermitian, hence $A=A^H$ and therefore for the complex conjugate $\overline{x^HAx}$ of $x^HAx$ we have
+
+$$
+\overline{x^HAx} = \left(x^HAx\right)^H  = x^HA^Hx = x^HAx.
+$$
+
+Hence, $\overline{x^HAx} = x^HAx$ and therefore $x^HAx$ must be real for any complex vector $x\in\mathbb{C}^n$.
+It follows easily that if $A$ is Hermitian positive definite (that is $x^HAx>0$ for all $x\neq 0$)
+all eigenvalues are positive. Let $\lambda_j$ be an eigenvalue with associated eigenvector $x_j$
+and $\|x_j\|_2 = 1$. We have that
+
+$$
+\lambda_j = x_j^HAx_j > 0
+$$
+
+since the condition that $x^HAx$ is positive holds for all nonzero vectors, and therefore in particular also eigenvectors.
+
+Now assume that all eigenvalues $\lambda_j$ are larger than zero. Let $x\in\mathbb{C}$. We expand $x$ in the basis of
+eigenvectors and obtain $x = \sum_j \alpha_jx_j$. Assuming without loss of generality that
+$\|x_j\|_2=1$ for all $j$ we have from the orthogonality of eigenvectors for Hermitian matrices that
+
+$$
+x^HAx = \sum_j\lambda_j|\alpha_j|^2 > 0.
+$$
+
+Finally, the determinant of a matrix is just the product of its
+eigenvalues. We hence obtain that $\det(A) > 0$ if $A$ is Hermitian positive definite.
 
