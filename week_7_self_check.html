@@ -423,7 +423,7 @@ grow like <span class="math notranslate nohighlight">\(|\frac{c}{b-a}|\)</span> 
 <p>It follows that <span class="math notranslate nohighlight">\(\kappa\sim \left|\frac{c}{b-a}\right|\)</span>.</p>
 <p><strong>Question 3:</strong></p>
 <p>Show that the eigenvalues <span class="math notranslate nohighlight">\(\lambda\)</span> of a Hermitian matrix are all real.</p>
-<p>**Solution: **</p>
+<p><strong>Solution:</strong></p>
 <p>Let <span class="math notranslate nohighlight">\(Ax= \lambda x\)</span> for some eigenvalue <span class="math notranslate nohighlight">\(\lambda\in\mathbb{C}\)</span> and <span class="math notranslate nohighlight">\(x\neq 0\)</span> with <span class="math notranslate nohighlight">\(\|x\|_2=1\)</span>.
 Multiplying from the left with <span class="math notranslate nohighlight">\(x^H\)</span> gives</p>
 <div class="math notranslate nohighlight">
@@ -437,6 +437,48 @@ pose of a scalar is just its complex conjugate)</p>
 x^HA^Hx = \overline{\lambda}.
 \]</div>
 <p>Since <span class="math notranslate nohighlight">\(A=A^H\)</span> it follows that <span class="math notranslate nohighlight">\(\lambda = \overline{\lambda}\)</span> and therefore that <span class="math notranslate nohighlight">\(\lambda\)</span> is real.</p>
+<p>We can also proceed directly through the Schur decomposition. The Schur decomposition is
+$<span class="math notranslate nohighlight">\(
+A = QR Q^T.
+\)</span>$</p>
+<p>Since <span class="math notranslate nohighlight">\(A=A^H\)</span> it follows that <span class="math notranslate nohighlight">\(R=R^H\)</span>. Since <span class="math notranslate nohighlight">\(R\)</span> is upper triangular it must be therefore diagonal.
+Moreover, all the diagonal elements must be real since <span class="math notranslate nohighlight">\(R=R^H\)</span>. Since the eigenvalues are the diagonal
+elements it follows that the eigenvalues are real. The Schur decomposition is therefore identical to the
+eigenvalue decomposition <span class="math notranslate nohighlight">\(A= X\Lambda X^{-1}\)</span> with <span class="math notranslate nohighlight">\(X=Q\)</span> the matrix of eigenvectors.</p>
+<p><strong>Question 4:</strong></p>
+<p>Show that for a Hermitian matrix <span class="math notranslate nohighlight">\(A\in\mathbb{C}^{n\times n}\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+x^HAx \in\mathbb{R}
+\]</div>
+<p>for all <span class="math notranslate nohighlight">\(x\in\mathbb{C}^{n}\)</span>. A Hermitian matrix is called positive definite if in addition
+<span class="math notranslate nohighlight">\(x^HAx&gt; 0\)</span> for all <span class="math notranslate nohighlight">\(x\in\mathbb{C}^{n}\backslash\{0\}\)</span>. Show that this is equivalent to the
+condition that all eigenvalues of <span class="math notranslate nohighlight">\(A\)</span> are positive. Finally, conclude that for a Hermitian positive
+definite matrix it holds that <span class="math notranslate nohighlight">\(\det(A) &gt; 0\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<p><span class="math notranslate nohighlight">\(A\)</span> is Hermitian, hence <span class="math notranslate nohighlight">\(A=A^H\)</span> and therefore for the complex conjugate <span class="math notranslate nohighlight">\(\overline{x^HAx}\)</span> of <span class="math notranslate nohighlight">\(x^HAx\)</span> we have</p>
+<div class="math notranslate nohighlight">
+\[
+\overline{x^HAx} = \left(x^HAx\right)^H  = x^HA^Hx = x^HAx.
+\]</div>
+<p>Hence, <span class="math notranslate nohighlight">\(\overline{x^HAx} = x^HAx\)</span> and therefore <span class="math notranslate nohighlight">\(x^HAx\)</span> must be real for any complex vector <span class="math notranslate nohighlight">\(x\in\mathbb{C}^n\)</span>.
+It follows easily that if <span class="math notranslate nohighlight">\(A\)</span> is Hermitian positive definite (that is <span class="math notranslate nohighlight">\(x^HAx&gt;0\)</span> for all <span class="math notranslate nohighlight">\(x\neq 0\)</span>)
+all eigenvalues are positive. Let <span class="math notranslate nohighlight">\(\lambda_j\)</span> be an eigenvalue with associated eigenvector <span class="math notranslate nohighlight">\(x_j\)</span>
+and <span class="math notranslate nohighlight">\(\|x_j\|_2 = 1\)</span>. We have that</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_j = x_j^HAx_j &gt; 0
+\]</div>
+<p>since the condition that <span class="math notranslate nohighlight">\(x^HAx\)</span> is positive holds for all nonzero vectors, and therefore in particular also eigenvectors.</p>
+<p>Now assume that all eigenvalues <span class="math notranslate nohighlight">\(\lambda_j\)</span> are larger than zero. Let <span class="math notranslate nohighlight">\(x\in\mathbb{C}\)</span>. We expand <span class="math notranslate nohighlight">\(x\)</span> in the basis of
+eigenvectors and obtain <span class="math notranslate nohighlight">\(x = \sum_j \alpha_jx_j\)</span>. Assuming without loss of generality that
+<span class="math notranslate nohighlight">\(\|x_j\|_2=1\)</span> for all <span class="math notranslate nohighlight">\(j\)</span> we have from the orthogonality of eigenvectors for Hermitian matrices that</p>
+<div class="math notranslate nohighlight">
+\[
+x^HAx = \sum_j\lambda_j|\alpha_j|^2 &gt; 0.
+\]</div>
+<p>Finally, the determinant of a matrix is just the product of its
+eigenvalues. We hence obtain that <span class="math notranslate nohighlight">\(\det(A) &gt; 0\)</span> if <span class="math notranslate nohighlight">\(A\)</span> is Hermitian positive definite.</p>
 </div>
 
     <script type="text/x-thebe-config">
