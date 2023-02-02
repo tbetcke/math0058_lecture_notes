@@ -7,7 +7,7 @@ and the columns of $Q$ are mutually orthogonal. Orthogonal transformations are a
 usual Euclidian inner product. We have
 
 $$
-\langle Qx, Qy\rangle = \langle x, Q^TQy\langle = \langle x, y\rangle.
+\langle Qx, Qy\rangle = \langle x, Q^TQy\rangle = \langle x, y\rangle.
 $$
 
 Preservation of norm follows from $\|Qx\|_2^2 = \langle Qx, Qx\rangle = \langle x, x\rangle = \|x\|_2^2$.
@@ -111,5 +111,5 @@ $$
 A = \begin{bmatrix}Q & Q^{\bot}\end{bmatrix}\begin{bmatrix}R\\ 0\end{bmatrix} =: \tilde{R}\tilde{Q}.
 $$
 
-The QR decomposition $A = \tilde{Q}\tilde{R}$ is called full QR decomposition. It is rarely used in practical computation as the columns of $Q^{\bot}$ are usually not required. But it is important theoretically, as $Q^{\bot}$ forms a square orthogonal (and therefore invertible) matrix and contains information about the range of $A$ and its orthogonal complement.
+The QR decomposition $A = \tilde{Q}\tilde{R}$ is called full QR decomposition. It is rarely used in practical computation as the columns of $Q^{\bot}$ are usually not required. But it is important theoretically, as $Q^{\bot}$ contains information about the range of $A$ and its orthogonal complement.
 
